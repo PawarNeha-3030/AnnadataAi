@@ -1,0 +1,1001 @@
+state,district,month,latitude,longitude,soil_type,soil_pH,nitrogen_mgkg,phosphorus_mgkg,potassium_mgkg,organic_carbon_pct,electrical_conductivity_dSm,soil_texture,avg_temperature_C,rainfall_mm,humidity_pct,wind_speed_kmh
+Madhya Pradesh,Gwalior,July,8.0,77.674,Black,8.59,265,10,304,0.45,0.5,Clay Loam,25.9,40,60,6.7
+Gujarat,Surat,October,8.0,79.5139,Black,8.35,208,15,386,0.54,0.19,Clay,28.2,88,56,6.5
+Bihar,Muzaffarpur,September,35.0,70.0293,Alluvial,7.71,244,23,154,0.55,0.43,Loamy,23.1,131,63,4.9
+Uttar Pradesh,Varanasi,July,15.9471,85.8649,Alluvial,7.66,307,15,240,0.52,0.31,Sandy Loam,25.3,116,86,7.2
+Karnataka,Gulbarga,December,8.0,68.8347,Laterite,5.06,167,9,132,0.4,0.27,Clay Loam,26.3,88,58,3.5
+Karnataka,Bangalore,January,8.4005,73.964,Red,6.02,101,12,132,0.73,0.25,Sandy Loam,28.2,94,38,6.1
+Andhra Pradesh,Visakhapatnam,December,35.0,83.0393,Red,6.11,203,11,153,0.54,0.24,Loamy Sand,26.7,106,53,4.1
+West Bengal,Kolkata,August,14.376,68.0,Peaty,4.5,388,29,234,2.79,1.14,Clay,22.4,54,85,6.5
+Uttar Pradesh,Lucknow,April,29.2721,79.3917,Alluvial,7.14,310,16,156,0.77,0.43,Loamy,20.0,94,43,1.3
+Haryana,Faridabad,March,20.9689,69.6874,Alluvial,7.59,329,19,208,0.54,0.28,Loamy,26.2,103,83,5.6
+Andhra Pradesh,Anantapur,July,16.1203,78.1324,Peaty,4.97,355,23,247,1.81,1.19,Clay,26.5,129,97,5.4
+Gujarat,Rajkot,December,26.2036,75.1836,Laterite,6.49,185,5,107,0.38,0.1,Sandy Clay,19.8,66,88,4.1
+Odisha,Puri,March,8.0,94.8467,Laterite,5.52,112,10,113,0.42,0.1,Sandy Clay,30.1,88,63,6.8
+Karnataka,Belgaum,August,8.4709,74.855,Desert,8.72,112,7,205,0.24,0.56,Sandy,30.1,95,64,8.3
+Karnataka,Mysore,June,16.0612,92.7412,Black,7.78,293,14,464,0.65,0.29,Clay Loam,36.1,98,62,4.9
+Karnataka,Bangalore,May,9.2568,82.6956,Red,5.92,216,12,122,0.68,0.29,Sandy Loam,35.0,115,94,6.3
+Maharashtra,Aurangabad,April,15.3538,71.5883,Black,8.44,228,16,311,0.3,0.53,Clay Loam,26.9,125,80,6.3
+Uttar Pradesh,Kanpur,August,26.8297,80.6465,Desert,8.16,54,8,214,0.2,0.6,Sandy,23.1,53,64,4.9
+Madhya Pradesh,Indore,August,21.0571,75.5647,Black,8.25,228,17,392,0.64,0.46,Clay Loam,22.8,105,80,5.1
+Maharashtra,Mumbai,December,30.6449,79.9373,Black,7.87,265,12,440,0.75,0.33,Clay,22.7,76,63,7.8
+Uttar Pradesh,Kanpur,January,21.563,72.2889,Alluvial,7.32,322,16,186,1.05,0.37,Sandy Loam,25.8,87,60,4.4
+Karnataka,Gulbarga,September,27.9397,91.5214,Red,6.67,155,14,160,0.81,0.22,Loamy Sand,27.0,0,78,2.9
+Maharashtra,Kolhapur,May,19.4874,85.4032,Laterite,4.88,108,10,124,0.39,0.17,Clay Loam,31.8,67,81,5.3
+Maharashtra,Pune,April,15.2778,78.2543,Black,8.21,245,13,417,0.46,0.26,Clay Loam,30.0,73,80,6.2
+Rajasthan,Bikaner,June,31.8445,91.8329,Desert,8.27,137,7,196,0.27,0.33,Sandy,33.4,41,81,2.5
+Odisha,Puri,June,14.3252,78.5942,Laterite,5.41,110,11,142,0.2,0.21,Clay Loam,31.4,126,60,3.4
+Karnataka,Bangalore,February,22.7508,86.781,Red,7.99,243,10,178,0.41,0.29,Sandy Loam,21.3,131,62,5.6
+Rajasthan,Udaipur,August,26.1512,78.3064,Desert,9.5,140,8,210,0.35,0.96,Sandy,24.7,37,58,5.2
+Uttar Pradesh,Kanpur,July,26.7319,81.1511,Desert,8.69,101,7,209,0.25,0.67,Sandy,29.8,162,64,3.6
+Andhra Pradesh,East Godavari,January,10.6765,77.3485,Red,5.64,187,14,159,0.43,0.18,Sandy Loam,20.7,104,50,4.9
+Uttar Pradesh,Allahabad,May,28.4156,78.7624,Forest,5.04,280,14,142,0.55,0.2,Silt Loam,31.9,40,89,2.1
+Karnataka,Mysore,December,12.1684,79.3643,Desert,8.61,83,8,136,0.38,0.46,Sandy,18.5,43,52,1.8
+Andhra Pradesh,Visakhapatnam,June,26.4856,72.6421,Red,5.86,319,14,174,0.57,0.16,Sandy Loam,34.4,104,68,7.5
+Gujarat,Surat,April,24.2814,74.7915,Red,6.14,157,12,106,0.43,0.17,Sandy Loam,24.0,25,54,5.9
+Gujarat,Rajkot,February,26.549,76.266,Forest,7.26,248,17,159,0.24,0.17,Loamy,20.1,86,95,7.5
+Odisha,Puri,April,10.36,79.8377,Laterite,5.65,220,9,117,0.51,0.21,Sandy Clay,22.7,130,81,7.3
+Maharashtra,Nagpur,January,24.7034,77.7554,Desert,9.26,121,8,162,0.21,0.69,Sandy,21.0,187,63,5.5
+Telangana,Rangareddy,July,28.6847,87.3843,Desert,8.4,107,10,139,0.41,0.75,Sandy,27.5,53,72,7.0
+Haryana,Hisar,February,21.5472,84.7769,Alluvial,6.47,418,22,166,0.9,0.2,Loamy,21.3,90,62,5.6
+Madhya Pradesh,Indore,February,13.4511,76.4294,Black,8.22,321,11,438,0.59,0.65,Clay Loam,20.0,37,58,3.4
+Telangana,Hyderabad,September,27.358,89.0543,Red,5.65,188,18,171,0.44,0.1,Sandy Loam,28.3,50,72,6.0
+Rajasthan,Udaipur,May,20.9114,92.9842,Peaty,4.5,372,26,289,2.61,0.82,Clay,33.4,75,85,2.8
+Andhra Pradesh,Guntur,February,8.0,68.0,Red,6.22,403,11,128,0.39,0.18,Sandy Loam,24.3,101,67,3.8
+Gujarat,Rajkot,November,12.8305,85.4583,Black,8.22,289,18,354,0.6,0.5,Clay,26.9,47,55,2.0
+Tamil Nadu,Tiruchirappalli,September,15.7896,72.4561,Forest,6.53,272,20,180,0.93,0.16,Loamy,27.1,19,55,9.8
+Punjab,Ludhiana,September,32.0465,84.406,Alluvial,7.35,302,17,217,1.05,0.26,Loamy,27.1,151,76,3.1
+Maharashtra,Nagpur,January,30.6415,87.9059,Black,8.22,161,14,400,0.24,0.4,Clay Loam,27.3,153,80,2.5
+Uttar Pradesh,Allahabad,November,30.6157,70.9841,Laterite,5.2,110,5,93,0.29,0.32,Clay Loam,24.5,119,67,1.4
+Uttar Pradesh,Varanasi,March,21.8589,68.0,Red,6.5,288,8,142,0.52,0.13,Loamy Sand,28.6,38,87,6.6
+Karnataka,Mysore,April,27.3088,84.6835,Red,5.91,140,11,127,0.49,0.28,Loamy Sand,25.7,84,71,5.4
+Gujarat,Vadodara,July,10.8738,79.0832,Black,8.13,195,13,453,0.78,0.55,Clay,24.7,121,55,5.3
+Bihar,Bhagalpur,October,20.0544,68.0,Laterite,5.9,202,13,127,0.54,0.27,Sandy Clay,28.4,96,78,7.9
+Gujarat,Rajkot,April,23.6131,97.0,Black,8.14,226,11,390,0.61,0.29,Clay,22.9,28,53,6.7
+West Bengal,Darjeeling,February,11.4008,82.9954,Peaty,5.64,340,31,202,1.54,1.29,Clay,25.7,83,75,6.4
+Uttar Pradesh,Lucknow,July,21.6793,83.3608,Alluvial,7.52,291,21,144,0.73,0.3,Loamy,21.8,94,65,4.3
+Gujarat,Rajkot,June,33.4931,88.9265,Black,8.63,263,15,460,0.46,0.54,Clay,30.0,44,74,3.4
+Telangana,Warangal,March,24.4702,73.3534,Red,6.66,133,10,144,0.67,0.28,Sandy Loam,30.2,78,80,5.3
+Karnataka,Tumkur,June,27.3404,79.0436,Black,8.15,219,23,361,0.77,0.26,Clay Loam,37.3,119,65,4.5
+Andhra Pradesh,Anantapur,November,8.0,68.0,Red,5.63,164,9,146,0.47,0.12,Loamy Sand,27.6,77,76,1.0
+Maharashtra,Aurangabad,June,32.4638,73.1364,Desert,8.64,121,9,172,0.39,0.68,Sandy,31.2,114,66,5.0
+Madhya Pradesh,Indore,December,18.511,81.0853,Red,6.62,209,17,132,0.56,0.16,Sandy Loam,22.1,87,65,6.3
+Tamil Nadu,Chennai,May,13.8505,68.0,Red,6.85,197,11,163,0.57,0.17,Loamy Sand,31.3,113,41,3.8
+Odisha,Sambalpur,April,18.6029,72.9097,Black,9.07,278,18,362,0.61,0.68,Clay,19.4,133,79,2.9
+Maharashtra,Aurangabad,October,8.1198,70.5765,Black,8.28,280,17,326,0.64,0.64,Clay Loam,26.3,40,79,4.2
+Tamil Nadu,Coimbatore,December,28.3835,79.1367,Red,6.86,205,14,127,0.62,0.22,Loamy Sand,22.6,75,83,4.4
+Uttar Pradesh,Agra,January,17.3168,82.5976,Alluvial,7.63,300,24,164,1.18,0.21,Sandy Loam,24.9,155,54,8.6
+Karnataka,Tumkur,October,14.091,83.9372,Red,5.92,218,18,105,0.47,0.29,Loamy Sand,25.5,71,70,4.1
+Odisha,Cuttack,June,18.6556,85.9905,Laterite,6.71,65,11,147,0.41,0.28,Sandy Clay,29.4,84,32,4.5
+Andhra Pradesh,Visakhapatnam,February,28.9441,88.9769,Desert,8.47,89,10,166,0.25,0.51,Sandy,20.3,102,66,5.7
+Kerala,Kozhikode,March,21.0517,82.858,Laterite,5.32,142,12,113,0.47,0.34,Sandy Clay,26.2,181,64,5.5
+Bihar,Gaya,August,8.7224,93.0987,Black,8.42,237,13,348,0.47,0.42,Clay Loam,26.2,93,78,1.4
+Karnataka,Mysore,October,23.7198,78.956,Desert,9.15,85,5,199,0.23,0.73,Sandy,27.5,77,86,6.3
+Andhra Pradesh,Kurnool,June,12.5682,76.6134,Red,6.01,199,17,177,0.57,0.19,Loamy Sand,34.3,57,76,5.8
+Odisha,Puri,March,8.0,82.8585,Black,8.61,290,18,326,0.54,0.36,Clay Loam,24.1,70,74,2.5
+Haryana,Hisar,July,31.9681,76.2687,Alluvial,6.95,398,24,133,0.8,0.25,Sandy Loam,23.1,62,54,8.2
+Bihar,Patna,April,23.6578,92.8205,Desert,8.56,92,9,157,0.45,0.58,Sandy,26.5,88,71,5.6
+Bihar,Patna,September,19.3738,87.0479,Forest,5.68,269,14,182,1.35,0.18,Loamy,32.5,118,70,5.5
+Andhra Pradesh,Chittoor,May,17.2351,84.0022,Red,7.25,237,14,205,0.63,0.27,Loamy Sand,29.5,89,52,2.1
+Maharashtra,Nagpur,March,31.1766,79.0514,Black,7.74,181,15,295,0.55,0.44,Clay,27.9,68,100,8.0
+Telangana,Medak,February,35.0,74.7402,Black,8.27,236,13,317,0.74,0.38,Clay,21.2,100,63,3.3
+West Bengal,Darjeeling,November,23.5902,83.6106,Black,8.23,203,15,426,0.61,0.37,Clay,25.3,103,68,3.2
+Punjab,Ludhiana,February,11.7629,68.9832,Forest,4.63,243,21,153,1.09,0.18,Loamy,22.2,106,79,4.1
+Maharashtra,Nashik,March,18.7643,90.2749,Red,7.31,236,13,114,0.61,0.31,Sandy Loam,28.6,134,66,1.0
+Andhra Pradesh,Krishna,February,23.4446,76.5789,Red,6.55,212,13,161,0.45,0.22,Sandy Loam,23.3,75,73,4.5
+Maharashtra,Kolhapur,April,8.0,80.4409,Black,8.04,271,14,355,0.6,0.53,Clay,24.4,99,67,5.2
+Maharashtra,Mumbai,February,22.676,70.7232,Black,8.53,308,15,427,0.64,0.15,Clay Loam,23.6,98,100,5.9
+Bihar,Patna,October,23.4914,83.7839,Peaty,5.64,485,30,216,1.59,1.22,Clay,24.9,97,80,5.1
+Punjab,Ludhiana,September,30.6107,74.3701,Alluvial,6.56,293,22,127,0.85,0.4,Sandy Loam,27.0,130,72,5.2
+West Bengal,Kolkata,February,29.777,83.1938,Alluvial,8.34,254,22,166,0.87,0.22,Loamy,25.2,110,55,4.4
+Rajasthan,Ajmer,September,20.8894,84.0591,Desert,8.66,149,5,193,0.32,0.61,Sandy,29.3,90,63,1.2
+Telangana,Hyderabad,June,32.1171,72.8189,Desert,8.83,94,12,202,0.2,0.61,Sandy,32.5,73,47,5.5
+Haryana,Rohtak,January,35.0,69.0118,Alluvial,8.13,254,15,155,0.58,0.25,Sandy Loam,26.6,94,60,3.9
+Bihar,Muzaffarpur,April,20.2236,90.2552,Alluvial,7.32,419,24,174,0.78,0.39,Sandy Loam,26.7,143,56,5.6
+Uttar Pradesh,Agra,January,23.3455,76.4616,Alluvial,6.21,403,24,163,0.83,0.32,Loamy,19.7,109,66,6.1
+Bihar,Bhagalpur,June,8.0,79.7988,Laterite,5.64,119,10,112,0.61,0.29,Sandy Clay,35.0,54,77,5.9
+Rajasthan,Jaipur,April,8.3922,81.8837,Laterite,4.56,136,11,82,0.52,0.31,Sandy Clay,27.0,57,36,1.0
+Uttar Pradesh,Kanpur,March,13.2944,68.0,Forest,5.84,191,16,208,1.05,0.29,Silt Loam,28.8,94,99,3.9
+Madhya Pradesh,Bhopal,March,16.4511,81.7013,Black,9.09,215,13,310,0.44,0.49,Clay Loam,27.3,49,82,5.0
+Andhra Pradesh,Visakhapatnam,September,11.231,78.793,Red,6.17,213,7,150,0.37,0.25,Loamy Sand,29.9,95,88,7.7
+Telangana,Nalgonda,June,19.712,72.8518,Desert,7.83,91,5,145,0.45,0.36,Sandy,34.2,57,65,6.4
+Andhra Pradesh,Krishna,September,16.6903,68.7477,Red,5.79,204,12,144,0.2,0.27,Loamy Sand,22.6,94,85,7.1
+Punjab,Amritsar,May,28.5672,82.8471,Black,8.71,231,13,387,0.58,0.48,Clay Loam,31.0,129,52,6.2
+Maharashtra,Kolhapur,February,16.2018,87.0217,Desert,8.94,60,9,249,0.34,0.96,Sandy,22.3,113,46,3.1
+Rajasthan,Jaipur,August,8.0,79.4287,Red,6.84,182,21,191,0.26,0.14,Loamy Sand,22.0,17,72,5.6
+Gujarat,Vadodara,May,21.006,68.0,Forest,6.48,190,16,199,0.75,0.13,Loamy,27.7,65,78,4.0
+Tamil Nadu,Tiruchirappalli,February,19.8864,69.5413,Red,5.98,268,7,186,0.66,0.18,Loamy Sand,19.6,132,64,4.6
+Madhya Pradesh,Indore,April,13.1036,74.543,Black,7.84,217,12,330,0.2,0.39,Clay,26.3,70,64,6.3
+Bihar,Muzaffarpur,September,20.76,90.517,Laterite,5.83,118,9,88,0.49,0.27,Sandy Clay,25.0,49,69,3.4
+Tamil Nadu,Coimbatore,April,11.3979,76.026,Red,7.34,218,12,141,0.49,0.29,Sandy Loam,26.9,69,92,1.5
+Andhra Pradesh,Kurnool,December,22.6387,74.2514,Red,6.48,191,13,127,0.37,0.24,Loamy Sand,23.7,85,54,3.9
+Maharashtra,Aurangabad,December,35.0,68.0,Laterite,4.71,143,12,133,0.5,0.29,Sandy Clay,19.5,111,55,5.3
+Karnataka,Bangalore,December,8.0,72.7465,Desert,8.41,130,7,214,0.51,0.68,Sandy,25.9,74,86,3.7
+Gujarat,Rajkot,April,15.8701,68.1365,Peaty,4.75,370,25,284,2.07,0.87,Clay,21.6,95,100,5.2
+Odisha,Bhubaneswar,February,14.588,69.9746,Laterite,5.04,156,10,129,0.49,0.52,Sandy Clay,21.6,104,77,1.9
+Punjab,Amritsar,December,16.5339,78.9596,Black,7.84,210,21,403,0.62,0.33,Clay Loam,17.4,78,73,1.7
+West Bengal,Howrah,June,28.1594,74.7907,Forest,6.64,135,17,128,1.54,0.28,Loamy,32.6,123,73,6.2
+Odisha,Puri,November,24.3426,91.596,Laterite,6.45,130,5,149,0.32,0.21,Clay Loam,29.0,127,51,3.6
+Karnataka,Bangalore,February,26.7901,86.624,Alluvial,6.95,343,18,170,0.83,0.21,Sandy Loam,22.2,90,70,6.7
+West Bengal,Darjeeling,December,20.244,73.1289,Peaty,5.34,247,28,271,1.36,1.05,Clay,19.6,49,69,4.0
+Uttar Pradesh,Lucknow,July,9.4232,70.6655,Alluvial,8.03,328,17,180,0.95,0.31,Sandy Loam,28.0,94,57,4.2
+Odisha,Bhubaneswar,March,11.0825,89.0611,Alluvial,7.77,328,16,203,0.81,0.23,Loamy,25.7,123,35,6.7
+West Bengal,Burdwan,March,25.9701,91.2803,Alluvial,7.33,352,22,174,0.54,0.14,Loamy,25.8,110,87,5.0
+Maharashtra,Nashik,May,21.3667,68.0,Black,7.71,289,22,497,0.74,0.5,Clay,32.0,120,74,5.9
+Telangana,Nalgonda,March,30.0817,78.7429,Desert,8.97,86,8,121,0.39,0.56,Sandy,29.6,76,85,5.8
+Tamil Nadu,Madurai,February,22.3461,75.985,Red,5.31,141,15,190,0.5,0.12,Loamy Sand,20.2,73,97,1.0
+Madhya Pradesh,Indore,October,10.5359,83.193,Black,7.69,226,16,414,0.49,0.32,Clay Loam,28.4,75,62,3.1
+Odisha,Bhubaneswar,September,15.8248,93.5413,Laterite,4.7,106,9,106,0.56,0.2,Clay Loam,32.1,144,100,2.6
+West Bengal,Kolkata,February,24.5185,74.1275,Peaty,4.5,333,17,246,2.94,0.97,Clay,21.1,100,61,5.2
+Andhra Pradesh,Krishna,November,25.6827,68.0,Red,6.54,160,12,181,0.52,0.37,Sandy Loam,25.8,80,65,5.7
+Rajasthan,Udaipur,February,26.8409,82.6321,Black,8.4,276,11,397,0.63,0.37,Clay,28.2,28,45,5.6
+Madhya Pradesh,Gwalior,August,11.6118,89.1197,Black,9.0,242,16,459,0.72,0.49,Clay,25.7,68,77,7.2
+Tamil Nadu,Vellore,September,10.3918,75.5699,Red,7.01,168,14,144,0.53,0.25,Sandy Loam,26.1,144,72,3.1
+Telangana,Khammam,July,18.4816,72.3597,Alluvial,7.89,358,15,182,0.86,0.33,Loamy,25.7,45,72,4.8
+Maharashtra,Nagpur,March,31.5206,74.5019,Black,9.01,275,9,352,0.7,0.45,Clay Loam,28.3,127,80,5.6
+Gujarat,Surat,September,14.4491,84.8016,Black,7.71,252,15,361,0.61,0.33,Clay,26.2,27,64,5.4
+Maharashtra,Aurangabad,March,23.6398,74.3643,Black,7.88,292,19,500,0.7,0.36,Clay,28.3,122,100,3.5
+Rajasthan,Jodhpur,May,23.6405,80.6301,Desert,8.17,123,10,197,0.21,0.87,Sandy,35.2,36,66,3.4
+Haryana,Gurgaon,September,26.0862,78.2224,Black,7.85,192,7,406,0.57,0.52,Clay Loam,27.1,83,82,7.1
+Maharashtra,Nashik,December,33.3155,77.397,Desert,8.03,94,8,170,0.38,0.66,Sandy,20.3,56,58,5.0
+Kerala,Kozhikode,March,32.4953,83.6103,Laterite,4.91,129,5,95,0.44,0.17,Sandy Clay,23.6,180,58,3.9
+Gujarat,Rajkot,July,15.2432,74.1714,Peaty,4.5,493,23,169,1.75,1.24,Clay,30.1,66,82,4.9
+Tamil Nadu,Salem,December,8.0,74.5553,Red,6.71,220,16,124,0.34,0.1,Loamy Sand,18.9,105,100,1.8
+Rajasthan,Bikaner,January,14.5718,84.3808,Desert,8.23,120,6,265,0.42,0.45,Sandy,21.7,34,68,9.3
+Maharashtra,Kolhapur,April,20.6054,70.1046,Red,5.55,142,9,170,0.73,0.26,Sandy Loam,24.3,104,53,4.3
+Maharashtra,Aurangabad,April,17.1068,70.9582,Red,6.95,158,14,139,0.38,0.33,Sandy Loam,28.3,54,69,2.8
+Andhra Pradesh,East Godavari,July,35.0,68.0,Red,6.94,272,10,170,0.39,0.37,Loamy Sand,24.5,87,30,2.1
+Uttar Pradesh,Allahabad,August,20.1502,84.7921,Alluvial,7.8,223,18,180,1.01,0.37,Sandy Loam,23.7,123,56,3.9
+Rajasthan,Jodhpur,January,25.2297,77.1581,Alluvial,7.42,245,17,206,0.45,0.28,Loamy,22.7,11,52,3.7
+Andhra Pradesh,East Godavari,May,21.7377,68.0,Alluvial,7.44,349,9,217,0.73,0.3,Loamy,35.0,116,84,5.0
+Tamil Nadu,Coimbatore,July,17.2269,84.8305,Red,7.7,153,6,135,0.29,0.15,Loamy Sand,30.8,62,55,8.4
+Gujarat,Ahmedabad,December,8.0,73.5557,Black,8.07,251,18,365,0.63,0.52,Clay,18.9,82,60,4.6
+Tamil Nadu,Coimbatore,April,19.3711,71.0266,Red,6.15,124,6,141,0.51,0.16,Loamy Sand,23.5,144,69,8.4
+Karnataka,Bangalore,April,35.0,76.4346,Red,6.5,210,11,190,0.49,0.19,Sandy Loam,23.1,22,87,3.2
+Rajasthan,Jaipur,April,10.0443,89.8298,Desert,8.73,130,8,121,0.33,0.91,Sandy,23.9,8,60,7.7
+Kerala,Kochi,December,8.0,74.8403,Desert,8.38,95,6,219,0.25,0.75,Sandy,21.8,164,70,5.2
+Tamil Nadu,Madurai,June,35.0,82.6027,Peaty,4.61,424,25,312,2.2,1.28,Clay,34.6,88,75,8.0
+Haryana,Rohtak,July,25.9367,83.8166,Alluvial,7.55,291,20,157,0.91,0.23,Clay Loam,25.0,76,43,5.3
+Bihar,Gaya,February,21.4994,81.5462,Desert,9.15,178,9,247,0.5,0.45,Sandy,22.5,128,42,6.3
+Tamil Nadu,Tiruchirappalli,May,30.9014,88.1686,Desert,8.57,86,10,211,0.23,0.6,Sandy,35.6,106,41,6.7
+Bihar,Patna,April,13.348,72.3431,Red,7.13,135,10,126,0.55,0.3,Loamy Sand,25.9,92,61,4.1
+Maharashtra,Kolhapur,March,19.1472,69.6533,Black,8.66,214,19,346,0.2,0.4,Clay Loam,24.0,104,67,5.7
+Punjab,Jalandhar,July,27.6412,69.4963,Peaty,4.5,423,20,287,2.55,0.89,Clay,29.7,81,60,3.1
+Punjab,Jalandhar,November,35.0,76.8443,Alluvial,7.12,286,21,189,0.35,0.2,Loamy,25.5,85,52,8.5
+Uttar Pradesh,Lucknow,December,10.6516,70.4236,Alluvial,7.42,201,7,121,0.74,0.27,Loamy,26.0,99,70,4.4
+Telangana,Hyderabad,June,30.2459,79.1803,Black,8.52,282,16,407,0.47,0.31,Clay,38.3,122,91,4.2
+Odisha,Puri,July,23.0547,78.6159,Black,8.56,214,19,419,0.59,0.17,Clay,26.8,150,68,5.9
+Maharashtra,Nashik,May,21.3045,86.1486,Desert,8.27,145,9,220,0.34,0.61,Sandy,32.7,47,84,1.8
+Karnataka,Mysore,June,19.9382,80.3292,Red,7.42,85,12,178,0.22,0.27,Loamy Sand,32.7,122,72,6.4
+Andhra Pradesh,Anantapur,May,8.9228,74.6708,Red,6.86,183,9,141,0.37,0.24,Loamy Sand,35.3,90,57,4.1
+Uttar Pradesh,Allahabad,July,27.7047,81.2868,Alluvial,7.53,285,24,196,0.79,0.23,Sandy Loam,23.6,120,44,2.0
+Haryana,Hisar,February,13.7418,69.7584,Alluvial,7.25,253,26,173,0.84,0.36,Loamy,24.8,105,78,7.6
+Andhra Pradesh,Chittoor,November,11.3625,77.6949,Red,6.1,254,11,181,0.68,0.13,Sandy Loam,21.8,76,83,2.0
+Rajasthan,Udaipur,May,27.0837,80.5552,Laterite,5.45,125,13,117,0.42,0.19,Sandy Clay,32.7,0,73,4.2
+Tamil Nadu,Coimbatore,June,26.3131,79.0345,Desert,8.29,104,11,204,0.31,0.69,Sandy,33.9,99,89,2.3
+Punjab,Ludhiana,June,20.632,81.3205,Alluvial,7.64,295,16,182,1.02,0.48,Clay Loam,32.6,68,85,4.1
+Karnataka,Tumkur,May,28.6363,72.8476,Red,5.73,265,8,173,0.72,0.11,Sandy Loam,26.9,99,42,3.5
+Haryana,Gurgaon,October,31.4075,87.2163,Red,7.02,151,5,137,0.47,0.11,Loamy Sand,21.3,106,44,5.6
+Madhya Pradesh,Jabalpur,July,30.4658,92.5774,Black,7.83,261,18,376,0.68,0.23,Clay,21.3,18,100,4.6
+Gujarat,Rajkot,October,15.7738,68.0,Desert,8.79,84,10,249,0.27,0.57,Sandy,24.6,53,40,6.2
+Karnataka,Belgaum,August,28.1128,68.2752,Laterite,6.55,235,10,97,0.35,0.35,Sandy Clay,26.4,38,40,4.2
+Maharashtra,Kolhapur,July,21.6931,78.3447,Laterite,6.57,192,11,150,0.42,0.2,Clay Loam,27.9,91,50,2.6
+Telangana,Warangal,May,33.8073,75.9476,Alluvial,7.99,352,16,153,0.57,0.46,Loamy,31.1,93,58,4.8
+Gujarat,Rajkot,January,19.0102,93.1713,Black,7.92,269,15,470,0.65,0.32,Clay,23.8,34,70,5.8
+West Bengal,Kolkata,May,17.1482,79.7583,Desert,8.17,50,6,164,0.27,0.44,Sandy,31.5,170,44,10.3
+Tamil Nadu,Chennai,October,15.0896,89.1404,Red,6.99,144,12,200,0.58,0.24,Loamy Sand,26.5,101,62,6.5
+Punjab,Amritsar,February,21.5143,68.0,Laterite,4.5,182,14,102,0.54,0.46,Sandy Clay,26.3,80,69,2.7
+Odisha,Sambalpur,May,23.7338,84.5134,Desert,8.37,107,10,141,0.29,0.42,Sandy,36.6,85,52,8.3
+Uttar Pradesh,Allahabad,May,23.8877,72.2759,Red,8.09,207,8,240,0.42,0.18,Sandy Loam,35.2,131,73,5.8
+Uttar Pradesh,Kanpur,February,22.7934,72.1477,Forest,4.5,175,8,165,1.2,0.23,Loamy,25.9,58,40,5.5
+Tamil Nadu,Madurai,May,25.3683,76.0131,Laterite,5.36,143,7,162,0.45,0.14,Clay Loam,27.5,113,62,2.2
+Telangana,Hyderabad,April,18.2197,68.0,Red,7.28,330,13,166,0.41,0.16,Sandy Loam,25.0,83,70,2.9
+West Bengal,Burdwan,January,13.0199,81.5423,Laterite,5.77,164,13,121,0.41,0.27,Sandy Clay,22.6,121,87,4.6
+West Bengal,Darjeeling,March,12.3214,79.5257,Peaty,5.34,432,21,270,1.79,1.09,Clay,19.7,114,64,5.1
+Punjab,Jalandhar,January,27.8004,80.1295,Alluvial,7.45,348,20,241,0.74,0.25,Clay Loam,20.3,96,55,4.5
+Maharashtra,Nashik,December,23.7626,85.0962,Black,8.17,258,13,407,0.62,0.51,Clay Loam,22.1,137,57,4.8
+Maharashtra,Aurangabad,November,8.0,90.1183,Black,8.34,264,11,461,0.41,0.27,Clay,27.3,108,61,4.9
+Bihar,Patna,May,28.774,75.0903,Forest,7.36,255,17,161,0.9,0.21,Silt Loam,31.8,61,79,5.1
+West Bengal,Darjeeling,April,35.0,81.8188,Black,8.41,236,17,448,0.52,0.31,Clay,31.8,91,96,6.4
+West Bengal,Kolkata,July,14.2727,80.3439,Peaty,5.05,576,26,147,1.68,1.14,Clay,27.9,96,70,5.4
+Bihar,Gaya,May,22.6893,81.0209,Forest,5.1,262,19,190,0.86,0.16,Loamy,31.7,83,70,5.0
+Punjab,Patiala,October,16.2123,81.1408,Alluvial,6.44,292,28,190,0.67,0.41,Sandy Loam,26.8,140,90,1.8
+Telangana,Rangareddy,April,25.0265,90.724,Alluvial,7.66,306,15,208,0.75,0.42,Loamy,28.6,127,73,3.8
+Karnataka,Bangalore,February,10.6719,74.3226,Red,7.16,181,12,121,0.42,0.2,Sandy Loam,23.3,77,53,1.8
+West Bengal,Darjeeling,April,19.4284,68.0,Peaty,5.23,427,29,235,1.78,1.29,Clay,24.2,99,58,4.6
+Uttar Pradesh,Lucknow,December,27.8505,72.417,Red,5.55,188,12,165,0.53,0.13,Loamy Sand,21.9,40,71,6.6
+Andhra Pradesh,Krishna,February,29.8857,84.0581,Forest,6.08,278,22,125,0.61,0.22,Loamy,27.6,68,59,9.4
+Telangana,Medak,August,23.412,78.1866,Desert,7.78,138,6,138,0.38,0.53,Sandy,25.8,40,84,4.6
+Punjab,Jalandhar,March,17.2876,74.2592,Alluvial,7.97,254,27,206,0.66,0.13,Loamy,24.3,78,66,6.7
+Andhra Pradesh,Chittoor,September,8.0,69.388,Black,8.19,280,21,446,0.81,0.3,Clay Loam,26.7,45,76,5.7
+Karnataka,Bellary,April,13.9396,79.7703,Red,6.44,294,8,136,0.56,0.29,Sandy Loam,26.7,39,43,5.5
+Uttar Pradesh,Varanasi,June,16.2458,83.1561,Alluvial,7.56,307,13,162,0.62,0.41,Loamy,36.2,126,60,6.4
+Haryana,Gurgaon,October,14.4181,80.447,Alluvial,7.16,351,22,197,0.84,0.32,Sandy Loam,23.6,144,61,3.8
+Punjab,Patiala,May,20.4764,75.9734,Alluvial,7.82,283,20,217,0.82,0.26,Loamy,32.6,103,82,8.3
+Tamil Nadu,Coimbatore,October,17.2649,79.1731,Alluvial,7.79,250,21,167,1.06,0.19,Loamy,23.7,144,72,5.5
+Haryana,Faridabad,January,21.377,79.1267,Alluvial,7.36,246,21,151,0.81,0.24,Clay Loam,23.7,85,91,3.9
+Tamil Nadu,Vellore,September,29.621,79.5176,Red,6.6,147,12,139,0.6,0.14,Loamy Sand,30.9,88,42,4.5
+Maharashtra,Aurangabad,January,16.7483,68.5256,Black,8.18,208,19,442,0.8,0.43,Clay Loam,23.8,118,69,1.1
+Bihar,Muzaffarpur,August,8.9371,79.5786,Alluvial,7.45,296,16,195,0.89,0.37,Clay Loam,24.3,121,68,4.6
+Punjab,Patiala,September,14.3863,74.4752,Red,5.87,142,12,151,0.61,0.24,Sandy Loam,29.8,127,99,3.6
+West Bengal,Kolkata,September,24.6687,86.3249,Peaty,4.61,437,25,263,2.02,1.15,Clay,27.9,72,70,3.7
+Punjab,Patiala,January,25.4236,79.0633,Alluvial,6.99,254,27,243,0.8,0.47,Loamy,20.6,124,84,5.7
+Uttar Pradesh,Allahabad,February,23.2487,84.6838,Laterite,5.78,105,12,154,0.34,0.29,Sandy Clay,18.8,108,60,5.3
+Telangana,Warangal,December,30.4059,75.5857,Red,5.89,211,16,147,0.46,0.24,Loamy Sand,18.9,79,79,1.5
+Maharashtra,Mumbai,January,18.5091,75.8743,Black,8.92,272,13,467,0.6,0.37,Clay,25.8,95,71,3.8
+Tamil Nadu,Coimbatore,October,35.0,89.954,Desert,8.36,81,5,181,0.25,0.62,Sandy,28.7,73,75,5.0
+Tamil Nadu,Tiruchirappalli,February,26.5455,81.4907,Laterite,5.81,118,11,101,0.39,0.19,Clay Loam,26.7,156,37,8.8
+Kerala,Kochi,October,8.0,72.2839,Desert,8.58,71,11,175,0.41,0.57,Sandy,28.2,125,75,4.7
+Madhya Pradesh,Ujjain,December,34.4053,85.1758,Black,7.57,205,16,462,0.87,0.42,Clay,22.8,107,56,7.5
+West Bengal,Darjeeling,August,13.8641,73.7336,Black,8.39,213,16,380,0.51,0.39,Clay,21.4,99,49,4.9
+Punjab,Ludhiana,May,11.7272,79.8056,Forest,7.05,209,18,190,1.47,0.25,Silt Loam,36.4,60,65,2.7
+Odisha,Puri,December,24.1902,92.6934,Laterite,6.34,233,12,122,0.55,0.26,Sandy Clay,26.0,71,64,2.3
+Rajasthan,Jodhpur,November,8.0,68.0,Desert,7.83,137,10,196,0.34,0.57,Sandy,29.7,82,50,6.7
+Uttar Pradesh,Varanasi,July,14.4362,76.5937,Red,6.95,159,16,168,0.61,0.19,Loamy Sand,25.2,114,66,1.0
+Rajasthan,Bikaner,February,32.4568,81.2662,Desert,8.95,59,6,158,0.39,0.55,Sandy,24.1,61,86,4.7
+Karnataka,Gulbarga,August,24.4497,84.1176,Desert,9.5,100,5,173,0.31,0.68,Sandy,26.7,50,81,4.9
+Bihar,Patna,November,26.4979,68.0701,Red,5.91,228,15,134,0.8,0.16,Sandy Loam,27.4,67,36,6.0
+Tamil Nadu,Vellore,June,14.7447,68.0,Desert,8.52,50,7,224,0.44,0.4,Sandy,32.8,71,76,2.4
+Andhra Pradesh,East Godavari,August,8.0,86.726,Alluvial,6.09,235,26,126,1.1,0.42,Loamy,24.0,100,53,5.6
+Punjab,Patiala,January,25.6545,72.2367,Alluvial,7.73,307,29,190,1.03,0.32,Clay Loam,22.9,165,59,6.7
+Karnataka,Bellary,January,27.442,71.9017,Red,6.34,135,8,108,0.53,0.18,Sandy Loam,24.4,31,56,5.5
+Gujarat,Ahmedabad,December,27.0799,90.402,Alluvial,8.54,318,19,217,0.51,0.25,Sandy Loam,23.0,51,63,5.4
+Gujarat,Vadodara,July,21.6726,78.5576,Black,8.36,218,13,434,0.41,0.49,Clay Loam,29.4,58,69,3.0
+Gujarat,Vadodara,August,12.2635,78.6099,Red,5.83,202,6,187,0.62,0.23,Sandy Loam,28.9,100,62,5.0
+Maharashtra,Mumbai,March,35.0,76.5616,Black,7.45,308,10,373,0.64,0.39,Clay,28.3,131,77,4.4
+Andhra Pradesh,Krishna,May,23.8383,68.2081,Red,7.32,225,10,179,0.65,0.22,Sandy Loam,32.1,110,77,8.0
+Gujarat,Vadodara,December,18.6089,83.4056,Black,7.61,236,10,292,0.54,0.43,Clay,16.5,49,51,1.9
+Madhya Pradesh,Ujjain,January,18.6444,81.2756,Black,8.1,364,12,487,0.6,0.48,Clay,25.7,128,68,5.9
+Gujarat,Ahmedabad,July,21.1968,79.3495,Black,7.98,282,16,375,0.74,0.4,Clay Loam,27.7,71,85,8.1
+Gujarat,Ahmedabad,May,28.5569,77.0694,Laterite,4.5,79,5,102,0.47,0.33,Sandy Clay,30.5,96,69,4.9
+West Bengal,Howrah,August,21.517,75.6614,Peaty,4.95,385,30,226,2.6,1.18,Clay,29.1,133,85,4.8
+Maharashtra,Nashik,August,26.8681,85.2999,Black,8.93,222,20,433,0.4,0.1,Clay Loam,27.6,90,89,7.1
+Madhya Pradesh,Jabalpur,September,21.2112,76.8697,Desert,8.42,72,6,155,0.24,0.64,Sandy,32.0,50,65,8.3
+West Bengal,Howrah,July,19.1012,77.4875,Black,7.89,260,16,372,0.59,0.34,Clay,23.0,108,59,4.4
+Maharashtra,Nashik,November,25.13,82.2391,Black,8.98,284,13,378,0.42,0.56,Clay,25.3,103,55,5.1
+Karnataka,Gulbarga,January,24.8263,79.6637,Desert,8.62,85,9,220,0.34,0.82,Sandy,21.6,125,56,7.4
+Uttar Pradesh,Varanasi,March,18.6429,91.1382,Alluvial,7.82,308,19,176,0.59,0.12,Loamy,25.5,76,72,7.1
+Gujarat,Ahmedabad,August,14.0063,68.0,Peaty,5.5,356,33,275,1.07,0.9,Clay,24.4,72,78,2.4
+Haryana,Faridabad,March,22.7338,80.3993,Alluvial,6.49,290,18,205,0.62,0.34,Sandy Loam,25.9,124,88,8.1
+Uttar Pradesh,Lucknow,August,20.6268,72.3552,Laterite,5.64,181,12,121,0.26,0.32,Clay Loam,29.1,73,81,1.6
+Telangana,Medak,January,15.561,70.4633,Red,7.12,245,9,117,0.4,0.19,Loamy Sand,27.6,48,74,6.0
+Uttar Pradesh,Kanpur,May,13.2608,74.3435,Alluvial,7.64,268,21,168,0.73,0.41,Sandy Loam,36.5,93,57,3.7
+Kerala,Kochi,April,23.2838,78.4374,Laterite,4.5,118,8,137,0.31,0.32,Clay Loam,25.8,211,74,4.4
+Karnataka,Belgaum,May,24.4008,78.7926,Red,7.07,113,17,142,0.59,0.24,Sandy Loam,37.9,95,64,4.2
+Rajasthan,Bikaner,August,17.1197,68.0,Desert,7.72,143,9,211,0.33,0.68,Sandy,24.7,40,80,5.6
+West Bengal,Howrah,October,15.3605,73.6713,Peaty,5.49,358,21,252,2.34,0.99,Clay,25.5,35,67,2.0
+Bihar,Bhagalpur,April,13.358,80.2498,Black,8.51,275,14,295,0.52,0.61,Clay,23.5,70,74,1.4
+Haryana,Hisar,November,23.058,70.9846,Alluvial,7.76,313,26,200,0.58,0.25,Sandy Loam,20.8,95,61,2.1
+Haryana,Faridabad,April,13.5682,69.0817,Alluvial,7.93,280,19,150,0.93,0.29,Loamy,23.3,80,68,6.3
+Maharashtra,Nashik,March,35.0,68.0,Black,8.0,273,13,378,0.55,0.42,Clay,24.8,100,68,7.1
+Maharashtra,Pune,July,16.7177,72.6945,Desert,8.72,50,8,269,0.4,0.51,Sandy,23.0,129,96,3.4
+Odisha,Cuttack,March,8.0,68.803,Laterite,5.85,162,14,80,0.51,0.22,Clay Loam,25.7,109,63,7.5
+Odisha,Bhubaneswar,December,19.7586,70.1285,Laterite,5.05,97,11,90,0.36,0.17,Sandy Clay,19.1,61,30,4.6
+West Bengal,Kolkata,March,19.4157,75.8254,Forest,7.2,193,16,146,1.15,0.25,Loamy,23.1,70,100,7.7
+Gujarat,Rajkot,November,28.8937,73.2014,Black,8.17,270,17,328,0.49,0.45,Clay Loam,27.8,87,55,4.6
+Rajasthan,Jodhpur,October,22.305,68.6701,Forest,5.99,201,24,135,1.23,0.16,Loamy,24.0,30,70,5.2
+Rajasthan,Bikaner,May,13.3293,68.0,Laterite,5.47,145,9,110,0.67,0.33,Sandy Clay,30.7,39,72,3.9
+Odisha,Cuttack,May,17.7089,80.4185,Laterite,6.52,145,9,104,0.55,0.34,Sandy Clay,30.0,99,84,1.4
+Punjab,Jalandhar,June,22.6194,84.0226,Peaty,4.87,470,22,246,2.89,1.09,Clay,30.9,87,74,3.3
+Haryana,Gurgaon,August,8.0,74.826,Forest,5.72,186,15,197,1.19,0.12,Loamy,28.6,34,54,3.0
+Odisha,Bhubaneswar,October,30.709,75.8738,Laterite,5.5,225,12,156,0.26,0.1,Sandy Clay,27.9,98,53,5.0
+West Bengal,Kolkata,June,13.3506,78.0225,Peaty,5.92,485,21,221,2.33,1.05,Clay,33.2,40,85,6.7
+Maharashtra,Pune,December,31.3364,90.6303,Black,8.04,279,9,407,0.41,0.26,Clay,21.5,90,56,3.6
+Madhya Pradesh,Gwalior,January,23.1397,68.0,Black,8.36,219,14,374,0.79,0.31,Clay,20.5,63,57,3.7
+Telangana,Warangal,August,25.0368,74.6841,Forest,6.51,310,25,145,1.16,0.19,Loamy,28.4,98,50,4.4
+Uttar Pradesh,Varanasi,August,29.1954,68.0,Red,6.62,212,13,162,0.38,0.18,Loamy Sand,27.0,90,57,2.8
+Andhra Pradesh,Kurnool,September,24.5851,80.8985,Red,6.2,167,9,138,0.56,0.21,Loamy Sand,26.9,46,64,4.8
+Rajasthan,Udaipur,September,25.3831,76.8483,Laterite,5.7,72,8,113,0.24,0.21,Sandy Clay,25.5,54,63,4.6
+Uttar Pradesh,Kanpur,February,18.6847,79.6239,Alluvial,8.12,343,30,166,1.08,0.18,Loamy,22.2,129,77,8.2
+Maharashtra,Mumbai,February,22.9773,79.225,Black,8.72,231,18,453,0.5,0.31,Clay Loam,22.4,72,100,9.9
+Uttar Pradesh,Kanpur,March,15.3,85.9257,Alluvial,7.31,259,20,136,0.99,0.29,Loamy,24.6,101,85,8.9
+Andhra Pradesh,Visakhapatnam,January,17.2527,82.3051,Red,7.04,117,11,211,0.5,0.31,Sandy Loam,25.5,143,61,3.8
+Andhra Pradesh,Guntur,April,35.0,84.6441,Black,8.33,283,16,338,0.52,0.32,Clay,20.7,122,75,7.1
+Odisha,Sambalpur,April,13.5345,69.4757,Red,7.01,230,11,157,0.54,0.25,Loamy Sand,25.3,46,48,4.0
+Maharashtra,Kolhapur,September,21.2345,87.5454,Black,7.38,181,14,406,0.79,0.41,Clay Loam,27.2,103,91,1.2
+Telangana,Warangal,September,20.9078,72.2211,Black,8.22,255,23,227,0.53,0.36,Clay,24.6,122,55,5.9
+Uttar Pradesh,Allahabad,September,17.514,72.681,Alluvial,7.87,333,20,180,0.99,0.34,Clay Loam,23.8,79,75,6.0
+Bihar,Gaya,October,24.1152,80.1667,Red,6.39,233,10,124,0.77,0.23,Sandy Loam,27.8,110,73,2.7
+Tamil Nadu,Salem,July,24.7178,80.4153,Red,7.23,251,15,153,0.35,0.18,Loamy Sand,25.7,68,83,3.2
+Punjab,Patiala,February,12.5934,69.4251,Alluvial,6.72,263,18,150,1.07,0.49,Loamy,23.8,133,86,4.0
+Telangana,Nalgonda,October,20.8109,76.6138,Alluvial,7.76,296,20,218,0.93,0.35,Loamy,27.6,27,79,5.4
+Andhra Pradesh,Chittoor,May,11.3411,89.9059,Laterite,5.45,189,9,140,0.5,0.38,Sandy Clay,27.8,120,83,5.6
+Uttar Pradesh,Agra,April,26.3084,68.0,Forest,5.88,275,18,138,1.23,0.31,Loamy,28.1,123,83,4.6
+Uttar Pradesh,Varanasi,December,21.4119,89.8818,Laterite,4.5,139,10,84,0.35,0.15,Clay Loam,19.5,87,98,4.7
+Punjab,Patiala,November,20.6586,76.0664,Alluvial,7.16,307,21,217,1.04,0.4,Loamy,26.2,133,88,2.9
+Bihar,Patna,August,25.2723,68.0,Peaty,5.36,397,21,272,2.06,0.86,Clay,24.5,86,100,6.4
+Kerala,Kochi,February,17.7959,68.0,Laterite,4.56,116,8,143,0.49,0.2,Sandy Clay,23.4,171,77,3.0
+Rajasthan,Jaipur,June,27.3122,70.2922,Alluvial,8.02,277,19,214,0.37,0.33,Clay Loam,33.8,56,84,7.1
+Maharashtra,Pune,May,12.4124,73.0086,Black,8.49,281,11,370,0.5,0.57,Clay,33.4,85,38,1.0
+Odisha,Cuttack,December,31.295,77.1623,Desert,8.87,107,11,184,0.37,0.44,Sandy,20.8,104,72,4.9
+Tamil Nadu,Chennai,February,15.5927,68.0,Red,4.88,195,10,124,0.63,0.3,Sandy Loam,26.5,70,94,9.7
+Madhya Pradesh,Indore,November,8.0,79.4944,Alluvial,6.67,315,12,197,0.64,0.21,Clay Loam,27.0,57,50,6.9
+Telangana,Medak,October,17.3717,69.5593,Forest,7.09,260,14,179,0.9,0.23,Silt Loam,26.0,81,53,7.2
+Andhra Pradesh,Chittoor,January,16.4643,89.1242,Desert,9.05,123,12,221,0.37,0.37,Sandy,22.0,88,44,3.0
+Gujarat,Surat,August,17.3114,75.8386,Black,8.58,297,21,407,0.55,0.27,Clay,26.3,23,58,5.9
+Odisha,Cuttack,February,21.8532,85.5428,Laterite,5.36,113,10,119,0.44,0.2,Clay Loam,20.8,81,74,8.0
+Haryana,Rohtak,July,28.7827,86.8828,Alluvial,7.54,303,15,143,0.58,0.28,Loamy,24.1,86,51,6.3
+Madhya Pradesh,Ujjain,September,18.4664,86.6662,Red,6.59,254,14,154,0.69,0.29,Loamy Sand,26.4,112,54,3.2
+Karnataka,Bellary,September,14.4671,73.4687,Red,6.32,158,12,175,0.46,0.11,Sandy Loam,24.6,117,81,5.9
+Karnataka,Bellary,August,10.9876,73.3664,Red,6.02,134,12,119,0.59,0.29,Sandy Loam,26.6,63,62,4.9
+Tamil Nadu,Madurai,November,16.2545,76.2002,Desert,9.46,96,5,226,0.33,0.61,Sandy,28.7,122,61,4.3
+Uttar Pradesh,Varanasi,December,8.0,83.0899,Alluvial,7.39,260,28,125,0.74,0.27,Loamy,20.1,130,73,5.6
+Haryana,Rohtak,October,14.1989,73.9144,Red,7.12,227,7,175,0.58,0.24,Loamy Sand,25.2,71,85,5.5
+Punjab,Amritsar,September,29.9524,77.0459,Alluvial,7.44,319,20,185,0.53,0.21,Loamy,24.3,69,76,2.7
+Tamil Nadu,Salem,February,13.4131,80.1888,Red,5.97,290,10,174,0.5,0.13,Sandy Loam,20.0,58,86,9.5
+Gujarat,Vadodara,June,25.0297,70.7609,Black,7.69,241,12,347,0.78,0.25,Clay,31.2,46,70,2.9
+Bihar,Patna,April,10.1881,70.2551,Black,7.99,232,12,381,0.66,0.34,Clay Loam,29.8,145,51,5.6
+Uttar Pradesh,Varanasi,April,34.1688,76.7339,Alluvial,6.55,319,22,160,1.13,0.41,Loamy,26.8,96,67,1.8
+Uttar Pradesh,Lucknow,May,34.7009,77.7934,Alluvial,6.88,215,20,177,0.94,0.35,Clay Loam,31.8,131,62,6.7
+Madhya Pradesh,Jabalpur,December,24.7282,81.4711,Red,7.88,189,12,129,0.44,0.12,Sandy Loam,22.9,112,87,6.3
+Tamil Nadu,Madurai,March,35.0,83.3751,Peaty,6.03,272,24,283,3.0,1.04,Clay,25.8,87,63,6.7
+Maharashtra,Pune,January,22.8463,69.2075,Peaty,5.14,403,31,267,1.71,1.22,Clay,20.1,50,58,7.7
+Bihar,Bhagalpur,August,26.1481,71.5033,Laterite,5.18,86,5,116,0.41,0.35,Sandy Clay,28.3,75,86,2.1
+Andhra Pradesh,Chittoor,May,30.0955,70.234,Red,6.64,267,12,167,0.45,0.27,Sandy Loam,35.2,140,43,2.6
+Telangana,Rangareddy,March,21.4377,89.2996,Laterite,6.4,60,9,180,0.45,0.23,Sandy Clay,25.0,116,81,5.2
+Andhra Pradesh,Kurnool,October,8.0,77.0378,Desert,9.37,68,6,200,0.22,0.19,Sandy,23.3,96,85,5.1
+Andhra Pradesh,Chittoor,July,26.3117,78.129,Red,6.36,243,12,166,0.57,0.12,Sandy Loam,27.6,97,85,7.2
+West Bengal,Kolkata,July,16.2251,78.4622,Peaty,6.78,456,41,250,1.85,0.79,Clay,28.3,115,59,5.8
+Haryana,Rohtak,January,16.8198,72.2746,Alluvial,8.3,255,29,150,0.98,0.14,Sandy Loam,26.7,123,74,4.6
+Rajasthan,Jaipur,December,22.3832,90.5142,Peaty,4.5,237,32,191,2.31,1.24,Clay,20.6,4,52,7.2
+Telangana,Medak,September,24.5302,81.2882,Forest,6.3,232,20,185,1.15,0.11,Loamy,27.3,77,61,8.7
+Rajasthan,Bikaner,February,21.2011,78.3167,Desert,8.9,116,9,219,0.34,0.56,Sandy,25.1,0,50,7.3
+Rajasthan,Jaipur,May,25.0858,69.1579,Desert,8.77,128,10,238,0.42,0.77,Sandy,28.4,40,61,3.2
+Karnataka,Gulbarga,May,14.3451,68.7045,Alluvial,7.81,243,14,173,0.81,0.44,Clay Loam,37.5,63,86,4.7
+Madhya Pradesh,Ujjain,August,19.6584,75.5287,Black,8.14,178,11,392,0.35,0.33,Clay,29.5,73,73,3.3
+Madhya Pradesh,Jabalpur,August,26.7927,72.4001,Black,7.82,219,20,437,0.71,0.4,Clay Loam,24.5,82,54,4.2
+Uttar Pradesh,Agra,July,34.1823,69.4604,Alluvial,7.12,331,23,195,0.56,0.24,Loamy,19.3,152,95,4.6
+Punjab,Patiala,July,35.0,75.0323,Alluvial,7.23,378,17,190,0.68,0.38,Loamy,23.9,93,71,9.2
+Andhra Pradesh,Chittoor,December,23.4638,76.2686,Red,6.08,207,15,152,0.49,0.3,Sandy Loam,21.4,71,67,6.6
+Madhya Pradesh,Gwalior,November,26.7201,79.1343,Black,8.94,263,12,381,0.74,0.31,Clay,24.2,67,89,3.5
+Punjab,Ludhiana,June,35.0,73.9686,Black,7.97,290,14,327,0.55,0.4,Clay,36.9,91,52,4.2
+Rajasthan,Udaipur,June,14.6333,69.9392,Black,8.17,247,16,395,0.95,0.42,Clay,26.8,0,66,4.9
+West Bengal,Darjeeling,November,25.0376,70.2166,Peaty,4.5,405,28,226,0.94,0.98,Clay,27.7,107,55,4.6
+Punjab,Jalandhar,September,26.1467,87.7038,Alluvial,7.58,243,16,209,0.82,0.15,Loamy,26.1,67,76,8.3
+Karnataka,Bangalore,June,31.5829,68.0,Red,7.12,282,8,172,0.52,0.18,Sandy Loam,33.6,38,54,5.5
+Andhra Pradesh,Kurnool,December,10.9029,80.9055,Red,5.56,188,8,173,0.46,0.12,Sandy Loam,22.5,87,77,4.5
+Punjab,Patiala,February,12.4848,82.1564,Desert,9.11,104,7,205,0.35,0.77,Sandy,26.1,74,81,4.2
+Andhra Pradesh,Guntur,February,20.1711,77.0298,Black,7.76,209,17,438,0.4,0.28,Clay,20.3,66,53,5.6
+Uttar Pradesh,Allahabad,May,23.0218,92.1426,Alluvial,7.4,288,21,180,0.7,0.32,Sandy Loam,32.6,54,72,1.0
+Gujarat,Ahmedabad,April,28.9829,82.0138,Black,7.73,250,15,448,0.47,0.43,Clay,29.0,43,70,6.3
+Uttar Pradesh,Allahabad,November,24.1404,92.7432,Alluvial,7.82,275,23,195,0.96,0.35,Loamy,28.4,104,90,4.1
+Madhya Pradesh,Jabalpur,February,18.7887,72.7915,Black,8.95,231,21,453,0.56,0.38,Clay Loam,29.5,36,81,5.1
+Punjab,Patiala,March,23.3317,72.9284,Forest,5.06,230,20,147,1.02,0.26,Loamy,27.1,94,86,5.0
+Rajasthan,Udaipur,July,22.4084,82.2203,Peaty,4.5,304,23,201,2.16,0.94,Clay,21.5,34,86,4.0
+Uttar Pradesh,Lucknow,August,33.9601,75.9083,Alluvial,7.89,220,17,180,0.81,0.37,Loamy,24.1,174,59,6.0
+Gujarat,Ahmedabad,December,21.3253,91.4853,Black,8.02,212,15,394,0.76,0.41,Clay Loam,22.3,85,76,7.8
+Madhya Pradesh,Jabalpur,June,16.9353,80.7336,Black,7.67,237,21,440,0.67,0.52,Clay,32.8,57,73,7.0
+Gujarat,Vadodara,November,23.5969,69.6434,Black,8.64,262,12,382,0.84,0.33,Clay,27.2,82,59,4.6
+Gujarat,Ahmedabad,May,21.5879,68.0,Black,8.02,235,11,486,0.55,0.31,Clay Loam,35.5,95,69,7.0
+Karnataka,Mysore,January,8.0,77.3741,Red,5.99,165,7,161,0.33,0.17,Loamy Sand,27.6,54,91,3.6
+Andhra Pradesh,Guntur,August,19.8748,77.287,Peaty,5.26,422,25,233,1.68,0.77,Clay,21.0,91,73,3.6
+Telangana,Khammam,March,19.1941,80.5101,Peaty,4.63,440,33,300,2.07,1.28,Clay,29.5,33,72,5.8
+Andhra Pradesh,Visakhapatnam,June,15.649,87.6855,Alluvial,7.35,235,30,196,0.49,0.46,Loamy,32.9,50,63,1.0
+Telangana,Rangareddy,March,28.2847,86.6329,Red,6.81,156,16,176,0.29,0.14,Loamy Sand,26.6,83,71,6.8
+Haryana,Gurgaon,July,13.7146,73.3688,Alluvial,7.38,376,12,221,0.97,0.35,Sandy Loam,26.5,104,100,8.0
+Andhra Pradesh,East Godavari,July,23.6449,68.0,Red,4.7,246,16,177,0.81,0.28,Sandy Loam,19.1,37,49,6.4
+Maharashtra,Mumbai,December,18.8171,68.127,Black,8.6,169,18,335,0.63,0.54,Clay,22.4,53,53,3.2
+West Bengal,Kolkata,September,20.8616,72.1056,Peaty,4.5,377,27,231,1.96,1.16,Clay,26.1,117,80,5.2
+Andhra Pradesh,Guntur,May,23.2943,75.0661,Desert,8.82,107,8,191,0.41,0.85,Sandy,37.3,105,74,7.4
+Odisha,Cuttack,August,9.5394,80.4405,Laterite,6.21,104,9,124,0.31,0.26,Sandy Clay,21.9,114,47,1.9
+Tamil Nadu,Salem,October,21.5333,71.5923,Red,7.33,202,9,142,0.56,0.1,Sandy Loam,24.5,66,88,5.2
+Telangana,Medak,October,35.0,80.2431,Desert,7.29,114,11,226,0.28,0.44,Sandy,26.5,24,78,5.5
+Haryana,Rohtak,August,8.0,80.8963,Alluvial,6.59,218,19,243,0.26,0.37,Clay Loam,27.7,78,70,4.7
+Punjab,Patiala,January,19.5391,79.1468,Alluvial,7.4,323,23,175,0.6,0.4,Sandy Loam,22.0,79,63,3.9
+West Bengal,Howrah,December,28.9859,68.971,Peaty,5.52,462,28,233,2.15,0.97,Clay,23.2,72,71,2.5
+Bihar,Patna,May,22.413,81.7426,Alluvial,7.98,282,21,128,0.86,0.23,Clay Loam,32.0,59,69,3.2
+Odisha,Bhubaneswar,March,25.5037,94.6502,Laterite,5.63,222,13,137,0.47,0.33,Sandy Clay,26.7,130,77,5.3
+Tamil Nadu,Tiruchirappalli,January,8.0,79.9672,Red,6.95,270,13,160,0.48,0.16,Sandy Loam,25.6,164,46,7.9
+Karnataka,Gulbarga,April,24.786,68.0,Forest,6.18,177,22,157,1.02,0.3,Silt Loam,25.9,111,60,3.6
+Bihar,Muzaffarpur,August,13.9065,87.927,Black,7.71,253,14,385,0.69,0.38,Clay Loam,27.1,63,61,3.9
+Odisha,Puri,March,22.479,72.378,Laterite,5.3,50,13,99,0.34,0.32,Clay Loam,25.8,130,94,1.4
+Kerala,Kozhikode,October,19.7645,96.1257,Laterite,6.21,231,15,97,0.24,0.28,Clay Loam,21.6,182,96,6.3
+Madhya Pradesh,Indore,February,35.0,78.9309,Black,8.6,242,18,497,0.66,0.42,Clay,24.6,48,60,4.1
+Maharashtra,Nashik,November,24.3736,68.0,Black,8.97,264,10,449,0.8,0.45,Clay,21.9,109,84,5.7
+Bihar,Bhagalpur,September,19.099,68.0,Peaty,4.66,483,25,279,1.79,1.02,Clay,21.0,92,68,4.9
+Maharashtra,Nagpur,October,8.0,90.3179,Desert,8.72,68,9,92,0.25,0.68,Sandy,30.7,88,75,4.3
+Gujarat,Ahmedabad,May,20.9692,86.8472,Black,8.65,269,9,462,0.43,0.47,Clay,36.1,68,69,2.5
+West Bengal,Burdwan,July,26.5858,95.8082,Peaty,5.2,291,18,223,1.1,0.99,Clay,28.1,108,61,4.0
+Madhya Pradesh,Gwalior,November,19.3556,78.0874,Alluvial,6.45,324,18,161,0.71,0.29,Sandy Loam,24.1,154,94,7.9
+Bihar,Patna,November,15.9547,77.5478,Red,7.32,282,19,179,0.44,0.17,Loamy Sand,23.0,157,63,5.0
+Bihar,Muzaffarpur,February,15.4193,74.9382,Forest,6.18,219,14,128,1.63,0.1,Silt Loam,25.8,133,72,8.3
+Telangana,Nalgonda,September,24.2811,72.7337,Alluvial,6.77,295,21,218,0.8,0.18,Loamy,28.6,71,100,4.3
+Gujarat,Surat,September,26.0751,74.8606,Black,8.21,293,10,381,0.67,0.42,Clay,28.0,81,90,5.1
+Rajasthan,Udaipur,April,30.8897,79.7397,Desert,8.67,53,11,268,0.26,0.31,Sandy,26.8,29,75,5.1
+Odisha,Sambalpur,April,12.04,71.2488,Laterite,6.04,123,12,164,0.25,0.17,Sandy Clay,27.6,77,89,5.1
+Maharashtra,Kolhapur,June,24.2078,68.0,Peaty,5.05,186,9,294,1.73,0.93,Clay,37.9,63,55,5.4
+West Bengal,Darjeeling,October,19.0264,79.279,Black,8.29,235,13,424,0.38,0.54,Clay,21.8,83,64,6.4
+Madhya Pradesh,Bhopal,October,19.2621,71.0704,Laterite,5.33,148,10,145,0.36,0.2,Sandy Clay,23.8,27,48,5.1
+Andhra Pradesh,Kurnool,October,23.2146,68.0,Red,6.14,160,16,153,0.74,0.14,Loamy Sand,24.4,133,71,10.3
+Gujarat,Surat,June,23.2613,82.4205,Laterite,5.93,127,8,145,0.48,0.18,Sandy Clay,32.7,79,50,7.3
+Telangana,Hyderabad,December,24.2301,69.1355,Red,5.9,174,14,167,0.58,0.21,Sandy Loam,21.6,75,95,3.4
+Maharashtra,Kolhapur,January,11.5402,83.2943,Black,8.47,207,12,444,0.61,0.41,Clay,22.5,80,80,5.4
+Gujarat,Rajkot,September,14.0015,83.1028,Desert,9.15,102,9,240,0.24,0.95,Sandy,23.8,102,70,7.9
+Gujarat,Rajkot,February,31.8869,80.2687,Black,8.69,271,15,430,0.37,0.65,Clay Loam,22.2,69,64,1.1
+Uttar Pradesh,Agra,May,18.2354,97.0,Alluvial,7.47,301,16,183,0.64,0.18,Loamy,32.1,81,79,3.8
+Punjab,Amritsar,September,22.4481,76.8956,Alluvial,7.77,267,25,179,0.5,0.23,Loamy,25.5,136,73,5.5
+Madhya Pradesh,Bhopal,April,28.4373,75.7149,Red,6.77,288,13,171,0.72,0.2,Loamy Sand,26.7,49,52,4.9
+Maharashtra,Nashik,November,23.7075,83.4694,Black,7.69,220,15,500,0.6,0.43,Clay,23.7,153,82,7.4
+Maharashtra,Kolhapur,March,24.3722,77.5564,Peaty,4.5,294,25,286,1.83,0.81,Clay,28.5,78,86,3.7
+Haryana,Faridabad,July,27.1566,87.2839,Alluvial,7.1,327,28,203,1.06,0.2,Clay Loam,22.2,133,80,3.2
+Bihar,Patna,June,8.0,68.0,Laterite,4.5,128,12,91,0.36,0.33,Clay Loam,29.9,97,45,2.5
+Odisha,Bhubaneswar,August,16.0804,68.0,Laterite,6.44,68,12,109,0.5,0.15,Sandy Clay,27.1,67,81,1.8
+Odisha,Cuttack,March,23.7488,84.1265,Laterite,4.63,163,8,132,0.41,0.15,Sandy Clay,26.3,105,100,5.3
+Telangana,Medak,May,31.1012,68.6815,Peaty,5.33,437,29,194,3.0,0.82,Clay,27.2,82,47,6.4
+Rajasthan,Bikaner,October,20.5288,82.8728,Peaty,4.98,507,37,282,1.75,1.03,Clay,23.6,25,100,5.4
+Andhra Pradesh,Anantapur,April,13.2423,80.96,Red,6.6,210,8,182,0.52,0.14,Loamy Sand,21.7,155,89,5.3
+Uttar Pradesh,Allahabad,April,13.4553,72.4441,Alluvial,7.62,262,25,157,0.58,0.31,Sandy Loam,24.4,62,70,6.4
+Madhya Pradesh,Indore,April,27.0709,80.9374,Alluvial,6.9,280,19,163,0.83,0.24,Loamy,28.2,119,54,8.5
+West Bengal,Howrah,October,18.2578,68.1233,Peaty,4.85,408,24,236,2.14,1.16,Clay,29.7,102,57,4.6
+Maharashtra,Pune,August,19.9424,70.0008,Forest,5.58,240,21,121,1.24,0.34,Loamy,28.6,104,58,4.7
+Telangana,Khammam,June,24.9202,76.1025,Black,8.34,243,20,327,0.86,0.48,Clay,30.5,100,73,5.6
+Karnataka,Tumkur,March,8.0,78.6314,Red,6.41,142,17,130,0.51,0.19,Loamy Sand,28.9,40,86,3.3
+Bihar,Muzaffarpur,October,35.0,75.5709,Alluvial,7.64,310,18,129,0.68,0.28,Sandy Loam,20.6,94,62,5.8
+Punjab,Jalandhar,May,14.1514,81.4649,Desert,8.23,127,7,279,0.2,0.27,Sandy,36.3,101,64,1.4
+Telangana,Warangal,June,21.9355,81.1077,Red,7.03,151,9,175,0.43,0.27,Loamy Sand,32.4,121,56,7.6
+Telangana,Hyderabad,May,8.0,90.2349,Red,7.01,116,8,191,0.47,0.15,Loamy Sand,32.8,77,69,5.5
+Haryana,Gurgaon,June,16.6197,77.2377,Alluvial,7.03,324,31,182,1.01,0.2,Loamy,38.6,102,71,3.8
+Andhra Pradesh,Guntur,August,29.9575,87.5565,Desert,8.63,136,5,216,0.29,0.48,Sandy,22.9,41,74,7.7
+Odisha,Cuttack,July,8.0,85.3658,Laterite,4.94,159,12,121,0.41,0.2,Clay Loam,27.2,111,94,2.9
+Haryana,Gurgaon,May,29.0096,96.3518,Black,8.56,228,12,354,0.4,0.5,Clay,38.0,113,56,3.0
+Telangana,Medak,October,17.8104,76.9819,Black,8.17,183,11,317,0.66,0.4,Clay,28.2,67,75,7.0
+Telangana,Khammam,June,23.8973,74.6371,Laterite,6.43,117,8,106,0.41,0.22,Sandy Clay,33.6,139,94,7.8
+Kerala,Kozhikode,April,25.2602,88.0616,Laterite,5.02,157,13,106,0.26,0.1,Sandy Clay,27.1,168,46,6.3
+Madhya Pradesh,Bhopal,December,23.5314,81.0835,Peaty,4.5,489,28,242,2.36,0.74,Clay,24.6,19,74,7.5
+Maharashtra,Mumbai,September,13.0804,88.2533,Black,8.22,179,16,416,0.64,0.54,Clay,20.7,101,60,6.2
+Odisha,Sambalpur,April,17.0836,83.7344,Alluvial,8.13,349,20,173,0.79,0.42,Loamy,26.5,106,84,4.8
+Gujarat,Ahmedabad,January,8.3076,68.0,Black,8.46,209,20,345,0.53,0.32,Clay,21.7,45,55,4.1
+Kerala,Kochi,July,23.9344,81.0106,Laterite,5.42,172,9,97,0.4,0.17,Sandy Clay,23.7,251,48,2.2
+Bihar,Muzaffarpur,July,33.6164,80.4897,Forest,6.57,279,11,151,1.24,0.27,Loamy,28.2,73,80,4.8
+Madhya Pradesh,Gwalior,April,8.0,79.0649,Alluvial,7.52,345,17,201,0.35,0.28,Clay Loam,25.2,110,76,7.4
+Telangana,Nalgonda,March,13.9068,76.9421,Laterite,5.52,149,5,104,0.45,0.25,Sandy Clay,30.5,102,76,6.3
+Bihar,Patna,August,18.5458,68.0,Red,5.88,251,7,136,0.63,0.2,Sandy Loam,27.4,87,100,4.2
+Uttar Pradesh,Kanpur,May,21.3867,84.9934,Alluvial,8.18,314,13,168,0.9,0.39,Loamy,32.8,99,50,9.3
+Madhya Pradesh,Indore,October,27.0334,80.9901,Black,8.11,267,20,426,0.51,0.47,Clay Loam,26.2,38,79,2.4
+Gujarat,Rajkot,July,18.7824,86.8157,Black,8.21,214,14,330,0.65,0.16,Clay,26.0,30,61,5.1
+Telangana,Hyderabad,April,17.4723,68.0,Red,6.48,231,13,156,0.62,0.18,Loamy Sand,23.7,83,82,4.2
+Rajasthan,Jodhpur,April,28.825,82.0571,Desert,8.43,108,10,189,0.4,0.35,Sandy,23.1,24,88,5.9
+Andhra Pradesh,Anantapur,August,25.296,76.1227,Red,7.46,111,16,103,0.8,0.21,Loamy Sand,23.0,74,49,6.3
+Rajasthan,Jaipur,August,24.3118,79.1503,Black,7.5,179,15,331,0.5,0.7,Clay,28.7,44,53,3.7
+Andhra Pradesh,Anantapur,February,20.9001,76.2147,Peaty,4.78,413,25,272,1.24,0.89,Clay,27.7,119,71,4.6
+Telangana,Warangal,February,27.8652,82.3489,Desert,8.66,77,10,170,0.31,0.58,Sandy,21.9,112,65,7.6
+Telangana,Khammam,March,14.7495,76.697,Forest,5.19,223,11,147,1.01,0.1,Silt Loam,22.0,98,92,7.2
+Punjab,Amritsar,December,13.6584,69.5847,Alluvial,7.5,344,20,214,0.73,0.25,Sandy Loam,22.1,111,94,2.7
+Bihar,Patna,December,25.9688,78.6914,Alluvial,6.94,288,18,180,0.74,0.32,Sandy Loam,23.9,69,73,3.2
+Uttar Pradesh,Agra,March,8.0,76.2866,Alluvial,7.31,316,28,183,0.66,0.25,Loamy,25.6,112,89,5.3
+Gujarat,Surat,January,20.7374,77.3329,Black,9.04,311,15,335,0.71,0.34,Clay,21.9,77,97,5.7
+Madhya Pradesh,Indore,March,17.4675,68.0,Black,8.1,297,15,500,0.39,0.59,Clay Loam,25.4,116,79,3.6
+Maharashtra,Kolhapur,June,8.754,83.4611,Peaty,4.5,239,33,253,1.38,1.26,Clay,29.2,117,67,4.3
+West Bengal,Darjeeling,August,12.5499,75.4827,Peaty,5.69,497,17,300,2.19,1.29,Clay,22.0,113,71,6.5
+Tamil Nadu,Coimbatore,December,19.1282,68.0,Red,6.83,209,16,171,0.66,0.16,Sandy Loam,26.7,46,62,5.1
+Gujarat,Surat,October,28.2717,85.3805,Black,7.87,286,20,394,0.48,0.33,Clay Loam,25.2,58,78,5.2
+Andhra Pradesh,Chittoor,June,14.7763,83.0909,Black,8.71,369,11,388,0.51,0.39,Clay,31.8,101,57,7.6
+Gujarat,Surat,May,29.7071,75.3814,Black,8.7,304,15,392,0.53,0.41,Clay,31.2,71,59,4.8
+Andhra Pradesh,Visakhapatnam,April,20.5054,68.7826,Red,6.92,220,11,162,0.44,0.16,Loamy Sand,30.9,112,88,7.5
+West Bengal,Howrah,March,30.4831,79.4242,Peaty,4.98,433,21,179,1.46,0.83,Clay,24.6,103,45,3.8
+Uttar Pradesh,Kanpur,April,15.1641,78.9848,Peaty,4.86,403,30,201,2.34,0.93,Clay,25.8,142,70,9.4
+Kerala,Kozhikode,July,19.6095,85.3947,Laterite,4.5,151,14,138,0.39,0.36,Sandy Clay,25.2,179,80,2.2
+Andhra Pradesh,Guntur,January,22.9479,74.4501,Red,5.37,269,15,126,0.61,0.22,Sandy Loam,22.5,69,70,4.6
+Uttar Pradesh,Lucknow,July,18.5639,87.5594,Forest,6.33,195,14,151,1.3,0.18,Silt Loam,27.4,113,60,4.0
+Gujarat,Rajkot,January,27.6242,73.678,Laterite,5.91,171,11,105,0.41,0.34,Sandy Clay,19.4,82,80,6.9
+Uttar Pradesh,Varanasi,February,8.0,68.0,Alluvial,7.48,355,15,167,0.46,0.17,Sandy Loam,22.4,43,65,7.1
+Punjab,Amritsar,April,35.0,68.9417,Peaty,5.5,493,24,247,2.48,0.85,Clay,19.5,84,72,5.7
+Haryana,Hisar,January,26.8622,77.5007,Alluvial,7.83,254,14,189,0.79,0.13,Loamy,18.6,98,68,3.1
+Rajasthan,Udaipur,November,18.6117,77.4759,Forest,6.58,263,24,169,1.13,0.2,Loamy,27.1,17,43,6.3
+Punjab,Ludhiana,December,15.5814,80.6229,Alluvial,7.07,371,16,163,0.51,0.33,Loamy,19.3,142,65,4.6
+Uttar Pradesh,Lucknow,November,13.0686,77.277,Alluvial,7.89,333,20,194,0.89,0.26,Sandy Loam,27.0,98,72,5.7
+West Bengal,Howrah,November,25.1649,85.8185,Peaty,4.54,225,29,244,2.14,0.98,Clay,24.5,63,88,3.7
+Andhra Pradesh,Anantapur,September,27.9599,75.9112,Red,6.64,237,6,179,0.47,0.33,Sandy Loam,27.0,88,48,1.7
+Tamil Nadu,Chennai,December,18.6998,68.0,Red,6.95,188,13,103,0.5,0.17,Loamy Sand,24.0,135,56,7.9
+Gujarat,Surat,June,28.8559,77.0312,Black,8.37,191,20,464,0.49,0.53,Clay,34.2,30,67,5.8
+West Bengal,Burdwan,January,12.7419,68.0,Peaty,4.92,436,28,301,1.48,1.12,Clay,19.2,64,58,4.9
+Rajasthan,Jodhpur,January,11.3295,80.1711,Desert,7.97,94,8,235,0.36,0.62,Sandy,16.9,9,66,3.1
+Punjab,Patiala,June,34.5067,86.4575,Red,5.21,222,11,185,0.67,0.12,Loamy Sand,30.6,109,73,2.5
+Tamil Nadu,Vellore,April,24.7289,70.1102,Red,6.9,236,16,131,0.32,0.23,Sandy Loam,25.8,113,84,5.6
+Karnataka,Bellary,April,31.1748,89.3485,Desert,8.89,50,9,219,0.2,0.5,Sandy,25.4,53,58,6.6
+Rajasthan,Udaipur,November,13.1685,84.7426,Desert,9.29,56,8,160,0.24,0.89,Sandy,21.7,72,58,3.3
+Maharashtra,Nagpur,June,12.6118,87.6518,Black,8.25,271,15,309,0.42,0.54,Clay,31.9,88,73,2.5
+Uttar Pradesh,Agra,December,17.1311,79.5165,Red,6.86,206,15,149,0.46,0.22,Loamy Sand,19.3,117,67,6.7
+Andhra Pradesh,Guntur,November,13.4075,70.0579,Red,5.55,180,15,171,0.56,0.19,Sandy Loam,28.9,114,76,8.4
+Kerala,Kochi,July,25.6429,84.2465,Alluvial,7.89,380,17,180,0.56,0.48,Sandy Loam,24.7,186,63,2.4
+Kerala,Kochi,September,13.991,73.0032,Black,8.39,247,21,436,0.62,0.48,Clay,29.7,168,85,5.0
+Haryana,Faridabad,October,10.6266,78.9431,Alluvial,7.79,218,17,155,0.89,0.3,Sandy Loam,22.2,97,71,1.0
+Uttar Pradesh,Kanpur,May,21.1361,76.6292,Forest,5.48,169,20,171,1.06,0.2,Loamy,33.8,81,50,8.0
+Maharashtra,Nagpur,September,9.6801,86.9976,Black,8.56,191,11,395,0.56,0.39,Clay Loam,26.0,138,90,7.5
+Odisha,Puri,April,8.0,83.8426,Laterite,5.27,225,7,121,0.29,0.2,Sandy Clay,26.9,105,76,2.4
+Haryana,Gurgaon,October,21.0661,77.3555,Alluvial,7.54,343,17,191,1.11,0.38,Loamy,24.4,136,67,3.7
+Karnataka,Bellary,February,8.0,68.0,Red,6.8,183,13,157,0.37,0.17,Loamy Sand,20.2,127,65,3.9
+Gujarat,Surat,March,26.2022,72.9182,Black,8.64,325,17,386,0.74,0.49,Clay,18.0,30,67,1.0
+Odisha,Cuttack,November,8.8373,83.6338,Laterite,5.52,144,6,141,0.38,0.1,Sandy Clay,29.7,54,67,1.8
+Gujarat,Vadodara,January,8.0,80.2409,Black,8.17,269,11,336,0.64,0.19,Clay Loam,17.7,72,65,3.2
+Bihar,Gaya,June,17.6496,68.0,Peaty,4.5,378,24,191,2.27,0.59,Clay,36.3,85,46,6.5
+Uttar Pradesh,Agra,June,21.1568,68.0,Red,7.16,272,19,111,0.29,0.26,Loamy Sand,27.6,137,66,6.8
+Madhya Pradesh,Gwalior,January,23.9318,79.5641,Black,8.33,257,12,500,0.57,0.38,Clay,25.4,85,93,1.1
+Gujarat,Ahmedabad,November,21.3761,69.5435,Black,8.18,208,19,426,0.53,0.42,Clay,23.8,68,58,5.9
+West Bengal,Kolkata,March,11.5255,70.3136,Peaty,5.28,383,23,288,1.97,1.24,Clay,20.2,109,77,5.7
+Andhra Pradesh,Krishna,May,25.7045,83.3809,Laterite,5.44,97,5,83,0.23,0.28,Clay Loam,34.5,153,68,1.0
+Andhra Pradesh,East Godavari,March,27.6811,87.6179,Alluvial,6.97,291,27,174,0.74,0.42,Sandy Loam,26.6,63,59,3.3
+Madhya Pradesh,Indore,October,10.3539,71.9944,Black,8.22,245,10,272,0.58,0.53,Clay,26.9,49,93,6.8
+Odisha,Puri,March,18.552,77.6419,Laterite,5.4,88,13,115,0.59,0.29,Sandy Clay,25.7,150,56,1.0
+Kerala,Kozhikode,October,17.8045,77.406,Laterite,4.5,69,13,80,0.45,0.22,Clay Loam,30.5,197,73,2.4
+Karnataka,Tumkur,March,21.7631,76.6864,Red,6.48,188,18,156,0.49,0.13,Loamy Sand,22.2,8,71,5.2
+Uttar Pradesh,Agra,May,18.3606,78.3248,Forest,6.66,172,11,174,0.94,0.28,Silt Loam,32.8,151,58,4.2
+Madhya Pradesh,Ujjain,May,19.457,84.052,Peaty,5.52,493,24,320,2.59,1.0,Clay,27.6,30,77,7.1
+Gujarat,Rajkot,April,25.1345,72.6086,Black,8.47,262,15,500,0.68,0.3,Clay,22.2,48,54,5.6
+Odisha,Bhubaneswar,January,11.0892,68.0,Forest,5.24,180,16,227,1.25,0.31,Loamy,26.3,82,79,3.3
+Odisha,Puri,May,25.899,91.5201,Black,7.62,190,22,464,0.67,0.39,Clay,30.0,103,52,5.0
+Rajasthan,Bikaner,October,29.1291,86.7154,Alluvial,7.02,209,20,127,1.05,0.21,Sandy Loam,25.6,7,66,4.3
+Madhya Pradesh,Jabalpur,May,33.0731,69.1709,Black,8.35,228,14,429,0.63,0.47,Clay,32.9,82,76,8.8
+Tamil Nadu,Salem,April,8.0,79.0851,Alluvial,7.15,257,21,122,0.88,0.32,Loamy,25.6,129,79,9.7
+Andhra Pradesh,Chittoor,June,18.5368,86.0856,Desert,8.42,85,9,248,0.36,0.74,Sandy,33.1,27,65,3.0
+West Bengal,Howrah,October,8.0,83.9924,Alluvial,7.21,300,17,183,1.05,0.34,Sandy Loam,24.2,111,56,7.3
+Odisha,Cuttack,April,8.0,81.6961,Laterite,5.49,154,12,144,0.35,0.27,Sandy Clay,26.8,78,44,5.7
+Kerala,Kozhikode,July,21.1527,76.6382,Black,8.28,289,19,371,0.63,0.58,Clay,29.2,223,100,4.7
+Kerala,Kochi,July,16.8068,91.8184,Laterite,6.09,115,8,137,0.33,0.23,Sandy Clay,23.4,124,86,3.6
+Uttar Pradesh,Allahabad,February,22.3988,79.7669,Alluvial,6.66,266,23,175,1.11,0.1,Loamy,18.6,60,33,6.7
+Bihar,Muzaffarpur,March,23.889,73.8803,Desert,8.32,141,7,231,0.41,0.54,Sandy,29.4,102,85,2.3
+Gujarat,Rajkot,January,29.9832,84.9686,Black,7.96,287,8,426,0.36,0.55,Clay,21.1,49,76,3.6
+West Bengal,Kolkata,August,20.4314,78.7685,Peaty,4.57,466,34,225,1.98,1.1,Clay,23.8,107,65,3.7
+Tamil Nadu,Madurai,September,35.0,80.7984,Desert,8.34,114,8,190,0.2,0.62,Sandy,25.8,102,60,3.0
+Madhya Pradesh,Jabalpur,April,22.4513,79.6252,Alluvial,7.98,261,10,170,1.1,0.42,Sandy Loam,28.4,46,84,5.6
+Telangana,Nalgonda,June,34.7398,81.9742,Peaty,5.29,352,21,255,1.72,1.26,Clay,31.1,28,59,4.6
+Gujarat,Surat,September,8.0,70.1723,Alluvial,7.2,203,13,143,0.75,0.32,Clay Loam,26.4,46,97,7.3
+Uttar Pradesh,Varanasi,June,30.7979,68.0,Alluvial,6.85,311,21,149,0.7,0.32,Loamy,33.2,103,75,5.8
+Tamil Nadu,Madurai,December,18.5539,89.4731,Alluvial,7.7,346,10,155,0.71,0.22,Sandy Loam,24.1,153,42,10.4
+Haryana,Gurgaon,December,8.0,79.9967,Alluvial,7.49,218,19,221,0.6,0.13,Loamy,16.3,123,81,2.0
+Punjab,Amritsar,December,23.3644,84.1668,Alluvial,6.78,343,20,191,1.14,0.18,Loamy,21.6,97,65,3.0
+Maharashtra,Kolhapur,September,17.5764,68.0,Laterite,5.69,201,11,142,0.31,0.19,Sandy Clay,25.7,89,85,6.3
+Telangana,Hyderabad,April,24.6404,86.5335,Red,5.86,182,14,204,0.48,0.1,Loamy Sand,24.1,87,55,6.6
+Haryana,Hisar,August,28.0886,73.8281,Red,6.1,153,16,131,0.44,0.28,Sandy Loam,23.7,152,99,4.9
+Uttar Pradesh,Agra,September,8.0868,71.5503,Alluvial,8.12,343,14,120,0.85,0.27,Clay Loam,26.0,75,55,5.5
+Bihar,Patna,April,28.1194,77.493,Forest,4.8,279,16,139,1.17,0.1,Silt Loam,26.0,73,60,5.4
+Uttar Pradesh,Allahabad,May,20.0518,70.1762,Alluvial,6.72,336,18,203,0.6,0.21,Loamy,28.7,56,75,9.0
+West Bengal,Darjeeling,August,30.8227,77.9861,Red,5.78,215,8,91,0.79,0.22,Loamy Sand,23.4,99,72,7.5
+Uttar Pradesh,Kanpur,December,18.3588,76.9093,Alluvial,7.46,269,25,192,0.59,0.36,Loamy,24.5,113,71,6.4
+Uttar Pradesh,Allahabad,October,16.2367,86.4832,Alluvial,7.37,331,23,180,0.98,0.39,Loamy,25.2,130,72,3.9
+West Bengal,Burdwan,June,20.2164,90.1068,Peaty,4.53,389,20,259,2.2,1.08,Clay,30.8,76,74,4.0
+Madhya Pradesh,Gwalior,December,20.8149,89.8521,Desert,7.93,103,11,230,0.31,0.31,Sandy,22.0,82,73,5.3
+Telangana,Warangal,July,14.6977,68.0,Alluvial,7.38,382,27,194,0.66,0.31,Sandy Loam,29.9,94,79,4.2
+Andhra Pradesh,Guntur,March,16.0296,70.5187,Red,6.87,218,10,155,0.61,0.15,Sandy Loam,28.3,99,69,4.5
+Bihar,Muzaffarpur,July,10.185,68.0,Desert,9.0,121,6,153,0.39,0.63,Sandy,28.7,110,78,3.3
+Punjab,Patiala,December,16.5228,68.4517,Forest,6.17,230,27,147,1.28,0.22,Loamy,19.6,123,65,8.3
+Haryana,Faridabad,August,25.4105,72.8039,Alluvial,7.99,268,20,195,0.89,0.34,Loamy,31.7,134,91,3.5
+Karnataka,Bellary,October,18.9012,81.2845,Red,6.19,154,15,118,0.48,0.39,Sandy Loam,26.1,74,62,6.3
+Telangana,Nalgonda,June,28.0725,73.8405,Peaty,5.49,246,19,246,1.7,1.04,Clay,33.4,97,71,4.9
+Andhra Pradesh,Chittoor,October,18.5166,74.0634,Red,7.38,157,12,141,0.52,0.2,Loamy Sand,26.7,65,73,5.2
+Maharashtra,Mumbai,September,8.5479,79.4541,Black,7.31,286,11,350,0.52,0.15,Clay,25.5,94,100,3.3
+Uttar Pradesh,Varanasi,June,24.7782,68.0,Alluvial,7.13,255,30,160,0.71,0.37,Loamy,28.8,101,57,4.8
+Madhya Pradesh,Bhopal,December,14.611,71.2913,Black,8.54,240,10,395,0.44,0.32,Clay Loam,18.3,83,53,5.5
+Madhya Pradesh,Gwalior,September,18.1331,73.9715,Black,9.3,219,22,470,0.54,0.4,Clay,22.1,59,61,6.7
+Gujarat,Surat,April,29.9006,76.3808,Red,6.83,151,12,134,0.31,0.11,Loamy Sand,27.2,43,73,5.1
+Maharashtra,Aurangabad,August,10.713,78.6156,Black,8.4,247,18,419,0.63,0.39,Clay,21.0,97,74,4.5
+Rajasthan,Jodhpur,November,21.318,90.0052,Desert,8.28,138,8,230,0.27,0.61,Sandy,27.5,73,90,5.4
+Bihar,Muzaffarpur,April,19.6759,85.2667,Laterite,4.5,117,9,122,0.67,0.21,Sandy Clay,25.4,128,85,5.5
+Madhya Pradesh,Gwalior,February,25.6074,71.8455,Black,7.54,218,18,427,0.66,0.42,Clay Loam,22.1,69,45,4.6
+Punjab,Ludhiana,October,26.8412,75.9094,Red,6.12,225,11,84,0.53,0.1,Sandy Loam,24.2,107,50,5.1
+West Bengal,Darjeeling,November,22.1107,75.3645,Peaty,4.82,536,27,249,1.19,0.75,Clay,24.4,107,72,5.8
+Gujarat,Surat,September,17.117,73.8868,Black,8.47,237,25,395,0.63,0.24,Clay,26.1,24,65,2.8
+Karnataka,Bellary,May,23.787,80.1801,Forest,6.6,246,23,188,1.46,0.21,Loamy,33.1,67,97,7.9
+Gujarat,Surat,April,30.6852,68.0,Black,7.69,282,14,358,0.35,0.37,Clay Loam,25.3,45,32,2.7
+Rajasthan,Jodhpur,February,19.7817,85.0457,Red,6.26,279,14,194,0.52,0.24,Sandy Loam,21.8,49,64,4.5
+Tamil Nadu,Madurai,January,17.862,91.5484,Red,5.94,181,8,136,0.43,0.27,Loamy Sand,20.4,142,64,3.3
+Rajasthan,Udaipur,November,23.1054,75.8413,Black,8.46,227,14,394,0.76,0.35,Clay,26.8,69,65,4.3
+Kerala,Kochi,July,20.3098,75.6851,Laterite,5.17,160,6,142,0.34,0.29,Sandy Clay,26.2,195,45,2.9
+Rajasthan,Bikaner,June,9.2983,79.2564,Black,7.91,200,15,435,0.67,0.38,Clay,34.1,92,78,7.4
+Maharashtra,Nashik,February,21.9146,86.1551,Desert,8.85,86,9,170,0.33,0.6,Sandy,23.1,118,56,6.9
+Punjab,Jalandhar,August,9.2259,75.4057,Alluvial,7.29,302,15,189,0.88,0.33,Loamy,23.8,68,32,4.1
+Tamil Nadu,Tiruchirappalli,November,22.9958,85.4716,Laterite,5.16,165,5,116,0.35,0.26,Sandy Clay,25.6,126,75,5.6
+Andhra Pradesh,Chittoor,April,13.6229,81.908,Alluvial,7.61,269,20,141,0.98,0.2,Loamy,25.9,136,67,5.7
+Telangana,Warangal,August,20.295,96.8929,Peaty,4.5,470,25,177,1.56,1.17,Clay,28.1,52,75,2.0
+Telangana,Hyderabad,July,23.1248,75.3707,Desert,8.9,61,11,199,0.37,0.42,Sandy,29.0,38,76,1.0
+Karnataka,Belgaum,May,35.0,68.0,Alluvial,7.27,321,18,92,0.76,0.1,Loamy,35.5,87,81,5.9
+Karnataka,Mysore,October,25.942,68.0,Laterite,6.48,104,6,133,0.2,0.29,Clay Loam,23.9,34,65,5.8
+Punjab,Patiala,October,30.9184,78.0954,Alluvial,8.0,361,23,149,1.0,0.44,Loamy,27.7,95,75,2.6
+Karnataka,Bellary,December,34.974,86.2231,Laterite,5.96,152,15,141,0.44,0.1,Sandy Clay,25.7,31,77,2.8
+Maharashtra,Kolhapur,August,23.914,72.7799,Black,7.76,195,12,349,0.62,0.46,Clay,28.3,96,54,5.5
+West Bengal,Darjeeling,September,22.2855,76.1525,Peaty,5.58,468,20,266,1.55,0.96,Clay,26.1,117,69,5.7
+Rajasthan,Jodhpur,May,11.4662,83.4787,Desert,8.76,132,5,204,0.41,0.63,Sandy,30.9,26,86,6.0
+Haryana,Rohtak,October,19.067,70.2781,Alluvial,7.54,272,27,164,0.78,0.25,Sandy Loam,28.2,105,44,5.8
+Karnataka,Tumkur,May,14.2153,73.1098,Alluvial,8.85,361,26,216,1.03,0.3,Loamy,34.7,94,91,3.6
+Karnataka,Tumkur,February,16.7915,68.6582,Desert,7.62,87,9,185,0.53,0.68,Sandy,20.3,70,48,5.6
+Andhra Pradesh,Chittoor,May,34.9653,87.4258,Red,5.87,83,13,131,0.69,0.18,Sandy Loam,26.6,118,72,3.9
+Karnataka,Gulbarga,March,20.917,90.3334,Red,6.84,142,12,180,0.37,0.27,Loamy Sand,26.6,107,67,1.9
+Tamil Nadu,Tiruchirappalli,July,12.9928,68.0,Alluvial,7.74,295,19,156,0.38,0.42,Loamy,27.9,103,52,5.3
+Karnataka,Tumkur,October,30.9963,76.8625,Red,7.38,227,8,167,0.36,0.27,Sandy Loam,28.0,91,80,5.7
+Telangana,Warangal,May,27.6422,89.2581,Peaty,5.52,434,42,184,1.97,0.61,Clay,30.7,137,55,8.3
+Telangana,Hyderabad,August,28.0612,81.1896,Black,8.44,293,21,411,0.31,0.39,Clay,25.2,84,77,3.9
+Rajasthan,Ajmer,January,8.0,74.0861,Desert,8.79,106,7,186,0.41,0.56,Sandy,26.2,33,59,7.2
+Karnataka,Gulbarga,March,35.0,68.0,Red,5.89,157,14,206,0.42,0.37,Loamy Sand,19.2,100,80,5.1
+Maharashtra,Kolhapur,March,15.5319,87.2236,Desert,7.21,83,7,227,0.36,0.35,Sandy,25.6,121,82,5.6
+Rajasthan,Jaipur,September,26.2236,80.8841,Desert,8.72,98,8,175,0.3,0.77,Sandy,29.0,64,54,1.7
+Haryana,Rohtak,May,35.0,68.0,Alluvial,7.56,298,18,212,0.54,0.22,Sandy Loam,33.0,76,60,8.5
+Andhra Pradesh,Chittoor,December,35.0,87.5191,Peaty,4.81,319,28,290,2.73,0.87,Clay,21.5,116,52,2.8
+Odisha,Puri,September,12.1795,68.0,Laterite,4.71,133,8,129,0.26,0.1,Clay Loam,26.0,78,73,4.5
+Punjab,Ludhiana,September,8.4439,76.2361,Alluvial,8.08,248,24,156,0.44,0.35,Loamy,23.0,101,72,4.2
+Telangana,Hyderabad,January,31.4428,75.8831,Alluvial,7.8,314,21,149,0.96,0.24,Loamy,27.0,112,75,3.7
+West Bengal,Darjeeling,February,21.1364,90.9471,Peaty,4.5,438,32,263,2.4,1.16,Clay,21.5,89,75,6.2
+Gujarat,Ahmedabad,May,15.9929,75.9116,Black,8.6,252,18,410,0.66,0.77,Clay,35.2,73,78,7.2
+Andhra Pradesh,Anantapur,April,24.9697,75.8829,Red,5.82,207,13,170,0.57,0.17,Sandy Loam,23.9,125,57,3.6
+Tamil Nadu,Salem,October,18.697,68.0,Forest,6.9,215,11,163,0.86,0.21,Silt Loam,15.6,75,67,4.4
+Odisha,Cuttack,September,25.6106,72.8768,Black,7.84,247,15,500,0.48,0.38,Clay,27.3,80,56,7.9
+Bihar,Bhagalpur,July,20.5359,71.4616,Forest,6.62,151,14,162,0.86,0.18,Silt Loam,26.9,73,59,6.1
+Karnataka,Gulbarga,June,25.7791,71.8782,Red,5.35,180,17,149,0.58,0.15,Loamy Sand,29.5,61,70,2.8
+Karnataka,Gulbarga,July,12.8437,78.0503,Laterite,6.27,155,11,100,0.2,0.11,Clay Loam,22.8,72,93,1.7
+Maharashtra,Mumbai,January,31.3957,68.0,Red,6.0,186,9,127,0.32,0.25,Sandy Loam,23.1,126,76,5.3
+Rajasthan,Ajmer,January,25.581,68.0,Alluvial,7.0,264,10,202,1.08,0.27,Loamy,21.9,3,74,10.1
+Punjab,Patiala,August,25.1704,77.1118,Alluvial,8.32,316,19,145,0.32,0.31,Loamy,23.5,103,73,4.9
+Maharashtra,Nashik,February,11.0586,78.97,Black,8.82,243,16,379,0.77,0.5,Clay Loam,20.4,69,100,4.8
+Rajasthan,Bikaner,December,33.5971,76.1325,Desert,7.77,96,9,202,0.29,0.6,Sandy,22.1,41,57,2.8
+Bihar,Bhagalpur,October,19.8903,77.6736,Peaty,5.15,395,20,182,1.9,1.01,Clay,29.2,91,61,4.4
+Andhra Pradesh,Visakhapatnam,November,25.8244,74.7271,Red,6.53,248,15,147,0.49,0.25,Sandy Loam,25.0,96,74,7.4
+Tamil Nadu,Madurai,September,17.4174,77.852,Red,6.27,262,16,118,0.7,0.31,Loamy Sand,29.0,134,61,1.9
+Haryana,Faridabad,July,22.0871,81.4731,Alluvial,6.2,312,22,198,0.61,0.1,Loamy,26.0,84,70,7.3
+West Bengal,Darjeeling,June,22.377,81.4171,Peaty,4.5,500,23,261,1.89,0.94,Clay,34.2,82,76,4.7
+Rajasthan,Jodhpur,January,8.0,72.4883,Desert,8.61,78,8,192,0.27,0.66,Sandy,25.8,35,59,10.3
+Uttar Pradesh,Allahabad,January,24.6596,85.3208,Alluvial,7.28,381,23,140,0.91,0.23,Loamy,22.0,120,98,6.2
+Telangana,Rangareddy,February,35.0,79.2569,Laterite,6.11,157,10,114,0.5,0.1,Clay Loam,19.5,67,85,6.8
+Madhya Pradesh,Gwalior,June,24.3182,87.8577,Black,8.27,226,22,326,0.51,0.27,Clay,37.5,50,95,3.7
+Uttar Pradesh,Lucknow,June,12.3383,89.463,Laterite,4.5,201,7,101,0.35,0.15,Clay Loam,34.2,82,35,4.4
+Tamil Nadu,Chennai,February,25.1997,68.0,Alluvial,8.0,397,12,149,0.84,0.14,Clay Loam,22.5,100,66,2.8
+Tamil Nadu,Tiruchirappalli,January,28.4758,71.1278,Red,7.17,242,11,176,0.53,0.15,Sandy Loam,27.4,79,89,4.1
+Madhya Pradesh,Gwalior,October,24.0997,84.5084,Black,8.84,268,12,460,0.95,0.43,Clay Loam,30.2,59,61,1.0
+Andhra Pradesh,East Godavari,May,19.407,68.0,Red,6.49,191,10,141,0.62,0.16,Sandy Loam,30.8,30,80,3.2
+Maharashtra,Nashik,May,18.0628,89.3614,Black,8.49,245,13,299,0.6,0.29,Clay Loam,33.1,39,59,6.2
+Karnataka,Bangalore,February,18.0295,75.2489,Peaty,4.5,327,17,315,2.5,0.74,Clay,21.7,75,84,4.3
+Maharashtra,Mumbai,June,25.5822,82.6003,Laterite,5.65,199,10,110,0.62,0.1,Sandy Clay,35.3,77,69,5.6
+Telangana,Khammam,September,8.743,77.0689,Black,8.2,234,8,460,0.43,0.48,Clay,26.9,48,75,7.6
+West Bengal,Burdwan,February,17.025,68.0,Red,6.44,215,15,107,0.52,0.27,Sandy Loam,23.2,124,53,4.6
+Uttar Pradesh,Agra,October,32.7649,86.4444,Desert,8.32,135,5,223,0.34,0.38,Sandy,20.5,90,70,7.5
+Haryana,Gurgaon,February,33.0736,97.0,Alluvial,7.18,247,24,189,1.12,0.32,Sandy Loam,26.6,110,58,4.2
+Odisha,Puri,March,8.1748,73.8799,Red,5.79,238,11,177,0.57,0.13,Loamy Sand,23.8,97,56,3.8
+Rajasthan,Bikaner,July,10.9487,75.4211,Desert,7.87,118,8,178,0.31,0.52,Sandy,28.7,61,93,4.1
+Telangana,Warangal,June,17.835,68.0,Forest,6.2,212,10,156,0.89,0.24,Loamy,35.2,78,75,5.2
+Uttar Pradesh,Agra,December,27.1407,88.812,Peaty,4.7,462,14,209,2.43,1.27,Clay,27.6,47,97,3.7
+Uttar Pradesh,Allahabad,August,8.0,85.2941,Forest,5.21,168,25,156,0.78,0.27,Loamy,28.6,92,80,6.7
+Bihar,Patna,August,19.5615,68.0,Forest,6.14,211,22,197,1.09,0.14,Silt Loam,21.7,81,70,5.2
+Madhya Pradesh,Bhopal,June,16.2066,68.0,Alluvial,7.96,370,22,163,0.98,0.19,Clay Loam,33.5,32,54,4.7
+Telangana,Nalgonda,December,30.6077,68.0,Alluvial,7.52,193,14,176,1.1,0.36,Clay Loam,24.0,63,70,5.9
+Tamil Nadu,Salem,November,8.0,83.1614,Red,6.52,259,15,166,0.35,0.2,Sandy Loam,23.8,94,68,3.0
+Maharashtra,Kolhapur,October,20.7403,83.9599,Black,8.33,295,12,435,0.59,0.45,Clay Loam,23.8,84,63,7.2
+Punjab,Patiala,March,16.8511,70.6133,Alluvial,7.42,297,23,158,0.48,0.34,Loamy,21.5,83,100,5.5
+Uttar Pradesh,Varanasi,March,31.7584,81.9941,Alluvial,7.7,229,19,159,0.72,0.23,Loamy,26.8,85,74,2.8
+Maharashtra,Aurangabad,January,24.7812,79.271,Black,8.34,276,14,458,0.45,0.22,Clay,20.6,75,80,2.9
+Kerala,Kochi,July,15.3135,75.0618,Laterite,4.89,202,13,87,0.43,0.25,Clay Loam,23.2,172,80,3.7
+Uttar Pradesh,Kanpur,May,26.8271,85.7616,Alluvial,6.72,347,20,187,0.62,0.33,Sandy Loam,34.6,97,50,4.5
+Tamil Nadu,Chennai,April,16.8894,68.3605,Red,6.27,116,16,143,0.47,0.38,Loamy Sand,26.4,136,79,4.9
+Telangana,Warangal,October,27.9946,87.1803,Laterite,5.17,182,10,122,0.45,0.35,Clay Loam,26.9,109,82,5.8
+Karnataka,Bellary,April,18.1034,72.1718,Red,6.96,288,7,168,0.63,0.14,Sandy Loam,29.4,64,72,5.0
+Tamil Nadu,Coimbatore,April,28.4373,92.2523,Red,7.6,175,13,131,0.76,0.27,Sandy Loam,25.8,61,75,2.0
+Karnataka,Gulbarga,June,23.4887,69.9576,Red,5.33,171,11,156,0.52,0.23,Loamy Sand,30.4,70,93,5.1
+Karnataka,Bangalore,August,35.0,75.1874,Red,5.4,160,11,133,0.52,0.23,Loamy Sand,24.1,59,54,6.6
+Maharashtra,Nagpur,August,19.5768,78.4687,Black,7.93,317,13,485,0.52,0.49,Clay,26.6,101,88,4.3
+Karnataka,Tumkur,May,23.0629,78.4185,Alluvial,6.18,343,14,222,0.77,0.14,Sandy Loam,30.8,85,72,1.0
+West Bengal,Kolkata,June,16.1646,81.9266,Peaty,5.11,321,19,186,2.16,0.97,Clay,35.5,82,90,5.4
+Telangana,Warangal,April,20.0215,68.0,Red,5.82,244,15,160,0.68,0.17,Sandy Loam,23.5,63,71,3.3
+Uttar Pradesh,Varanasi,December,8.0,77.7015,Forest,6.13,285,16,118,0.76,0.21,Loamy,28.4,103,63,1.4
+Madhya Pradesh,Ujjain,November,23.7247,79.1051,Black,8.1,245,19,406,0.43,0.5,Clay,23.6,42,62,7.8
+Kerala,Thiruvananthapuram,September,30.743,73.7781,Laterite,5.56,156,9,126,0.43,0.24,Sandy Clay,24.5,234,61,7.2
+Telangana,Hyderabad,August,23.173,81.2325,Alluvial,7.45,251,21,119,0.74,0.39,Loamy,22.7,67,78,5.6
+Madhya Pradesh,Jabalpur,October,9.4891,68.0,Black,8.19,276,25,403,0.42,0.2,Clay,23.5,53,52,7.9
+Gujarat,Surat,December,13.5857,75.3884,Black,8.68,231,21,356,0.81,0.4,Clay Loam,21.9,105,75,4.1
+West Bengal,Burdwan,October,8.0,71.9745,Desert,7.78,65,9,138,0.25,0.78,Sandy,26.9,132,79,7.1
+Odisha,Cuttack,January,27.8314,75.4126,Laterite,5.05,102,12,161,0.32,0.37,Sandy Clay,22.0,39,86,7.7
+Tamil Nadu,Salem,February,11.9479,89.5763,Red,5.38,182,11,153,0.76,0.24,Loamy Sand,24.4,79,100,4.6
+Karnataka,Gulbarga,September,19.7703,89.7316,Red,7.45,189,7,153,0.48,0.1,Sandy Loam,26.4,103,82,6.9
+Haryana,Faridabad,August,18.7701,88.1633,Black,7.71,200,19,297,0.62,0.39,Clay Loam,24.2,80,56,5.7
+Gujarat,Rajkot,March,31.9018,74.3019,Black,8.91,257,14,394,0.61,0.47,Clay,26.9,54,81,3.3
+Uttar Pradesh,Varanasi,August,20.6823,85.2609,Forest,7.18,50,18,156,1.02,0.32,Loamy,26.0,91,74,3.6
+Uttar Pradesh,Varanasi,December,26.4711,78.8989,Black,8.55,234,25,500,0.59,0.42,Clay,21.5,127,40,5.0
+Tamil Nadu,Vellore,January,24.3717,78.3647,Red,6.85,235,10,138,0.34,0.27,Loamy Sand,28.8,111,57,2.8
+Bihar,Gaya,October,30.8753,77.3811,Alluvial,7.31,261,21,172,0.86,0.38,Clay Loam,22.1,132,55,5.9
+Karnataka,Bangalore,April,18.087,92.0673,Red,6.62,209,13,163,0.32,0.15,Loamy Sand,22.4,114,50,7.1
+Maharashtra,Pune,March,34.9569,88.9267,Laterite,4.91,86,7,141,0.45,0.38,Sandy Clay,22.4,105,66,7.7
+Madhya Pradesh,Ujjain,June,8.0,83.9592,Black,7.5,237,6,299,0.36,0.47,Clay,34.0,54,82,7.0
+Rajasthan,Jaipur,July,26.8598,76.6376,Desert,8.72,76,10,230,0.3,0.8,Sandy,25.4,54,57,4.7
+Tamil Nadu,Madurai,April,13.067,78.3165,Red,6.46,186,18,157,0.35,0.13,Sandy Loam,30.2,82,72,2.5
+Telangana,Rangareddy,July,16.058,82.2445,Forest,6.51,220,16,205,1.33,0.19,Loamy,25.5,62,69,3.3
+Uttar Pradesh,Agra,September,24.5553,73.8271,Alluvial,7.99,305,20,175,0.85,0.31,Loamy,29.8,77,78,3.0
+Maharashtra,Kolhapur,November,24.4912,85.5065,Desert,7.77,50,5,243,0.35,0.49,Sandy,29.3,91,40,5.1
+Uttar Pradesh,Agra,February,24.8514,70.63,Alluvial,7.93,270,22,166,0.78,0.21,Sandy Loam,27.6,113,66,5.3
+Karnataka,Tumkur,November,8.9107,81.1347,Red,6.17,158,12,148,0.51,0.24,Sandy Loam,28.4,83,88,2.9
+Rajasthan,Bikaner,March,31.5922,68.0,Laterite,5.53,162,6,144,0.54,0.1,Clay Loam,28.8,37,57,2.7
+Uttar Pradesh,Agra,May,12.7948,73.5951,Alluvial,7.11,269,20,170,0.39,0.41,Loamy,35.8,84,72,6.4
+Andhra Pradesh,Chittoor,March,13.8617,94.6214,Peaty,4.5,426,34,254,2.25,0.87,Clay,24.8,103,69,5.5
+Maharashtra,Pune,November,25.1032,86.2895,Black,8.4,231,8,426,0.6,0.27,Clay,21.6,35,87,6.2
+Telangana,Nalgonda,August,17.7062,90.2837,Alluvial,7.79,314,17,205,0.79,0.38,Sandy Loam,20.8,113,52,6.7
+Andhra Pradesh,Visakhapatnam,December,22.4661,72.6615,Red,5.5,241,17,139,0.6,0.21,Loamy Sand,19.5,91,95,3.0
+Kerala,Kochi,October,8.0,78.8302,Laterite,5.07,140,10,134,0.43,0.34,Sandy Clay,25.3,190,79,6.5
+Maharashtra,Aurangabad,August,22.2746,88.2559,Black,8.7,290,21,404,0.54,0.27,Clay,27.1,59,53,6.5
+Odisha,Bhubaneswar,August,21.7427,83.0648,Laterite,6.23,190,11,111,0.48,0.37,Clay Loam,25.9,143,65,7.7
+Tamil Nadu,Tiruchirappalli,December,15.9211,82.0685,Red,7.19,187,16,172,0.31,0.38,Loamy Sand,22.7,94,92,3.8
+Haryana,Rohtak,December,8.0,91.0447,Forest,6.16,195,13,131,1.18,0.22,Loamy,29.6,71,75,5.8
+Bihar,Gaya,September,18.2975,69.6764,Laterite,4.64,154,13,141,0.36,0.4,Sandy Clay,26.6,138,80,4.7
+Uttar Pradesh,Allahabad,April,19.701,76.5261,Alluvial,7.23,331,26,160,0.63,0.31,Loamy,24.7,111,79,4.4
+Rajasthan,Jodhpur,May,17.0622,68.0,Desert,8.91,105,9,179,0.27,0.52,Sandy,34.6,52,73,4.8
+Madhya Pradesh,Bhopal,May,8.0,69.2392,Black,8.4,236,17,363,0.67,0.48,Clay Loam,31.8,48,64,5.5
+Maharashtra,Pune,August,32.7579,86.5935,Black,8.61,266,13,384,0.43,0.64,Clay,24.2,126,75,4.6
+Gujarat,Vadodara,July,14.8891,70.6612,Black,7.32,267,14,405,0.57,0.47,Clay,29.7,83,90,5.1
+Odisha,Cuttack,September,18.2224,83.8842,Laterite,5.2,204,14,126,0.48,0.11,Sandy Clay,25.6,49,71,7.0
+Gujarat,Surat,August,8.0,91.2679,Black,8.13,324,16,402,0.8,0.46,Clay Loam,30.6,112,100,5.1
+Telangana,Rangareddy,February,32.7588,76.5765,Peaty,5.64,469,16,145,1.74,0.99,Clay,24.9,124,63,6.6
+Bihar,Gaya,October,16.2676,82.1589,Alluvial,7.19,277,18,197,0.59,0.29,Clay Loam,25.9,80,59,2.1
+Gujarat,Ahmedabad,December,20.7877,83.9465,Black,9.0,218,8,467,0.49,0.39,Clay Loam,20.9,39,75,8.3
+Karnataka,Mysore,April,28.9659,68.228,Desert,8.38,52,13,165,0.35,0.74,Sandy,23.9,78,59,6.8
+Andhra Pradesh,Visakhapatnam,June,14.5896,73.0684,Peaty,5.2,545,24,217,1.56,1.15,Clay,32.8,37,57,8.1
+Bihar,Muzaffarpur,December,27.706,69.9707,Laterite,5.37,115,11,134,0.43,0.34,Clay Loam,22.5,99,92,1.5
+Uttar Pradesh,Lucknow,February,8.0,73.7062,Alluvial,6.73,320,24,214,0.61,0.25,Loamy,24.6,135,56,3.3
+Odisha,Sambalpur,July,24.4079,83.7289,Laterite,5.26,217,13,112,0.45,0.5,Sandy Clay,25.1,108,71,6.3
+Karnataka,Belgaum,March,32.5779,73.2384,Forest,6.45,268,8,129,1.03,0.31,Silt Loam,23.6,82,34,1.0
+Odisha,Sambalpur,March,15.3567,77.7188,Desert,8.08,82,10,167,0.21,0.53,Sandy,24.9,115,64,3.0
+Karnataka,Bangalore,November,28.9511,69.6603,Red,6.33,166,11,173,0.54,0.16,Sandy Loam,23.1,107,42,3.7
+Karnataka,Tumkur,February,34.6714,87.8114,Red,6.65,148,12,154,0.2,0.31,Loamy Sand,22.7,105,100,5.5
+Karnataka,Bellary,November,17.9613,73.6391,Red,5.55,183,14,159,0.66,0.17,Sandy Loam,28.8,60,51,3.8
+Odisha,Bhubaneswar,August,17.2998,90.1838,Laterite,5.24,147,13,132,0.31,0.29,Clay Loam,27.2,114,85,6.8
+Punjab,Amritsar,June,12.8137,78.4874,Black,7.44,306,17,396,0.51,0.59,Clay,35.0,67,69,4.3
+Uttar Pradesh,Varanasi,January,15.9222,68.0,Black,8.4,283,13,395,0.49,0.41,Clay,23.4,104,62,5.1
+Maharashtra,Kolhapur,December,13.4771,76.6318,Peaty,5.19,449,22,259,2.03,1.18,Clay,15.8,130,52,5.5
+West Bengal,Kolkata,January,12.8071,69.4978,Black,8.08,259,17,381,0.48,0.32,Clay,27.1,62,84,3.4
+Madhya Pradesh,Ujjain,July,29.5907,82.7148,Black,8.69,209,19,435,0.61,0.17,Clay Loam,23.3,116,77,6.3
+Odisha,Bhubaneswar,August,13.6806,75.9091,Laterite,5.45,139,7,137,0.39,0.24,Sandy Clay,23.4,116,84,3.2
+Madhya Pradesh,Indore,May,22.0682,79.3057,Black,7.89,277,17,331,0.82,0.38,Clay,36.3,57,59,7.4
+Madhya Pradesh,Gwalior,December,20.3059,75.0452,Alluvial,8.24,335,18,172,0.87,0.52,Clay Loam,15.9,80,65,8.2
+Rajasthan,Jodhpur,November,31.9848,73.5573,Black,8.23,321,9,303,0.39,0.44,Clay,26.2,75,87,3.6
+Maharashtra,Pune,May,15.9748,70.211,Red,6.37,187,12,149,0.69,0.1,Loamy Sand,30.7,84,63,4.3
+Bihar,Muzaffarpur,April,23.0492,84.6898,Peaty,4.5,366,30,248,2.45,1.25,Clay,26.4,78,92,4.4
+Rajasthan,Jaipur,June,26.3286,76.6148,Desert,9.45,80,8,182,0.2,0.71,Sandy,37.4,48,63,4.2
+Tamil Nadu,Chennai,June,31.918,75.4825,Red,6.84,173,7,140,0.61,0.31,Loamy Sand,35.4,122,96,4.2
+West Bengal,Kolkata,March,15.858,76.4143,Laterite,6.31,116,9,138,0.47,0.22,Clay Loam,26.5,119,94,4.6
+Madhya Pradesh,Bhopal,September,15.0569,72.5691,Laterite,4.92,137,15,107,0.48,0.2,Sandy Clay,26.3,103,83,5.3
+Uttar Pradesh,Allahabad,December,11.5058,75.5092,Laterite,5.92,162,8,96,0.35,0.4,Sandy Clay,22.3,159,72,6.0
+Gujarat,Ahmedabad,November,35.0,79.645,Black,8.05,278,14,419,0.63,0.15,Clay,24.1,95,63,5.7
+Punjab,Amritsar,July,31.0758,69.7269,Alluvial,8.36,387,23,162,0.51,0.4,Loamy,31.1,117,79,3.2
+Telangana,Warangal,January,19.6624,70.8852,Alluvial,7.73,361,21,154,1.1,0.27,Loamy,17.8,52,79,6.2
+Gujarat,Vadodara,July,35.0,89.0263,Alluvial,6.9,292,24,213,0.95,0.29,Loamy,27.6,98,64,5.7
+Punjab,Amritsar,May,19.1851,75.0979,Alluvial,7.21,331,21,119,0.91,0.35,Sandy Loam,33.6,93,59,6.5
+Maharashtra,Nagpur,May,25.7953,73.5875,Desert,8.79,96,9,175,0.2,0.81,Sandy,32.8,92,71,3.2
+Karnataka,Bellary,February,20.0814,68.0,Desert,8.23,91,8,176,0.39,0.66,Sandy,16.9,77,57,3.1
+Odisha,Cuttack,April,23.1824,84.8054,Laterite,5.29,99,11,80,0.42,0.38,Sandy Clay,26.5,93,91,6.6
+Punjab,Amritsar,December,22.3341,69.5526,Laterite,7.22,168,14,115,0.42,0.31,Sandy Clay,26.4,87,43,1.5
+Uttar Pradesh,Agra,June,16.6001,77.8777,Peaty,4.64,346,25,298,1.34,1.0,Clay,31.5,96,30,5.7
+West Bengal,Howrah,October,28.74,68.0,Desert,8.87,128,9,143,0.39,0.61,Sandy,23.0,161,49,3.5
+Odisha,Puri,November,25.7276,84.5454,Laterite,4.74,149,5,132,0.39,0.12,Clay Loam,18.1,106,85,6.9
+Karnataka,Tumkur,July,28.2216,87.4148,Forest,5.1,144,7,94,1.16,0.17,Loamy,21.6,105,63,3.8
+Maharashtra,Pune,November,22.5618,81.8762,Black,7.95,229,13,388,0.61,0.35,Clay Loam,28.7,146,84,3.2
+Tamil Nadu,Coimbatore,May,12.7474,68.0,Forest,7.27,229,19,140,0.79,0.2,Silt Loam,34.1,56,55,6.7
+Bihar,Patna,September,33.6751,84.7101,Peaty,4.5,443,18,297,2.28,1.02,Clay,27.0,101,76,4.8
+Andhra Pradesh,Anantapur,March,17.8996,71.3812,Red,5.71,234,17,139,0.39,0.19,Sandy Loam,29.3,38,65,5.1
+Uttar Pradesh,Varanasi,January,22.9125,68.6322,Desert,8.8,135,6,210,0.31,0.62,Sandy,16.7,135,79,3.7
+Bihar,Patna,April,25.0831,74.9323,Forest,6.44,227,12,178,1.21,0.29,Silt Loam,24.2,85,94,7.1
+West Bengal,Darjeeling,September,22.8594,74.7731,Peaty,5.28,306,21,296,2.44,0.95,Clay,26.9,59,66,6.4
+Maharashtra,Mumbai,April,27.3233,73.9596,Black,8.88,198,14,417,0.2,0.38,Clay Loam,22.7,116,64,4.5
+Odisha,Sambalpur,February,28.587,88.1894,Alluvial,7.18,250,14,150,0.86,0.3,Clay Loam,19.7,96,71,7.2
+Telangana,Khammam,October,18.2013,94.0946,Red,6.02,110,12,153,0.45,0.28,Sandy Loam,28.9,52,93,4.2
+West Bengal,Howrah,May,33.0037,68.0,Peaty,4.98,391,30,247,1.71,1.04,Clay,34.8,162,70,8.0
+Telangana,Hyderabad,March,17.8648,72.4893,Alluvial,7.78,219,25,219,0.91,0.21,Clay Loam,25.2,69,64,1.9
+Madhya Pradesh,Ujjain,December,22.694,79.142,Alluvial,8.33,261,25,167,0.84,0.24,Loamy,24.0,49,76,8.8
+Odisha,Puri,September,16.8986,74.8903,Red,6.66,125,12,165,0.44,0.1,Loamy Sand,25.7,72,66,3.9
+Karnataka,Bangalore,April,14.6122,81.1952,Red,7.4,194,7,139,0.42,0.18,Sandy Loam,31.1,95,50,5.6
+Tamil Nadu,Salem,June,28.3535,85.3279,Peaty,5.2,374,34,232,2.04,1.12,Clay,31.9,112,73,7.6
+Bihar,Gaya,February,35.0,83.9949,Peaty,5.57,504,24,234,1.04,1.41,Clay,14.1,114,85,3.5
+Bihar,Bhagalpur,June,17.1059,82.8779,Laterite,5.75,180,12,121,0.44,0.19,Clay Loam,36.2,114,68,3.0
+Punjab,Jalandhar,March,29.7226,91.2728,Forest,7.04,130,19,110,1.55,0.24,Loamy,23.6,100,78,2.7
+Haryana,Gurgaon,December,17.3927,68.0,Laterite,4.55,157,11,94,0.33,0.29,Clay Loam,22.0,81,50,4.7
+Uttar Pradesh,Varanasi,December,19.9161,89.8409,Alluvial,6.67,323,12,131,0.89,0.37,Sandy Loam,28.4,35,71,2.8
+Tamil Nadu,Salem,September,34.0607,74.6961,Red,7.6,221,13,162,0.57,0.1,Sandy Loam,21.3,124,77,6.6
+Maharashtra,Aurangabad,November,11.4117,84.281,Black,8.55,362,17,455,0.56,0.39,Clay,25.9,78,65,4.9
+Karnataka,Bangalore,February,9.2947,69.7627,Peaty,4.5,297,21,235,1.39,1.01,Clay,24.6,83,51,6.7
+Gujarat,Ahmedabad,December,19.3024,70.732,Black,7.77,264,20,417,0.59,0.34,Clay,21.7,54,100,5.0
+Uttar Pradesh,Lucknow,December,25.3092,83.2969,Alluvial,7.42,373,27,190,0.4,0.38,Loamy,16.7,110,53,3.4
+Madhya Pradesh,Bhopal,September,23.7093,68.0,Red,6.88,219,14,179,0.45,0.31,Loamy Sand,23.7,90,57,4.9
+Rajasthan,Udaipur,May,22.8854,85.9155,Desert,7.84,65,7,264,0.25,0.51,Sandy,30.5,52,78,7.3
+Gujarat,Rajkot,August,20.2731,88.0797,Black,8.37,284,6,462,0.5,0.39,Clay,30.1,0,69,5.1
+Karnataka,Tumkur,February,26.2923,79.4223,Red,6.21,263,12,149,0.43,0.2,Loamy Sand,22.8,44,77,2.8
+Uttar Pradesh,Kanpur,June,8.0,79.1341,Alluvial,8.12,301,11,204,1.18,0.32,Loamy,33.3,81,45,4.7
+Rajasthan,Udaipur,March,13.9936,71.3309,Desert,8.86,106,10,142,0.3,0.8,Sandy,24.7,46,69,4.8
+Uttar Pradesh,Varanasi,December,19.2511,83.3956,Alluvial,7.01,356,25,143,0.87,0.32,Loamy,25.0,90,44,5.2
+Andhra Pradesh,Kurnool,December,25.6363,80.7813,Red,5.51,190,11,131,0.29,0.14,Sandy Loam,22.9,110,81,7.6
+West Bengal,Howrah,October,31.9181,70.628,Peaty,5.2,464,23,281,2.48,0.98,Clay,23.5,81,75,7.3
+Gujarat,Surat,May,12.9192,74.8682,Black,8.36,241,11,355,0.65,0.39,Clay,33.2,88,71,3.9
+Uttar Pradesh,Kanpur,December,31.6566,76.7253,Alluvial,6.5,368,14,167,1.04,0.31,Loamy,23.4,78,71,9.3
+Haryana,Faridabad,August,16.3795,74.8576,Red,6.69,238,17,185,0.4,0.1,Loamy Sand,22.1,106,43,5.2
+Gujarat,Ahmedabad,October,18.9607,68.0,Laterite,5.29,73,12,80,0.5,0.11,Sandy Clay,28.8,32,61,5.6
+Haryana,Hisar,January,24.6515,83.5922,Red,6.08,248,10,184,0.76,0.13,Loamy Sand,20.1,91,69,6.1
+Karnataka,Gulbarga,May,18.3741,76.0519,Forest,6.56,235,21,151,1.09,0.14,Loamy,33.0,94,70,5.5
+Uttar Pradesh,Kanpur,March,28.8809,78.1229,Alluvial,6.51,297,14,180,0.64,0.27,Sandy Loam,24.1,125,82,5.9
+Uttar Pradesh,Kanpur,April,16.7632,73.3739,Alluvial,7.39,263,21,161,0.87,0.49,Sandy Loam,23.8,103,53,3.0
+Madhya Pradesh,Gwalior,February,16.8837,81.8022,Peaty,4.96,289,20,242,1.96,1.47,Clay,21.7,74,56,1.6
+Bihar,Patna,September,28.4158,79.5896,Red,6.38,112,14,165,0.43,0.37,Loamy Sand,29.5,96,37,5.1
+Gujarat,Ahmedabad,March,13.895,87.7023,Black,7.82,238,17,261,0.7,0.42,Clay Loam,25.1,48,62,8.0
+Gujarat,Surat,February,21.9914,81.8448,Black,8.08,237,16,372,0.79,0.41,Clay,21.2,75,83,6.7
+Madhya Pradesh,Bhopal,October,8.0,76.3785,Black,8.35,276,19,500,0.51,0.6,Clay,27.1,85,84,6.0
+Telangana,Nalgonda,November,34.5571,72.0823,Black,8.19,227,12,410,0.45,0.26,Clay,26.5,16,86,3.1
+Kerala,Thiruvananthapuram,September,29.6524,84.9276,Peaty,4.7,381,23,235,1.76,1.16,Clay,29.3,196,100,9.1
+Odisha,Cuttack,July,35.0,75.7394,Laterite,5.88,218,12,98,0.38,0.22,Sandy Clay,24.5,57,80,5.2
+Telangana,Warangal,June,30.7069,76.6263,Black,7.92,255,8,402,0.83,0.32,Clay Loam,33.0,97,71,6.4
+Gujarat,Vadodara,January,10.9628,76.6242,Peaty,5.79,230,24,254,1.24,0.98,Clay,21.0,95,74,8.8
+West Bengal,Burdwan,May,25.3492,74.7871,Peaty,5.71,546,31,237,2.63,1.18,Clay,32.2,112,62,5.3
+Rajasthan,Ajmer,December,12.6559,76.7637,Desert,8.26,83,8,158,0.28,0.67,Sandy,20.0,46,49,5.9
+Uttar Pradesh,Varanasi,November,32.6243,93.4097,Alluvial,8.02,281,27,200,0.94,0.21,Loamy,23.3,83,77,7.2
+Madhya Pradesh,Indore,November,11.1909,69.6174,Desert,8.52,108,7,214,0.25,0.54,Sandy,25.9,96,84,7.0
+Andhra Pradesh,Guntur,March,10.8068,71.484,Red,5.59,161,10,158,0.59,0.15,Loamy Sand,24.9,146,64,1.0
+Maharashtra,Nagpur,January,8.0,89.0746,Red,6.11,198,8,193,0.66,0.1,Sandy Loam,22.2,49,91,6.2
+Odisha,Puri,April,16.093,75.0016,Forest,5.32,223,20,193,1.0,0.16,Silt Loam,30.6,20,95,5.9
+Andhra Pradesh,Krishna,February,14.4842,74.395,Red,6.32,180,9,133,0.67,0.1,Loamy Sand,26.7,149,55,4.3
+Maharashtra,Aurangabad,February,9.9068,86.2789,Black,8.85,269,21,422,0.71,0.14,Clay,29.7,59,69,5.1
+Madhya Pradesh,Jabalpur,March,35.0,68.0,Red,6.33,168,13,161,0.6,0.27,Loamy Sand,29.3,90,70,4.2
+Uttar Pradesh,Allahabad,August,24.239,84.5716,Alluvial,8.1,361,21,242,1.07,0.22,Loamy,25.5,112,76,3.6
+Gujarat,Rajkot,August,23.2979,78.3649,Laterite,4.5,209,7,98,0.44,0.21,Sandy Clay,26.3,101,51,2.6
+Maharashtra,Mumbai,December,32.7133,81.7184,Black,8.67,267,11,367,0.7,0.3,Clay Loam,20.5,67,68,4.2
+Maharashtra,Nashik,July,22.0501,81.5682,Black,8.02,235,16,346,0.83,0.29,Clay Loam,26.5,121,50,4.3
+Bihar,Bhagalpur,June,14.0106,72.9761,Laterite,6.75,124,11,120,0.43,0.14,Sandy Clay,37.9,117,80,5.8
+Rajasthan,Udaipur,September,8.0,86.4095,Desert,8.81,77,6,142,0.2,0.5,Sandy,27.4,69,78,6.4
+Tamil Nadu,Salem,April,13.5595,73.5989,Red,5.91,71,15,169,0.55,0.11,Loamy Sand,29.3,64,72,5.8
+Rajasthan,Bikaner,December,32.0433,81.2708,Desert,8.47,70,9,257,0.28,0.47,Sandy,21.2,76,91,6.7
+Karnataka,Gulbarga,January,9.9573,87.9018,Red,6.61,200,8,137,0.77,0.1,Sandy Loam,21.9,58,84,4.7
+Karnataka,Tumkur,August,22.825,89.0312,Laterite,6.03,132,11,111,0.31,0.27,Sandy Clay,24.2,69,78,8.8
+Rajasthan,Udaipur,July,28.2714,75.863,Black,8.28,223,21,276,0.7,0.28,Clay Loam,29.9,47,68,4.1
+Madhya Pradesh,Indore,July,22.2828,81.7051,Black,8.79,143,17,384,0.69,0.41,Clay,23.6,60,56,3.5
+Gujarat,Surat,March,23.1919,75.1241,Desert,9.5,53,11,198,0.24,0.66,Sandy,24.6,7,39,2.2
+Maharashtra,Aurangabad,April,25.2448,97.0,Red,5.72,138,7,164,0.55,0.13,Loamy Sand,25.3,89,64,4.2
+Uttar Pradesh,Agra,October,23.0342,84.241,Alluvial,7.26,318,18,212,0.85,0.47,Clay Loam,24.2,45,60,6.4
+Punjab,Patiala,September,32.8726,78.6725,Peaty,4.59,392,17,259,2.02,1.11,Clay,25.9,87,97,5.0
+Andhra Pradesh,Krishna,June,11.6777,80.5005,Red,7.03,206,8,173,0.5,0.1,Loamy Sand,30.9,101,83,2.8
+Punjab,Patiala,May,21.9234,81.2568,Alluvial,7.42,286,21,172,0.39,0.44,Sandy Loam,27.8,81,48,7.6
+Karnataka,Tumkur,March,8.0,81.4939,Red,4.88,176,15,145,0.25,0.12,Sandy Loam,31.3,67,64,5.1
+Gujarat,Vadodara,September,8.0,76.08,Alluvial,7.69,284,23,171,0.88,0.44,Sandy Loam,28.4,94,66,3.1
+Karnataka,Gulbarga,May,19.3466,74.8454,Peaty,5.46,273,20,186,1.62,1.16,Clay,26.2,106,65,6.8
+Madhya Pradesh,Gwalior,May,24.347,76.7852,Black,8.04,293,18,403,0.76,0.56,Clay Loam,32.8,63,87,6.7
+Telangana,Medak,April,33.0453,68.8825,Forest,5.87,233,11,209,1.17,0.1,Silt Loam,26.7,85,55,4.4
+Kerala,Kochi,April,35.0,83.7462,Laterite,5.68,207,9,112,0.54,0.1,Clay Loam,28.3,151,68,6.1
+Rajasthan,Ajmer,December,30.5589,71.5864,Laterite,6.15,153,13,133,0.3,0.31,Clay Loam,17.4,49,76,2.3
+Uttar Pradesh,Kanpur,January,25.8173,69.5204,Black,8.41,286,10,419,0.54,0.41,Clay,24.2,112,59,6.5
+Andhra Pradesh,Chittoor,July,21.2797,77.8852,Alluvial,7.22,207,23,230,0.32,0.47,Clay Loam,25.3,40,46,3.8
+Bihar,Patna,September,8.0,76.959,Laterite,4.86,165,14,159,0.54,0.33,Clay Loam,23.2,116,62,4.2
+Karnataka,Gulbarga,March,18.8317,79.9971,Alluvial,7.25,307,22,173,1.03,0.28,Loamy,20.8,73,34,5.5
+West Bengal,Burdwan,December,30.323,73.4544,Peaty,5.45,381,23,221,2.12,1.3,Clay,19.7,114,74,7.8
+Karnataka,Mysore,February,27.1863,74.8597,Peaty,4.99,420,37,298,2.29,1.11,Clay,22.9,115,82,4.2
+Karnataka,Bangalore,March,9.7093,83.537,Red,6.14,165,12,154,0.37,0.26,Loamy Sand,28.1,82,74,7.5
+Andhra Pradesh,Kurnool,January,24.9122,83.0497,Red,6.21,196,15,131,0.56,0.1,Loamy Sand,19.5,70,90,1.0
+Rajasthan,Udaipur,June,24.2271,82.7162,Desert,8.69,148,5,227,0.2,0.53,Sandy,28.5,62,48,1.0
+Uttar Pradesh,Agra,November,22.7991,78.2717,Alluvial,6.93,343,11,173,0.57,0.21,Sandy Loam,24.1,132,64,6.2
+Andhra Pradesh,Chittoor,November,19.7772,79.3514,Forest,7.1,179,28,102,1.11,0.2,Loamy,30.4,64,78,5.8
+Bihar,Bhagalpur,July,25.3247,79.8435,Desert,8.69,89,9,163,0.2,0.71,Sandy,27.0,123,35,1.2
+Rajasthan,Bikaner,November,25.5785,72.7517,Desert,8.33,71,6,261,0.34,0.37,Sandy,28.2,57,64,3.8
+Uttar Pradesh,Lucknow,November,14.8683,89.7924,Desert,7.91,91,9,168,0.29,0.62,Sandy,23.8,103,60,2.6
+Madhya Pradesh,Indore,February,23.6401,88.6527,Black,8.25,154,16,296,0.56,0.34,Clay Loam,29.4,72,52,4.1
+Madhya Pradesh,Ujjain,August,18.4848,84.354,Forest,6.74,165,14,121,1.09,0.18,Silt Loam,24.3,73,36,4.8
+Uttar Pradesh,Kanpur,June,8.1021,74.5931,Forest,6.7,192,14,152,1.14,0.3,Loamy,34.5,103,90,2.8
+Karnataka,Bellary,April,15.5071,82.3132,Red,6.67,217,13,137,0.48,0.16,Sandy Loam,26.2,75,89,2.7
+Karnataka,Bellary,May,8.0,85.827,Alluvial,7.77,332,25,120,0.67,0.27,Loamy,35.4,80,79,5.7
+West Bengal,Burdwan,August,27.8407,68.2144,Peaty,5.29,516,28,206,2.23,1.04,Clay,26.4,55,69,5.7
+Gujarat,Surat,March,22.8471,91.5561,Forest,6.36,179,18,186,0.73,0.17,Silt Loam,25.5,0,80,6.7
+Madhya Pradesh,Bhopal,March,17.1561,68.0,Alluvial,7.85,291,18,211,0.72,0.31,Loamy,26.6,100,91,7.3
+Tamil Nadu,Salem,November,31.3642,83.6368,Desert,9.0,135,10,179,0.28,0.36,Sandy,27.4,90,74,2.7
+Punjab,Patiala,April,20.5439,89.6263,Alluvial,6.45,282,20,185,0.96,0.61,Loamy,26.2,117,96,1.1
+Madhya Pradesh,Ujjain,January,8.5502,77.0955,Black,8.79,206,13,294,0.94,0.14,Clay,22.2,80,76,1.0
+Andhra Pradesh,Chittoor,September,16.4842,76.7963,Forest,7.09,268,23,136,1.05,0.1,Silt Loam,21.5,134,78,4.6
+Karnataka,Belgaum,August,33.0628,83.3413,Red,7.03,204,12,134,0.79,0.26,Loamy Sand,23.7,68,55,7.3
+Bihar,Patna,August,14.6442,92.8151,Peaty,5.52,448,20,189,2.44,1.42,Clay,22.8,46,58,3.6
+Punjab,Jalandhar,October,22.2018,75.7515,Alluvial,7.96,206,17,174,0.43,0.16,Clay Loam,24.7,146,65,4.9
+Andhra Pradesh,Kurnool,June,25.951,71.7524,Red,5.44,169,8,109,0.57,0.15,Sandy Loam,29.0,109,72,3.9
+Tamil Nadu,Vellore,July,24.7196,74.6098,Red,5.97,209,12,101,0.54,0.1,Sandy Loam,27.5,122,90,6.8
+Tamil Nadu,Tiruchirappalli,June,35.0,68.0,Red,6.93,213,13,176,0.5,0.13,Sandy Loam,27.1,95,100,1.5
+Haryana,Faridabad,September,10.5896,85.1821,Red,6.97,252,11,142,0.28,0.14,Loamy Sand,21.4,74,64,2.0
+Andhra Pradesh,Guntur,March,11.3883,73.8873,Red,6.0,145,13,177,0.57,0.14,Sandy Loam,28.8,72,76,6.9
+Telangana,Hyderabad,March,10.722,76.3333,Laterite,6.85,115,8,91,0.41,0.26,Sandy Clay,25.9,63,94,2.1
+Odisha,Cuttack,March,17.6327,85.277,Laterite,4.5,108,16,101,0.36,0.19,Sandy Clay,27.8,138,61,4.2
+Karnataka,Bangalore,October,28.795,74.9847,Black,8.62,242,10,378,0.51,0.3,Clay,25.3,92,55,7.0
+Punjab,Jalandhar,March,11.7461,84.0727,Desert,8.01,117,9,201,0.46,0.46,Sandy,23.6,127,65,4.5
+Tamil Nadu,Coimbatore,September,28.9069,69.6953,Red,7.17,187,12,167,0.43,0.12,Sandy Loam,21.7,92,65,6.5
+Telangana,Rangareddy,December,20.281,85.6698,Desert,9.21,92,9,235,0.3,0.54,Sandy,19.1,120,88,3.3
+Tamil Nadu,Chennai,April,11.128,80.7352,Red,6.28,280,10,154,0.6,0.22,Sandy Loam,24.3,128,44,5.5
+Bihar,Patna,July,8.0,77.2914,Laterite,5.16,186,16,138,0.47,0.28,Clay Loam,25.7,107,68,2.1
+West Bengal,Howrah,September,8.0,79.0471,Black,8.56,208,14,322,0.77,0.5,Clay,28.4,114,45,5.1
+Odisha,Sambalpur,November,14.6732,68.0,Laterite,5.3,142,7,116,0.57,0.21,Sandy Clay,26.0,111,77,1.7
+Madhya Pradesh,Bhopal,December,18.6468,78.864,Black,8.58,202,14,435,0.72,0.18,Clay,22.9,37,83,4.9
+Haryana,Faridabad,July,30.7685,76.8666,Laterite,6.21,169,16,111,0.37,0.26,Clay Loam,24.9,86,91,4.6
+Karnataka,Belgaum,September,26.3927,68.0,Desert,7.97,75,7,194,0.32,0.79,Sandy,29.0,89,50,4.6
+Maharashtra,Aurangabad,December,13.2885,72.6314,Black,7.83,225,21,330,0.71,0.39,Clay Loam,28.3,114,36,2.3
+West Bengal,Burdwan,March,23.2693,76.966,Black,7.76,279,17,480,0.58,0.21,Clay,21.3,75,53,2.8
+Andhra Pradesh,Chittoor,April,33.2124,73.1417,Red,6.67,238,16,194,0.72,0.22,Loamy Sand,23.4,117,83,5.3
+Telangana,Medak,August,34.9913,68.0,Black,8.04,272,13,429,0.66,0.15,Clay Loam,25.4,125,61,8.5
+Karnataka,Bellary,June,17.4848,86.6111,Black,8.2,217,19,380,0.66,0.48,Clay Loam,28.3,58,87,4.1
+Andhra Pradesh,Guntur,May,27.6663,76.8633,Red,6.03,268,16,96,0.52,0.22,Loamy Sand,33.5,73,85,4.9
+Karnataka,Mysore,April,31.1196,68.0,Red,6.13,265,10,189,0.61,0.1,Loamy Sand,26.8,34,79,2.7
+Uttar Pradesh,Lucknow,August,8.0,95.0797,Alluvial,8.66,228,25,203,0.74,0.38,Clay Loam,22.0,63,54,3.6
+Madhya Pradesh,Indore,January,15.9007,87.9311,Alluvial,8.11,329,15,200,0.83,0.27,Sandy Loam,21.5,62,67,9.0
+West Bengal,Darjeeling,September,35.0,75.2081,Alluvial,7.39,394,14,150,0.61,0.4,Sandy Loam,27.9,94,77,7.2
+Odisha,Sambalpur,January,17.5917,71.26,Black,8.73,227,14,374,0.69,0.62,Clay,25.2,99,71,4.5
+Maharashtra,Pune,August,8.0,81.2255,Black,8.09,270,10,379,0.57,0.11,Clay,24.4,69,86,2.5
+Tamil Nadu,Chennai,April,19.0323,79.6186,Red,6.17,269,9,167,0.6,0.31,Loamy Sand,23.6,88,88,5.7
+Madhya Pradesh,Indore,September,28.997,82.3367,Black,8.76,242,15,299,0.51,0.42,Clay Loam,26.5,143,57,1.0
+Uttar Pradesh,Allahabad,November,20.0521,71.283,Alluvial,8.27,430,24,132,0.62,0.42,Loamy,27.1,147,70,1.0
+Tamil Nadu,Chennai,May,25.7229,86.7822,Red,6.34,129,12,144,0.2,0.35,Loamy Sand,36.9,89,56,1.5
+Punjab,Jalandhar,March,27.5058,74.2123,Alluvial,6.74,225,13,180,0.84,0.4,Loamy,28.4,98,62,3.7
+Madhya Pradesh,Gwalior,September,17.1605,83.4461,Black,7.82,258,12,346,0.6,0.21,Clay Loam,27.3,95,62,3.7
+Uttar Pradesh,Kanpur,November,15.8449,71.6245,Alluvial,8.48,266,24,192,0.78,0.26,Sandy Loam,24.7,49,100,4.3
+Madhya Pradesh,Bhopal,September,21.2275,97.0,Black,7.79,283,13,400,0.71,0.64,Clay Loam,23.3,36,71,3.3
+Maharashtra,Aurangabad,April,21.4222,83.5642,Red,6.62,223,9,135,0.45,0.23,Sandy Loam,25.2,66,73,3.3
+Gujarat,Ahmedabad,November,20.4326,97.0,Black,8.22,192,20,462,0.57,0.35,Clay Loam,22.1,58,48,2.9
+Bihar,Gaya,April,20.7613,84.6208,Alluvial,6.98,289,22,172,0.49,0.16,Loamy,28.6,65,55,2.3
+Karnataka,Gulbarga,December,14.0116,73.5083,Forest,6.62,236,15,172,0.8,0.18,Silt Loam,23.0,75,66,6.2
+West Bengal,Darjeeling,August,26.0023,84.635,Desert,8.76,109,11,255,0.29,0.54,Sandy,25.3,111,63,6.2
+Rajasthan,Udaipur,February,24.7939,85.2046,Laterite,6.59,172,9,80,0.32,0.17,Sandy Clay,24.2,48,56,9.4
+West Bengal,Burdwan,September,9.3119,80.9866,Peaty,5.92,349,16,282,2.65,1.26,Clay,27.3,70,74,2.4
+Odisha,Puri,June,16.8867,83.0431,Desert,8.07,106,10,212,0.42,0.54,Sandy,32.8,128,61,6.0
+Madhya Pradesh,Jabalpur,September,20.7446,84.0938,Black,8.17,259,18,388,0.74,0.59,Clay,28.9,89,90,6.4
+Andhra Pradesh,Chittoor,August,15.7255,70.0506,Red,6.6,174,9,154,0.58,0.23,Loamy Sand,21.6,104,71,8.4
+Tamil Nadu,Chennai,July,25.099,69.4811,Red,6.01,146,11,166,0.29,0.14,Sandy Loam,20.0,123,72,7.5
+Uttar Pradesh,Allahabad,January,19.4649,71.6463,Alluvial,8.0,312,23,212,0.69,0.31,Clay Loam,17.9,154,82,2.7
+Punjab,Amritsar,December,21.3526,79.0203,Alluvial,8.24,198,20,207,1.14,0.36,Loamy,20.2,118,90,2.2
+Tamil Nadu,Chennai,March,16.7943,76.2146,Black,8.48,206,15,343,0.24,0.38,Clay,23.9,98,55,8.1
+Karnataka,Tumkur,November,8.0,70.1954,Red,5.68,139,18,150,0.44,0.25,Loamy Sand,22.9,86,77,6.4
+Odisha,Bhubaneswar,February,8.0,84.2025,Peaty,6.28,523,20,308,2.43,0.91,Clay,24.9,96,95,2.3
+Kerala,Kochi,May,24.7169,80.2644,Peaty,4.64,363,42,304,1.9,0.98,Clay,34.2,136,60,6.4
+Uttar Pradesh,Varanasi,May,22.1353,79.3514,Alluvial,7.92,340,15,189,0.69,0.32,Clay Loam,28.1,160,68,5.9
+Karnataka,Gulbarga,May,23.5093,75.9361,Red,7.65,191,12,134,0.34,0.12,Sandy Loam,33.8,83,64,3.3
+Tamil Nadu,Coimbatore,April,21.0758,74.9742,Red,7.18,198,6,130,0.5,0.2,Sandy Loam,29.0,152,74,3.1
+Andhra Pradesh,East Godavari,May,21.7165,71.2694,Forest,7.11,219,12,112,0.97,0.2,Silt Loam,34.5,120,66,7.3
+Gujarat,Surat,March,27.7522,85.4699,Black,8.95,185,12,453,0.71,0.4,Clay,26.7,91,62,3.9
+Telangana,Khammam,December,23.557,72.3721,Alluvial,7.34,333,15,158,0.59,0.23,Clay Loam,18.7,141,71,5.2
+Uttar Pradesh,Allahabad,January,28.3273,79.6751,Alluvial,6.92,282,7,190,0.94,0.21,Sandy Loam,21.0,63,68,5.4
+Tamil Nadu,Chennai,May,21.3717,91.2961,Red,5.55,219,11,142,0.34,0.18,Sandy Loam,32.8,73,65,5.2
+Uttar Pradesh,Lucknow,September,17.5969,75.3419,Alluvial,7.71,253,21,224,0.89,0.32,Sandy Loam,27.6,94,43,5.1
+Punjab,Jalandhar,September,21.5536,85.6856,Laterite,4.96,67,12,84,0.51,0.33,Clay Loam,23.7,101,82,6.3
+Odisha,Puri,April,13.3106,82.5497,Laterite,6.44,149,9,100,0.47,0.21,Sandy Clay,24.7,68,63,4.0
+Karnataka,Bellary,March,16.9612,80.4917,Red,6.89,83,11,162,0.38,0.13,Sandy Loam,23.3,74,63,4.5
+Andhra Pradesh,Kurnool,January,21.4206,81.4428,Red,6.69,168,10,130,0.65,0.14,Sandy Loam,20.5,83,77,2.8
+Telangana,Medak,February,21.3145,77.2407,Alluvial,7.76,329,21,152,0.67,0.22,Sandy Loam,24.2,35,66,6.9
+West Bengal,Burdwan,August,19.1486,78.2782,Peaty,5.04,422,26,232,2.44,0.95,Clay,29.7,82,74,6.3
+West Bengal,Howrah,January,8.8945,73.6151,Peaty,4.64,276,14,259,1.96,1.18,Clay,26.2,125,53,3.7
+Uttar Pradesh,Kanpur,August,25.0913,78.3317,Peaty,5.68,383,31,228,1.93,0.96,Clay,27.0,72,81,3.5
+Uttar Pradesh,Allahabad,July,26.6738,73.3182,Forest,7.26,156,18,139,0.93,0.18,Silt Loam,27.6,84,74,3.0
+Punjab,Ludhiana,August,33.1495,86.0452,Alluvial,8.89,340,16,236,0.64,0.37,Loamy,28.6,176,78,3.1
+Karnataka,Bellary,December,23.5342,68.0,Alluvial,7.36,296,24,196,0.68,0.36,Loamy,19.1,94,60,4.2
+Gujarat,Rajkot,June,20.0117,81.8484,Black,7.75,263,12,345,1.02,0.7,Clay Loam,32.2,30,75,7.1
+Madhya Pradesh,Ujjain,December,11.8958,80.6927,Forest,6.24,229,15,181,1.0,0.1,Loamy,22.5,66,59,4.0
+Madhya Pradesh,Bhopal,September,31.9361,79.9681,Black,8.49,177,24,415,0.37,0.42,Clay,24.3,101,81,7.3
+Rajasthan,Ajmer,March,21.9827,86.196,Alluvial,7.38,321,17,132,0.8,0.19,Sandy Loam,27.8,58,89,2.8
+Andhra Pradesh,East Godavari,October,21.547,75.711,Desert,8.85,128,8,154,0.2,0.54,Sandy,28.8,79,61,5.1
+Karnataka,Bangalore,April,17.9676,80.0435,Black,8.66,287,16,423,0.58,0.34,Clay,29.4,95,66,4.6
+Bihar,Muzaffarpur,June,17.4562,68.0,Red,5.84,182,12,127,0.65,0.28,Sandy Loam,34.3,138,90,6.3
+Telangana,Hyderabad,August,25.5061,74.6775,Desert,9.5,182,8,204,0.35,0.85,Sandy,21.8,134,73,5.3
+Uttar Pradesh,Varanasi,May,11.8285,84.8459,Alluvial,7.53,251,16,215,0.92,0.28,Loamy,31.3,110,58,4.4
+Tamil Nadu,Vellore,March,33.0035,68.0,Black,8.08,220,18,482,0.67,0.39,Clay Loam,27.4,65,41,5.2
+Madhya Pradesh,Bhopal,June,31.2602,79.2779,Laterite,5.52,147,12,100,0.48,0.21,Clay Loam,33.7,55,56,6.4
+Maharashtra,Nashik,April,17.1675,72.5799,Black,7.61,283,20,323,0.58,0.44,Clay,24.6,100,70,3.1
+Maharashtra,Aurangabad,September,13.0891,77.1121,Peaty,5.28,456,23,258,2.1,1.07,Clay,25.9,74,65,6.3
+Bihar,Patna,March,8.0,73.0586,Red,5.79,129,5,153,0.3,0.37,Sandy Loam,27.6,121,81,5.6
+Maharashtra,Nashik,April,9.9887,68.0224,Alluvial,8.16,354,19,201,0.97,0.38,Sandy Loam,29.2,73,67,4.0
+Uttar Pradesh,Kanpur,July,25.8393,81.088,Laterite,6.6,89,9,103,0.59,0.3,Sandy Clay,23.7,112,79,8.4
+Rajasthan,Ajmer,July,22.5227,77.6032,Desert,8.93,155,7,194,0.28,0.59,Sandy,27.9,62,86,2.8
+Punjab,Amritsar,December,23.9492,82.901,Alluvial,6.78,313,22,172,0.45,0.3,Sandy Loam,17.8,80,52,6.9
+Gujarat,Rajkot,December,8.0,84.3555,Laterite,6.1,176,13,142,0.33,0.22,Sandy Clay,22.3,0,57,2.2
+Bihar,Bhagalpur,April,16.8335,87.8021,Black,8.43,254,22,367,0.41,0.43,Clay,26.4,80,72,4.3
+Karnataka,Gulbarga,June,30.9382,79.0679,Red,6.21,357,8,151,0.85,0.14,Sandy Loam,30.8,148,95,6.9
+Andhra Pradesh,Kurnool,December,19.2318,88.149,Black,7.87,249,13,340,0.87,0.22,Clay Loam,25.8,134,60,4.3
+Tamil Nadu,Coimbatore,March,9.8216,70.1938,Red,5.22,120,16,155,0.72,0.29,Loamy Sand,26.6,97,31,4.9
+Uttar Pradesh,Varanasi,June,19.1072,85.2717,Alluvial,7.07,240,13,187,0.81,0.26,Loamy,37.3,38,100,6.1
+Andhra Pradesh,Kurnool,December,13.8319,81.6751,Red,5.94,221,11,155,0.48,0.28,Loamy Sand,23.9,59,84,4.9
+Rajasthan,Ajmer,February,22.6694,79.8647,Desert,8.35,118,8,148,0.31,0.36,Sandy,24.9,48,84,5.9
+Uttar Pradesh,Allahabad,August,20.1644,81.5579,Forest,6.54,199,15,191,0.75,0.1,Silt Loam,19.5,118,51,6.4
+Maharashtra,Pune,February,24.3464,70.3141,Black,9.02,213,11,451,0.68,0.6,Clay,23.9,71,77,5.5
+Bihar,Bhagalpur,November,10.2566,68.426,Alluvial,7.61,367,16,169,1.37,0.12,Sandy Loam,29.8,60,79,1.0
+Telangana,Khammam,July,16.4103,91.6786,Alluvial,7.47,323,11,143,0.73,0.33,Loamy,24.4,15,77,2.4
+Andhra Pradesh,Kurnool,September,28.7235,76.6502,Red,7.05,132,10,127,0.2,0.16,Sandy Loam,28.7,88,72,3.7
+Bihar,Gaya,January,9.1658,76.5361,Desert,8.42,103,5,195,0.38,0.17,Sandy,23.2,127,40,2.0
+Rajasthan,Ajmer,August,11.9751,69.1815,Desert,8.36,50,8,140,0.31,0.84,Sandy,29.9,29,75,1.2
+Haryana,Faridabad,July,21.5944,68.0,Laterite,4.81,117,9,126,0.3,0.21,Clay Loam,25.1,123,63,5.1
+Madhya Pradesh,Bhopal,June,22.2938,77.2934,Black,8.37,316,15,307,0.98,0.47,Clay,32.1,28,76,6.1
+Tamil Nadu,Madurai,June,16.0892,75.2673,Red,6.48,223,11,143,0.39,0.29,Loamy Sand,35.6,165,74,6.5
+Odisha,Cuttack,June,17.7725,78.0139,Laterite,5.84,189,14,141,0.3,0.41,Sandy Clay,31.4,123,71,7.1
+Odisha,Puri,September,24.2658,78.6972,Alluvial,7.35,335,16,169,0.84,0.28,Clay Loam,25.5,83,42,1.8
+Haryana,Faridabad,February,26.7971,97.0,Black,8.01,235,20,405,0.64,0.41,Clay,23.3,83,97,7.6
+Tamil Nadu,Salem,January,11.4462,75.2914,Peaty,5.97,381,21,279,0.41,0.94,Clay,24.3,67,77,4.1
+Uttar Pradesh,Agra,December,22.9146,90.6395,Alluvial,7.24,313,26,227,0.85,0.14,Loamy,18.3,82,73,5.3
+Maharashtra,Pune,June,32.0961,91.1362,Laterite,5.66,105,6,105,0.34,0.1,Sandy Clay,33.1,78,74,6.8
+Telangana,Nalgonda,October,19.0729,84.029,Laterite,5.54,189,11,98,0.5,0.29,Sandy Clay,25.9,74,78,3.0
+Gujarat,Ahmedabad,November,11.3613,76.119,Black,8.66,238,16,459,0.77,0.53,Clay Loam,25.0,36,54,5.2
+Telangana,Warangal,August,10.9913,68.0,Desert,8.88,50,5,234,0.4,0.49,Sandy,21.5,101,81,3.0
+Gujarat,Ahmedabad,March,18.7141,81.8236,Black,7.75,261,9,390,0.55,0.37,Clay,25.3,82,70,7.3
+Madhya Pradesh,Bhopal,December,28.2868,86.1505,Alluvial,7.02,326,6,194,0.77,0.39,Sandy Loam,24.2,95,81,5.3

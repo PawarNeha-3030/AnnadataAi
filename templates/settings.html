@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - AnnadataAI</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #00b894;
+            --primary-dark: #00a085;
+            --secondary: #0984e3;
+            --dark: #2d3436;
+            --light: #f9f9f9;
+            --gray: #636e72;
+            --light-gray: #dfe6e9;
+            --danger: #e74c3c;
+            --shadow: 0 10px 30px rgba(0,0,0,0.08);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: linear-gradient(135deg, rgba(0, 184, 148, 0.05) 0%, rgba(152, 251, 152, 0.1) 100%);
+            color: var(--dark);
+            min-height: 100vh;
+            padding-top: 80px;
+        }
+
+        body.dark-mode {
+            background: #1a1a1a;
+            color: #e8e8e8;
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+
+        /* NAVBAR */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow);
+            z-index: 1000;
+            padding: 15px 0;
+        }
+
+        body.dark-mode .navbar { background: rgba(30, 30, 30, 0.95); }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        body.dark-mode .logo { color: white; }
+
+        .logo i { color: var(--primary); font-size: 1.8rem; }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .settings-btn, .language-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 15px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .settings-btn:hover, .language-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* SETTINGS LAYOUT */
+        .settings-wrapper {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .settings-sidebar {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            height: fit-content;
+            box-shadow: var(--shadow);
+        }
+
+        body.dark-mode .settings-sidebar { background: #2a2a2a; }
+
+        .settings-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .settings-nav button {
+            padding: 12px 15px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            text-align: left;
+            border-radius: 8px;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--gray);
+            font-weight: 500;
+        }
+
+        .settings-nav button:hover {
+            background: var(--light);
+            color: var(--primary);
+        }
+
+        body.dark-mode .settings-nav button:hover { background: #3a3a3a; }
+
+        .settings-nav button.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .settings-content {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+        }
+
+        body.dark-mode .settings-content { background: #2a2a2a; }
+
+        .settings-tab {
+            display: none;
+        }
+
+        .settings-tab.active {
+            display: block;
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+
+        body.dark-mode .section-title { color: white; }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        body.dark-mode label { color: #ddd; }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--light-gray);
+            border-radius: 8px;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            font-family: inherit;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(0, 184, 148, 0.1);
+        }
+
+        body.dark-mode input, body.dark-mode textarea, body.dark-mode select {
+            background: #3a3a3a;
+            color: white;
+            border-color: #555;
+        }
+
+        .photo-upload {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .photo-preview {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--light-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            overflow: hidden;
+        }
+
+        .photo-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .photo-controls {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: var(--light-gray);
+            color: var(--dark);
+        }
+
+        .btn-secondary:hover {
+            background: #c8d6e5;
+        }
+
+        .btn-danger {
+            background: var(--danger);
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #c0392b;
+        }
+
+        .btn-block {
+            width: 100%;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .toggle-switch {
+            position: relative;
+            display: inline-flex;
+            width: 60px;
+            height: 32px;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .toggle-switch input {
+            display: none;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: var(--light-gray);
+            border-radius: 20px;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            padding: 0 3px;
+        }
+
+        .toggle-switch input:checked ~ .toggle-slider {
+            background: var(--primary);
+        }
+
+        .toggle-dot {
+            width: 26px;
+            height: 26px;
+            background: white;
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .toggle-switch input:checked ~ .toggle-slider .toggle-dot {
+            transform: translateX(28px);
+        }
+
+        .font-size-selector {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .font-size-btn {
+            padding: 8px 12px;
+            border: 2px solid var(--light-gray);
+            background: white;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .font-size-btn.active {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .divider {
+            height: 1px;
+            background: var(--light-gray);
+            margin: 30px 0;
+        }
+
+        .alert {
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .alert-success {
+            background: #e6ffef;
+            color: #2d7a4f;
+            border: 1px solid #a8e6c1;
+        }
+
+        .alert-danger {
+            background: #ffe8e8;
+            color: #a80000;
+            border: 1px solid #ffb3b3;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .logout-section {
+            padding-top: 30px;
+            border-top: 1px solid var(--light-gray);
+            margin-top: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .settings-wrapper {
+                grid-template-columns: 1fr;
+            }
+
+            .settings-nav {
+                flex-direction: row;
+                overflow-x: auto;
+                gap: 8px;
+            }
+
+            .settings-nav button {
+                white-space: nowrap;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo">
+                <i class="fas fa-seedling"></i>
+                <span>AnnadataAI</span>
+            </a>
+            <div class="nav-right">
+                <button class="language-btn">
+                    <i class="fas fa-globe"></i>
+                    <span id="current-language">EN</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <h1 style="margin-bottom: 30px; display: flex; align-items: center; gap: 10px;">
+            <i class="fas fa-cog"></i> Settings
+        </h1>
+
+        <div class="settings-wrapper">
+            <!-- Sidebar -->
+            <div class="settings-sidebar">
+                <div class="settings-nav">
+                    <button class="settings-nav-btn active" onclick="switchTab('profile')">
+                        <i class="fas fa-user"></i> Profile
+                    </button>
+                    <button class="settings-nav-btn" onclick="switchTab('account')">
+                        <i class="fas fa-lock"></i> Account
+                    </button>
+                    <button class="settings-nav-btn" onclick="switchTab('privacy')">
+                        <i class="fas fa-shield-alt"></i> Data & Privacy
+                    </button>
+                    <button class="settings-nav-btn" onclick="switchTab('appearance')">
+                        <i class="fas fa-palette"></i> Appearance
+                    </button>
+                </div>
+            </div>
+
+            <!-- Content -->
+            <div class="settings-content">
+                <!-- PROFILE TAB -->
+                <div id="profile" class="settings-tab active">
+                    <h2 class="section-title"><i class="fas fa-user"></i> Profile</h2>
+
+                    <div style="background: var(--light); padding: 15px; border-radius: 8px; margin-bottom: 30px;">
+                        <p style="color: var(--gray); font-size: 0.9rem; margin-bottom: 5px;">Logged in as:</p>
+                        <p style="font-weight: 600; font-size: 1.1rem; color: var(--primary);">{{ username }}</p>
+                    </div>
+
+                    <div class="photo-upload">
+                        <div class="photo-preview">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="photo-controls">
+                            <button class="btn btn-primary">
+                                <i class="fas fa-camera"></i> Upload Photo
+                            </button>
+                            <button class="btn btn-secondary">
+                                <i class="fas fa-trash"></i> Remove
+                            </button>
+                        </div>
+                    </div>
+
+                    <form id="profile-form" onsubmit="handleProfileSubmit(event)">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="first-name">First Name</label>
+                                <input type="text" id="first-name" placeholder="Enter first name" value="">
+                            </div>
+                            <div class="form-group">
+                                <label for="last-name">Last Name</label>
+                                <input type="text" id="last-name" placeholder="Enter last name" value="">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" placeholder="your.email@example.com" value="">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" placeholder="+91 98765 43210" value="">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="location">Farm Location</label>
+                            <input type="text" id="location" placeholder="City, State" value="">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-block">
+                            <i class="fas fa-save"></i> Save Changes
+                        </button>
+                    </form>
+
+                    <div id="profile-summary" style="background: #f6fffa; border: 1px solid #a8e6c1; border-radius: 8px; padding: 18px; margin-top: 18px; display: none;">
+                        <h3 style="margin-bottom: 10px;">Profile Preview</h3>
+                        <p><strong>Name:</strong> <span id="summary-name">-</span></p>
+                        <p><strong>Email:</strong> <span id="summary-email">-</span></p>
+                        <p><strong>Phone:</strong> <span id="summary-phone">-</span></p>
+                        <p><strong>Location:</strong> <span id="summary-location">-</span></p>
+                    </div>
+
+                    <div id="profile-save-alert" class="alert alert-success" style="display: none; margin-top: 15px;">
+                        Profile information saved successfully.
+                    </div>
+
+                    <div id="profile-readonly" style="display: none; background: #fff; border: 1px solid #c8d6e5; border-radius: 8px; padding: 18px; margin-top: 18px;">
+                        <h3 style="margin-bottom: 10px;">Saved Profile</h3>
+                        <p><strong>Name:</strong> <span id="saved-name">-</span></p>
+                        <p><strong>Email:</strong> <span id="saved-email">-</span></p>
+                        <p><strong>Phone:</strong> <span id="saved-phone">-</span></p>
+                        <p><strong>Location:</strong> <span id="saved-location">-</span></p>
+                        <button class="btn btn-secondary" style="margin-top: 12px;" onclick="editProfile()">Edit</button>
+                    </div>
+
+                    <div class="logout-section" style="margin-top: 20px;">
+                        <button class="btn btn-danger btn-block" onclick="logout()">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </button>
+                    </div>
+                </div>
+
+                <!-- ACCOUNT TAB -->
+                <div id="account" class="settings-tab">
+                    <h2 class="section-title"><i class="fas fa-lock"></i> Account Security</h2>
+
+                    <h3 style="margin-top: 30px; font-size: 1.1rem; margin-bottom: 15px;">Change Password</h3>
+                    <form>
+                        <div class="form-group">
+                            <label for="current-pass">Current Password</label>
+                            <input type="password" id="current-pass" placeholder="Enter current password">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="new-pass">New Password</label>
+                            <input type="password" id="new-pass" placeholder="Enter new password">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="confirm-pass">Confirm Password</label>
+                            <input type="password" id="confirm-pass" placeholder="Confirm new password">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-key"></i> Update Password
+                        </button>
+                    </form>
+
+                    <div class="divider"></div>
+
+                    <h3 style="font-size: 1.1rem; margin-bottom: 15px; color: var(--danger);">Danger Zone</h3>
+                    <button class="btn btn-danger" onclick="confirmDelete()">
+                        <i class="fas fa-trash"></i> Delete Account
+                    </button>
+                    <p style="color: var(--gray); font-size: 0.85rem; margin-top: 10px;">This action cannot be undone. All your data will be permanently deleted.</p>
+                </div>
+
+                <!-- DATA & PRIVACY TAB -->
+                <div id="privacy" class="settings-tab">
+                    <h2 class="section-title"><i class="fas fa-shield-alt"></i> Data & Privacy</h2>
+
+                    <h3 style="font-size: 1.1rem; margin: 25px 0 15px;">Farming Analytics</h3>
+                    <div style="background: var(--light); padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                            <div>
+                                <p style="color: var(--gray); font-size: 0.9rem;">Total Profit</p>
+                                <p style="font-size: 1.5rem; font-weight: 700; color: var(--primary);">₹2,45,000</p>
+                            </div>
+                            <div>
+                                <p style="color: var(--gray); font-size: 0.9rem;">Total Loss</p>
+                                <p style="font-size: 1.5rem; font-weight: 700; color: var(--danger);">₹35,000</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3 style="font-size: 1.1rem; margin: 25px 0 15px;">Data Management</h3>
+                    <button class="btn btn-primary" onclick="downloadData()">
+                        <i class="fas fa-download"></i> Download Your Data
+                    </button>
+                    <p style="color: var(--gray); font-size: 0.85rem; margin-top: 10px;">Export all your farming data as JSON file</p>
+
+                    <div style="background: #fff3cd; border: 1px solid #ffc107; padding: 15px; border-radius: 8px; margin-top: 30px;">
+                        <p style="color: #856404; font-weight: 600;">
+                            <i class="fas fa-info-circle"></i> We take your privacy seriously. All data is encrypted and never shared with third parties.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- APPEARANCE TAB -->
+                <div id="appearance" class="settings-tab">
+                    <h2 class="section-title"><i class="fas fa-palette"></i> Appearance</h2>
+
+                    <h3 style="font-size: 1.1rem; margin: 25px 0 15px;">Theme</h3>
+                    <div style="display: flex; align-items: center; justify-content: space-between; background: var(--light); padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+                        <div>
+                            <p style="font-weight: 600; margin-bottom: 5px;">Dark Mode</p>
+                            <p style="color: var(--gray); font-size: 0.9rem;">Switch to dark theme for better visibility in low light</p>
+                        </div>
+                        <label class="toggle-switch" onclick="toggleDarkMode()">
+                            <input type="checkbox" id="dark-mode-toggle">
+                            <div class="toggle-slider">
+                                <div class="toggle-dot"></div>
+                            </div>
+                        </label>
+                    </div>
+
+                    <h3 style="font-size: 1.1rem; margin: 25px 0 15px;">Font Size</h3>
+                    <div class="font-size-selector">
+                        <span style="color: var(--gray);">A</span>
+                        <button class="font-size-btn" data-size="14" onclick="changeFontSize(14)" title="Small">Aa</button>
+                        <button class="font-size-btn active" data-size="16" onclick="changeFontSize(16)" title="Medium">Aa</button>
+                        <button class="font-size-btn" data-size="18" onclick="changeFontSize(18)" title="Large" style="font-size: 1.1rem;">Aa</button>
+                        <span style="color: var(--gray); margin-left: 20px; font-weight: 600;">A</span>
+                    </div>
+                    <p style="color: var(--gray); font-size: 0.85rem; margin-top: 10px;">Adjust text size for comfortable reading</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Tab switching
+        function switchTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.settings-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Deactivate all buttons
+            document.querySelectorAll('.settings-nav-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show selected tab
+            document.getElementById(tabName).classList.add('active');
+            
+            // Activate button
+            event.target.classList.add('active');
+        }
+
+        // Dark mode toggle
+        function toggleDarkMode() {
+            const toggle = document.getElementById('dark-mode-toggle');
+            const isDark = toggle.checked;
+            document.body.classList.toggle('dark-mode', isDark);
+            localStorage.setItem('darkMode', isDark);
+        }
+
+        // Check dark mode on load
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            document.body.classList.add('dark-mode');
+            document.getElementById('dark-mode-toggle').checked = true;
+        }
+
+        // Font size change
+        function changeFontSize(size) {
+            document.body.style.fontSize = size + 'px';
+            document.querySelectorAll('.font-size-btn').forEach(btn => {
+                btn.classList.toggle('active', parseInt(btn.getAttribute('data-size'), 10) === size);
+            });
+            localStorage.setItem('fontSize', size);
+        }
+
+        // Update profile summary in-memory (used for save and edit support)
+        function updateProfileSummary() {
+            const first = document.getElementById('first-name').value.trim() || '-';
+            const last = document.getElementById('last-name').value.trim() || '-';
+            const email = document.getElementById('email').value.trim() || '-';
+            const phone = document.getElementById('phone').value.trim() || '-';
+            const location = document.getElementById('location').value.trim() || '-';
+
+            document.getElementById('summary-name').textContent = first + ' ' + last;
+            document.getElementById('summary-email').textContent = email;
+            document.getElementById('summary-phone').textContent = phone;
+            document.getElementById('summary-location').textContent = location;
+
+            document.getElementById('profile-summary').style.display = 'none';
+        }
+
+        // Show saved profile and hide editor after submit
+        function handleProfileSubmit(event) {
+            event.preventDefault();
+            updateProfileSummary();
+            pushSavedProfile();
+            saveProfileToStorage();
+
+            document.getElementById('profile-form').style.display = 'none';
+            document.getElementById('profile-summary').style.display = 'none';
+            document.getElementById('profile-readonly').style.display = 'block';
+
+            const alertBox = document.getElementById('profile-save-alert');
+            alertBox.textContent = 'Profile information saved successfully.';
+            alertBox.style.display = 'block';
+            setTimeout(() => {
+                alertBox.style.display = 'none';
+            }, 2600);
+        }
+
+        function editProfile() {
+            document.getElementById('profile-form').style.display = 'block';
+            document.getElementById('profile-readonly').style.display = 'none';
+            updateProfileSummary();
+        }
+
+        function pushSavedProfile() {
+            const first = document.getElementById('first-name').value.trim() || '-';
+            const last = document.getElementById('last-name').value.trim() || '-';
+            const email = document.getElementById('email').value.trim() || '-';
+            const phone = document.getElementById('phone').value.trim() || '-';
+            const location = document.getElementById('location').value.trim() || '-';
+
+            document.getElementById('saved-name').textContent = first + ' ' + last;
+            document.getElementById('saved-email').textContent = email;
+            document.getElementById('saved-phone').textContent = phone;
+            document.getElementById('saved-location').textContent = location;
+        }
+
+        function saveProfileToStorage() {
+            const profile = {
+                firstName: document.getElementById('first-name').value.trim(),
+                lastName: document.getElementById('last-name').value.trim(),
+                email: document.getElementById('email').value.trim(),
+                phone: document.getElementById('phone').value.trim(),
+                location: document.getElementById('location').value.trim()
+            };
+            localStorage.setItem('annadata_profile', JSON.stringify(profile));
+        }
+
+        function loadProfileFromStorage() {
+            const profileData = localStorage.getItem('annadata_profile');
+            if (!profileData) return;
+
+            const profile = JSON.parse(profileData);
+            document.getElementById('first-name').value = profile.firstName || '';
+            document.getElementById('last-name').value = profile.lastName || '';
+            document.getElementById('email').value = profile.email || '';
+            document.getElementById('phone').value = profile.phone || '';
+            document.getElementById('location').value = profile.location || '';
+
+            pushSavedProfile();
+            document.getElementById('profile-form').style.display = 'none';
+            document.getElementById('profile-summary').style.display = 'none';
+            document.getElementById('profile-readonly').style.display = 'block';
+        }
+
+        // Apply saved font size
+        const savedFontSize = localStorage.getItem('fontSize');
+        if (savedFontSize) {
+            document.body.style.fontSize = savedFontSize + 'px';
+            document.querySelectorAll('.font-size-btn').forEach(btn => {
+                const size = parseInt(btn.getAttribute('data-size'), 10);
+                btn.classList.toggle('active', size === parseInt(savedFontSize, 10));
+            });
+        }
+
+        loadProfileFromStorage();
+
+        // Logout
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                window.location.href = '/logout';
+            }
+        }
+
+        // Delete account
+        function confirmDelete() {
+            if (confirm('Are you absolutely sure? This action cannot be undone!')) {
+                if (confirm('Type "DELETE" to confirm account deletion.')) {
+                    alert('Account deletion request processed. Your account will be deleted within 24 hours.');
+                }
+            }
+        }
+
+        // Download data
+        function downloadData() {
+            const data = {
+                profile: {
+                    firstName: document.getElementById('first-name').value,
+                    lastName: document.getElementById('last-name').value,
+                    email: document.getElementById('email').value,
+                    phone: document.getElementById('phone').value,
+                    location: document.getElementById('location').value
+                },
+                analytics: {
+                    totalProfit: '₹2,45,000',
+                    totalLoss: '₹35,000'
+                },
+                exportDate: new Date().toISOString()
+            };
+
+            const dataStr = JSON.stringify(data, null, 2);
+            const dataBlob = new Blob([dataStr], { type: 'application/json' });
+            const url = URL.createObjectURL(dataBlob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'annadatai-data-' + new Date().toISOString().split('T')[0] + '.json';
+            link.click();
+            alert('Your data has been downloaded successfully!');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,2968 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AnnadataAI - Set Your Location</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Leaflet CSS for Maps -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+          crossorigin=""/>
+    <style>
+        :root {
+            --primary: #00b894;
+            --primary-dark: #00a085;
+            --secondary: #0984e3;
+            --dark: #2d3436;
+            --light: #f9f9f9;
+            --gray: #636e72;
+            --light-gray: #dfe6e9;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+
+        /* ===== LANGUAGE SELECTOR ===== */
+        .language-selector {
+            position: relative;
+            margin-left: 20px;
+        }
+
+        .language-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 15px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .language-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .language-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            min-width: 200px;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: var(--transition);
+            margin-top: 10px;
+        }
+
+        .language-menu.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .language-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            cursor: pointer;
+            transition: var(--transition);
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .language-option:last-child {
+            border-bottom: none;
+        }
+
+        .language-option:hover {
+            background: var(--light);
+            color: var(--primary);
+        }
+
+        .language-option .flag {
+            font-size: 1.2rem;
+        }
+
+        .language-option span:last-child {
+            font-weight: 500;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark);
+            cursor: pointer;
+        }
+
+        .settings-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 42px;
+            height: 42px;
+            background: #2d3436;
+            color: white;
+            border-radius: 50%;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            cursor: pointer;
+            margin-right: 15px;
+        }
+
+        .settings-icon:hover {
+            background: #1e272e;
+            transform: rotate(20deg);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+            padding: 20px 0;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        .logo i {
+            color: var(--primary);
+            font-size: 1.8rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+        }
+
+        .location-card {
+            border-radius: 15px;
+            border: 2px solid #e9ecef;
+            transition: all 0.3s ease;
+        }
+        .location-card:hover {
+            border-color: #00b894;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        .accuracy-indicator {
+            height: 8px;
+            border-radius: 4px;
+            background: linear-gradient(to right, #00b894, #fdcb6e, #e17055);
+        }
+        .accuracy-dot {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            position: absolute;
+            transform: translateX(-50%);
+        }
+        
+        /* MAP CONTAINER FIX */
+        .map-container {
+            height: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 2px solid #00b894;
+            margin-top: 20px;
+            position: relative;
+        }
+        
+        /* Make sure map takes full height */
+        #map {
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+        
+        .map-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: #f8f9fa;
+            color: #6c757d;
+            z-index: 0;
+        }
+        .map-placeholder i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: #00b894;
+        }
+        
+        .location-name-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        .location-name-box h5 {
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        .location-name-box p {
+            margin-bottom: 5px;
+            opacity: 0.9;
+        }
+        
+        .coordinates-box {
+            background: #f8f9fa;
+            border-left: 4px solid #00b894;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        
+        /* SOIL TYPE CARD STYLES */
+        .soil-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            margin-top: 20px;
+            border-left: 4px solid #8B4513;
+        }
+        .soil-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .soil-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #8B4513, #D2691E);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: white;
+            font-size: 1.5rem;
+        }
+        .soil-type-indicator {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+        .soil-type-red { background: #FFEBEE; color: #C62828; }
+        .soil-type-black { background: #F5F5F5; color: #424242; }
+        .soil-type-alluvial { background: #FFF3E0; color: #EF6C00; }
+        .soil-type-laterite { background: #FBE9E7; color: #D84315; }
+        .soil-type-sandy { background: #FFF8E1; color: #FF8F00; }
+        .soil-type-clay { background: #E8F5E9; color: #2E7D32; }
+        .soil-type-loam { background: #E3F2FD; color: #1565C0; }
+        
+        .soil-property {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px dashed #e0e0e0;
+        }
+        .soil-property:last-child {
+            border-bottom: none;
+        }
+        .property-label {
+            color: #666;
+            font-weight: 500;
+        }
+        .property-value {
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .soil-improvement {
+            background: #E8F5E9;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 20px;
+            border-left: 4px solid #4CAF50;
+        }
+        
+        .soil-matching-crops {
+            background: #E3F2FD;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 15px;
+            border-left: 4px solid #2196F3;
+        }
+        
+        .crop-badge {
+            display: inline-block;
+            background: white;
+            padding: 5px 12px;
+            margin: 5px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        /* Dataset info badge */
+        .dataset-badge {
+            display: inline-block;
+            background: #6f42c1;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 10px;
+            font-size: 0.7rem;
+            margin-left: 5px;
+            vertical-align: middle;
+        }
+        
+        /* Saved locations section at bottom */
+        .saved-locations-section {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 2px solid #e9ecef;
+        }
+        .saved-location-item {
+            border: 1px solid #e9ecef;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+        }
+        .saved-location-item:hover {
+            border-color: #00b894;
+            box-shadow: 0 5px 15px rgba(0, 184, 148, 0.1);
+        }
+        .saved-location-item.current {
+            border-color: #00b894;
+            background: rgba(0, 184, 148, 0.05);
+        }
+        .location-badge {
+            font-size: 0.75rem;
+            padding: 3px 10px;
+        }
+        .location-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        /* Empty state */
+        .empty-state {
+            text-align: center;
+            padding: 50px 20px;
+            color: #6c757d;
+        }
+        .empty-state i {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #00b894;
+        }
+        
+        /* Progress indicator */
+        .soil-detection-progress {
+            display: none;
+            margin-top: 15px;
+        }
+        
+        .progress-bar {
+            background: linear-gradient(90deg, #00b894, #0984e3);
+        }
+        
+        /* Soil source indicator */
+        .soil-source {
+            font-size: 0.8rem;
+            color: #6c757d;
+            margin-top: 5px;
+        }
+        .soil-source.dataset {
+            color: #28a745;
+        }
+        .soil-source.fallback {
+            color: #ffc107;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="/" class="logo">
+                <i class="fas fa-seedling"></i>
+                <span>AnnadataAI</span>
+            </a>
+            
+            <div class="nav-links">
+                <a href="/" data-translate="nav_home">🏠 Home</a>
+                <a href="/location" data-translate="nav_location" style="color: var(--primary);">📍 Location</a>
+                <a href="/crops" data-translate="nav_crops">🌱 Crops</a>
+                <a href="/water" data-translate="nav_water">💧 Water</a>
+                <a href="/diseases" data-translate="nav_diseases">⚠️ Diseases</a>
+                <a href="/calendar" data-translate="nav_calendar">📅 Calendar</a>
+            </div>
+            
+            <!-- Language Selector -->
+            <div class="language-selector">
+                <button class="language-btn" onclick="toggleLanguageMenu()">
+                    <i class="fas fa-globe"></i>
+                    <span id="current-language">EN</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="language-menu" id="languageMenu">
+                    <div class="language-option" onclick="changeLanguage('en')">
+                        <span class="flag">🇺🇸</span>
+                        <span>English</span>
+                    </div>
+                    <div class="language-option" onclick="changeLanguage('hi')">
+                        <span class="flag">🇮🇳</span>
+                        <span>हिंदी</span>
+                    </div>
+                    <div class="language-option" onclick="changeLanguage('te')">
+                        <span class="flag">🇮🇳</span>
+                        <span>తెలుగు</span>
+                    </div>
+                    <div class="language-option" onclick="changeLanguage('ta')">
+                        <span class="flag">🇮🇳</span>
+                        <span>தமிழ்</span>
+                    </div>
+                    <div class="language-option" onclick="changeLanguage('bn')">
+                        <span class="flag">🇧🇩</span>
+                        <span>বাংলা</span>
+                    </div>
+                    <div class="language-option" onclick="changeLanguage('mr')">
+                        <span class="flag">🇮🇳</span>
+                        <span>मराठी</span>
+                    </div>
+                    <div class="language-option" onclick="changeLanguage('gu')">
+                        <span class="flag">🇮🇳</span>
+                        <span>ગુજરાતી</span>
+                    </div>
+                    <div class="language-option" onclick="changeLanguage('kn')">
+                        <span class="flag">🇮🇳</span>
+                        <span>ಕನ್ನಡ</span>
+                    </div>
+                    <div class="language-option" onclick="changeLanguage('ml')">
+                        <span class="flag">🇮🇳</span>
+                        <span>മലയാളം</span>
+                    </div>
+                    <div class="language-option" onclick="changeLanguage('pa')">
+                        <span class="flag">🇮🇳</span>
+                        <span>ਪੰਜਾਬੀ</span>
+                    </div>
+                </div>
+            </div>
+            
+            <a href="/settings" class="settings-icon" title="Settings">
+                <i class="fas fa-cog"></i>
+            </a>
+            
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <div class="container py-5" style="margin-top: 100px;">
+        <!-- Header -->
+        <div class="text-center mb-5">
+            <h1 class="display-5 fw-bold" data-translate="location_title">Set Your Farm Location</h1>
+            <p class="lead text-muted" data-translate="location_subtitle">Accurate location helps us provide personalized farming recommendations and soil analysis</p>
+        </div>
+
+        <!-- GPS Location Card -->
+        <div class="card location-card mb-4">
+            <div class="card-body p-4">
+                <div class="row align-items-center">
+                    <div class="col-md-2 text-center mb-3 mb-md-0">
+                        <div class="bg-success rounded-circle p-3 d-inline-block">
+                            <i class="fas fa-satellite fa-2x text-white"></i>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <h4 class="card-title">
+                            <i class="fas fa-satellite-dish text-success"></i>
+                            Auto-detect with GPS
+                        </h4>
+                        <p class="card-text text-muted">
+                            Get precise coordinates using your device's GPS. Works best outdoors with clear sky view.
+                        </p>
+                        <div id="gpsStatus" class="mb-3">
+                            <span class="text-muted">Click the button to detect location</span>
+                        </div>
+                        
+                        <!-- Location Name Display Box -->
+                        <div id="locationNameBox" class="location-name-box">
+                            <h5><i class="fas fa-map-marker-alt"></i> Detected Location</h5>
+                            <div id="locationDetails">
+                                <!-- Will be populated by JavaScript -->
+                            </div>
+                        </div>
+                        
+                        <!-- Coordinates Display -->
+                        <div id="coordinates" class="coordinates-box">
+                            <div class="text-center">
+                                <i class="fas fa-globe-asia fa-2x text-success mb-3"></i>
+                                <p class="mb-1"><strong>Waiting for GPS signal...</strong></p>
+                                <p class="text-muted mb-0">Click "Detect" to get your coordinates</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Map Container -->
+                        <div id="mapContainer" class="map-container">
+                            <div id="map"></div>
+                            <div class="map-placeholder" id="mapPlaceholder">
+                                <i class="fas fa-map"></i>
+                                <p>Map will appear here</p>
+                                <p class="text-muted" style="font-size: 0.9rem;">After location detection</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Soil Detection Progress -->
+                        <div id="soilDetectionProgress" class="soil-detection-progress">
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>Detecting soil type...</span>
+                                <span id="soilProgressPercent">0%</span>
+                            </div>
+                            <div class="progress" style="height: 10px;">
+                                <div id="soilProgressBar" class="progress-bar progress-bar-striped progress-bar-animated" 
+                                     role="progressbar" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Soil Analysis Card -->
+                        <div id="soilAnalysisCard" class="soil-card" style="display: none;">
+                            <div class="soil-header">
+                                <div class="soil-icon">
+                                    <i class="fas fa-mountain"></i>
+                                </div>
+                                <div>
+                                    <h4 class="mb-1">Soil Type Analysis</h4>
+                                    <p class="text-muted mb-0">Based on your location coordinates</p>
+                                    <div id="soilSource" class="soil-source"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="soil-property">
+                                        <span class="property-label">Soil Type:</span>
+                                        <span id="soilTypeValue" class="property-value soil-type-indicator">Detecting...</span>
+                                    </div>
+                                    <div class="soil-property">
+                                        <span class="property-label">pH Level:</span>
+                                        <span id="soilPH" class="property-value">Detecting...</span>
+                                    </div>
+                                    <div class="soil-property">
+                                        <span class="property-label">Texture:</span>
+                                        <span id="soilTexture" class="property-value">Detecting...</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="soil-property">
+                                        <span class="property-label">Drainage:</span>
+                                        <span id="soilDrainage" class="property-value">Detecting...</span>
+                                    </div>
+                                    <div class="soil-property">
+                                        <span class="property-label">Nutrient Level:</span>
+                                        <span id="soilNutrients" class="property-value">Detecting...</span>
+                                    </div>
+                                    <div class="soil-property">
+                                        <span class="property-label">Water Retention:</span>
+                                        <span id="soilWaterRetention" class="property-value">Detecting...</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Soil Improvement Tips -->
+                            <div id="soilImprovementTips" class="soil-improvement" style="display: none;">
+                                <h6><i class="fas fa-lightbulb text-success"></i> Soil Improvement Tips</h6>
+                                <p id="improvementTips" class="mb-0"></p>
+                            </div>
+                            
+                            <!-- Recommended Crops -->
+                            <div id="soilCropsSection" class="soil-matching-crops" style="display: none;">
+                                <h6><i class="fas fa-seedling text-primary"></i> Suitable Crops for This Soil</h6>
+                                <div id="recommendedCrops" class="mt-2">
+                                    <!-- Crop badges will be added here -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2 text-center">
+                        <button id="getGpsBtn" class="btn btn-success btn-lg">
+                            <i class="fas fa-map-marker-alt"></i> Detect
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Accuracy Visualization -->
+                <div class="mt-4">
+                    <div class="d-flex justify-content-between mb-2">
+                        <small class="text-muted">Low Accuracy (100m+)</small>
+                        <small class="text-muted">Medium Accuracy (50-100m)</small>
+                        <small class="text-muted">High Accuracy (&lt;50m)</small>
+                    </div>
+                    <div class="accuracy-indicator position-relative">
+                        <div id="accuracyDot" class="accuracy-dot bg-success" style="left: 0%;"></div>
+                    </div>
+                </div>
+                
+                <!-- Save GPS Location Button -->
+                <div class="mt-4 text-center">
+                    <button id="saveLocationBtn" class="btn btn-primary btn-lg" disabled onclick="locationManager.saveGPSLocation()">
+                        <i class="fas fa-save"></i> Save GPS Location
+                    </button>
+                    <button id="gpsSoilAnalysisBtn" class="btn btn-warning btn-lg ms-2" disabled onclick="locationManager.performGPSSoilAnalysis()">
+                        <i class="fas fa-mountain"></i> Soil Analysis
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- OR Separator -->
+        <div class="text-center my-4">
+            <div class="d-flex align-items-center">
+                <hr class="flex-grow-1">
+                <span class="px-3 text-muted">OR</span>
+                <hr class="flex-grow-1">
+            </div>
+        </div>
+
+        <!-- Manual Input Card -->
+        <div class="card location-card">
+            <div class="card-body p-4">
+                <div class="row">
+                    <div class="col-md-2 text-center mb-3 mb-md-0">
+                        <div class="bg-primary rounded-circle p-3 d-inline-block">
+                            <i class="fas fa-keyboard fa-2x text-white"></i>
+                        </div>
+                    </div>
+                    <div class="col-md-10">
+                        <h4 class="card-title">
+                            <i class="fas fa-edit text-primary"></i>
+                            Enter Location Manually
+                        </h4>
+                        <p class="card-text text-muted">
+                            If GPS isn't working or you want to specify a different location.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Search Box -->
+                <div class="mb-4">
+                    <label class="form-label">Quick Search (Village/District Name)</label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fas fa-search"></i></span>
+                        <input type="text" id="locationSearch" class="form-control" 
+                               placeholder="Type village or district name...">
+                    </div>
+                    <div id="searchResults" class="mt-2"></div>
+                </div>
+
+                <!-- Manual Form -->
+                <form id="manualLocationForm">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label"><i class="fas fa-map-marker-alt text-success"></i> Area Name</label>
+                            <input type="text" id="areaNameInput" class="form-control" 
+                                   placeholder="Enter area name (e.g., Patancheru)" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label"><i class="fas fa-city text-primary"></i> City</label>
+                            <input type="text" id="cityInput" class="form-control" 
+                                   placeholder="Enter city name (e.g., Hyderabad)" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label"><i class="fas fa-map-pin text-info"></i> District</label>
+                            <input type="text" id="districtInput" class="form-control" 
+                                   placeholder="Enter district name (e.g., Sangareddy)" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label"><i class="fas fa-map-marked-alt text-info"></i> State</label>
+                            <select id="stateSelect" class="form-select" required>
+                                <option value="">Select State</option>
+                                <option value="MH">Maharashtra</option>
+                                <option value="UP">Uttar Pradesh</option>
+                                <option value="KA">Karnataka</option>
+                                <option value="GJ">Gujarat</option>
+                                <option value="RJ">Rajasthan</option>
+                                <option value="TN">Tamil Nadu</option>
+                                <option value="MP">Madhya Pradesh</option>
+                                <option value="AP">Andhra Pradesh</option>
+                                <option value="WB">West Bengal</option>
+                                <option value="PB">Punjab</option>
+                                <option value="OD">Odisha</option>
+                                <option value="KL">Kerala</option>
+                                <option value="HR">Haryana</option>
+                                <option value="BR">Bihar</option>
+                                <option value="TG">Telangana</option>
+                                <option value="AS">Assam</option>
+                                <option value="JH">Jharkhand</option>
+                                <option value="CH">Chhattisgarh</option>
+                                <option value="UK">Uttarakhand</option>
+                                <option value="HP">Himachal Pradesh</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label"><i class="fas fa-mail-bulk text-success"></i> Pincode</label>
+                            <input type="text" id="pincodeInput" class="form-control" 
+                                   placeholder="Enter 6-digit pincode (e.g., 502319)" maxlength="6" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label"><i class="fas fa-globe-asia text-secondary"></i> Country</label>
+                            <input type="text" id="countryInput" class="form-control" 
+                                   value="India" readonly>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4 text-center">
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            <i class="fas fa-check-circle"></i> Save Manual Location
+                        </button>
+                        <button type="button" class="btn btn-warning btn-lg ms-2" onclick="locationManager.performSoilAnalysis()">
+                            <i class="fas fa-mountain"></i> Soil Analysis
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Tips Section -->
+        <div class="alert alert-info mt-4">
+            <h5><i class="fas fa-lightbulb"></i> Tips for Better Accuracy:</h5>
+            <ul class="mb-0">
+                <li>Use GPS outdoors with clear view of the sky</li>
+                <li>Wait a few seconds for GPS to stabilize</li>
+                <li>For manual input, be specific about village name</li>
+                <li>Pincode helps in precise location mapping</li>
+                <li>Soil type is detected based on your coordinates</li>
+                <li>Save location data to get crop recommendations</li>
+            </ul>
+        </div>
+
+        <!-- Saved Locations Section (at bottom) -->
+        <div class="saved-locations-section" id="savedLocationsSection">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h3 class="mb-0">
+                    <i class="fas fa-map-marker-alt text-success"></i>
+                    Your Saved Locations
+                </h3>
+                <button class="btn btn-outline-success" onclick="locationManager.refreshSavedLocations()">
+                    <i class="fas fa-sync-alt"></i> Refresh
+                </button>
+            </div>
+            
+            <div id="savedLocationsList">
+                <div class="empty-state">
+                    <i class="fas fa-map-marked-alt"></i>
+                    <h4>No Locations Saved Yet</h4>
+                    <p class="mb-4">Save your first location using GPS or manual entry above.</p>
+                    <p class="text-muted">Saved locations will appear here. You can select them on the Crops page for recommendations.</p>
+                </div>
+            </div>
+            
+            <div class="mt-4 text-center">
+                <a href="/crops" class="btn btn-success btn-lg">
+                    <i class="fas fa-seedling"></i> Go to Crop Recommendations
+                </a>
+                <p class="text-muted mt-2">Select from your saved locations to get crop recommendations</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Leaflet JS for Maps -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+            crossorigin=""></script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom Location JS -->
+    <script>
+// Location Manager with Soil Type Detection
+const locationManager = {
+    currentLocation: null,
+    map: null,
+    marker: null,
+    soilData: null,
+    
+    // Soil type database based on Indian regions
+    soilDatabase: {
+        // Red Soil (Southern India, Eastern Ghats)
+        red: {
+            name: "Red Soil",
+            color: "red",
+            ph: "5.5 - 6.5 (Acidic)",
+            texture: "Sandy to Clay Loam",
+            drainage: "Good",
+            nutrients: "Low in Nitrogen, Phosphorus; Rich in Iron",
+            waterRetention: "Medium",
+            improvement: "Add organic compost, lime for pH adjustment, use nitrogen-fixing crops",
+            crops: ["Cotton", "Wheat", "Millets", "Pulses", "Oilseeds", "Tobacco"]
+        },
+        // Black Soil (Deccan Plateau, Maharashtra, Gujarat)
+        black: {
+            name: "Black Soil",
+            color: "black",
+            ph: "7.5 - 8.5 (Alkaline)",
+            texture: "Clayey",
+            drainage: "Poor",
+            nutrients: "Rich in Iron, Lime, Alumina, Magnesia; Poor in Phosphorus",
+            waterRetention: "High",
+            improvement: "Add gypsum for drainage, organic matter, phosphorus fertilizers",
+            crops: ["Cotton", "Sugarcane", "Wheat", "Tobacco", "Oilseeds", "Citrus"]
+        },
+        // Alluvial Soil (Northern Plains, River Basins)
+        alluvial: {
+            name: "Alluvial Soil",
+            color: "alluvial",
+            ph: "6.5 - 7.5 (Neutral)",
+            texture: "Sandy Loam to Silty Loam",
+            drainage: "Good to Moderate",
+            nutrients: "Rich in Potash, Lime; Moderate in Phosphorus",
+            waterRetention: "Medium to High",
+            improvement: "Crop rotation, green manure, balanced fertilization",
+            crops: ["Rice", "Wheat", "Sugarcane", "Jute", "Maize", "Oilseeds", "Vegetables"]
+        },
+        // Laterite Soil (Western Ghats, Eastern Ghats, Hills)
+        laterite: {
+            name: "Laterite Soil",
+            color: "laterite",
+            ph: "5.0 - 6.0 (Acidic)",
+            texture: "Porous",
+            drainage: "Excessive",
+            nutrients: "Poor in Nitrogen, Phosphorus, Potash; Rich in Iron, Aluminum",
+            waterRetention: "Low",
+            improvement: "Add organic matter, lime, phosphorus fertilizers, terracing for water conservation",
+            crops: ["Tea", "Coffee", "Rubber", "Cashew", "Coconut", "Tapioca"]
+        },
+        // Sandy Soil (Desert Regions, Coastal Areas)
+        sandy: {
+            name: "Sandy Soil",
+            color: "sandy",
+            ph: "6.0 - 7.0 (Slightly Acidic to Neutral)",
+            texture: "Coarse",
+            drainage: "Very Good",
+            nutrients: "Very Low",
+            waterRetention: "Very Low",
+            improvement: "Add clay, organic compost, mulch heavily, use drip irrigation",
+            crops: ["Groundnut", "Watermelon", "Pulses", "Millets", "Cucumber", "Carrot"]
+        },
+        // Clay Soil
+        clay: {
+            name: "Clay Soil",
+            color: "clay",
+            ph: "6.0 - 7.0",
+            texture: "Fine",
+            drainage: "Poor",
+            nutrients: "Rich in Nutrients",
+            waterRetention: "High",
+            improvement: "Add sand, organic matter, improve drainage",
+            crops: ["Rice", "Wheat", "Cabbage", "Broccoli"]
+        },
+        // Loam Soil
+        loam: {
+            name: "Loam Soil",
+            color: "loam",
+            ph: "6.0 - 7.0",
+            texture: "Medium",
+            drainage: "Good",
+            nutrients: "Balanced",
+            waterRetention: "Good",
+            improvement: "Maintain organic matter, regular composting",
+            crops: ["Most vegetables", "Fruits", "Grains", "Flowers"]
+        }
+    },
+    
+    // Initialize
+    init: function() {
+        console.log("Initializing location manager...");
+        
+        // Initialize map with placeholder - FIXED
+        this.initMap();
+        
+        // Set up GPS detection
+        document.getElementById('getGpsBtn').addEventListener('click', () => {
+            this.getGPSLocation();
+        });
+        
+        // Set up manual form
+        document.getElementById('manualLocationForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            this.saveManualLocation();
+        });
+        
+        // Load saved locations
+        this.loadSavedLocations();
+        
+        // Set up state-district dropdowns
+        this.setupStateDistrictDropdowns();
+        
+        console.log("Location manager initialized successfully");
+    },
+    
+    // Initialize map properly - FIXED
+    initMap: function() {
+        console.log("Initializing map...");
+        
+        // Initialize map on the map element (not container)
+        this.map = L.map('map').setView([20.5937, 78.9629], 5);
+        
+        // Add OpenStreetMap tiles
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors',
+            maxZoom: 19
+        }).addTo(this.map);
+        
+        console.log("Map initialized successfully with placeholder");
+    },
+    
+    showMap: function(lat, lng) {
+        const mapContainer = document.getElementById('mapContainer');
+        const placeholder = document.getElementById('mapPlaceholder');
+        
+        // Show map container
+        mapContainer.style.display = 'block';
+        
+        // Hide placeholder
+        placeholder.style.display = 'none';
+        
+        // Set view to detected location
+        this.map.setView([lat, lng], 15);
+        
+        // Clear existing marker
+        if (this.marker) {
+            this.map.removeLayer(this.marker);
+        }
+        
+        // Add new marker
+        this.marker = L.marker([lat, lng]).addTo(this.map)
+            .bindPopup(`<b>Your Farm Location</b><br>Lat: ${lat.toFixed(6)}<br>Lng: ${lng.toFixed(6)}`)
+            .openPopup();
+        
+        // Force map to update its size
+        setTimeout(() => {
+            this.map.invalidateSize();
+        }, 100);
+    },
+    
+    // Soil detection from coordinates
+    detectSoilType: function(latitude, longitude, stateName = null, isManual = false) {
+        console.log("Detecting soil type for:", latitude, longitude, "State:", stateName);
+        
+        // Show progress bar
+        this.showSoilDetectionProgress();
+        
+        // Simulate API call with timeout
+        setTimeout(() => {
+            let soilData = null;
+            
+            // If we have state name for manual location, use state-based mapping
+            if (isManual && stateName) {
+                soilData = this.detectSoilFromState(stateName);
+            } else {
+                // Otherwise use coordinate-based detection
+                soilData = this.determineSoilFromCoordinates(latitude, longitude);
+            }
+            
+            // Update progress
+            this.updateSoilProgress(100);
+            
+            // Add source info
+            soilData.source = isManual ? 'state_mapping' : 'coordinate_based';
+            
+            // Display soil analysis
+            this.displaySoilAnalysis(soilData);
+        }, 1500);
+    },
+    
+    // Determine soil from coordinates
+    determineSoilFromCoordinates: function(lat, lng) {
+        // India-specific soil mapping
+        // Northern Plains (Alluvial)
+        if (lat > 20 && lat < 32 && lng > 70 && lng < 88) {
+            return this.soilDatabase.alluvial;
+        }
+        // Deccan Plateau (Black Soil)
+        else if (lat > 15 && lat < 22 && lng > 72 && lng < 80) {
+            return this.soilDatabase.black;
+        }
+        // Southern Peninsula (Red Soil)
+        else if (lat > 8 && lat < 20 && lng > 76 && lng < 88) {
+            return this.soilDatabase.red;
+        }
+        // Western Ghats (Laterite)
+        else if (lat > 8 && lat < 20 && lng > 73 && lng < 77) {
+            return this.soilDatabase.laterite;
+        }
+        // Rajasthan/Desert (Sandy)
+        else if (lat > 24 && lat < 30 && lng > 69 && lng < 76) {
+            return this.soilDatabase.sandy;
+        }
+        // Coastal Regions (Sandy)
+        else if (lat < 15 || (lat > 8 && lng > 78 && lng < 82)) {
+            return this.soilDatabase.sandy;
+        }
+        // Default to alluvial for most of India
+        else {
+            return this.soilDatabase.alluvial;
+        }
+    },
+    
+    // Detect soil from state name (for manual locations)
+    detectSoilFromState: function(stateName) {
+        // Map states to soil types (India-specific)
+        const stateSoilMap = {
+            // Red Soil States
+            'Maharashtra': 'black',
+            'Karnataka': 'red',
+            'Tamil Nadu': 'red',
+            'Andhra Pradesh': 'red',
+            'Telangana': 'red',
+            'Odisha': 'red',
+            
+            // Black Soil States
+            'Gujarat': 'black',
+            'Madhya Pradesh': 'black',
+            
+            // Alluvial Soil States
+            'Uttar Pradesh': 'alluvial',
+            'Punjab': 'alluvial',
+            'Haryana': 'alluvial',
+            'Bihar': 'alluvial',
+            'West Bengal': 'alluvial',
+            
+            // Laterite Soil States
+            'Kerala': 'laterite',
+            'Goa': 'laterite',
+            
+            // Sandy Soil States
+            'Rajasthan': 'sandy',
+            
+            // Clay Soil States
+            'Assam': 'clay',
+            
+            // Loam Soil States
+            'Himachal Pradesh': 'loam',
+            'Uttarakhand': 'loam'
+        };
+        
+        const soilType = stateSoilMap[stateName] || 'alluvial';
+        return this.soilDatabase[soilType];
+    },
+    
+    showSoilDetectionProgress: function() {
+        document.getElementById('soilDetectionProgress').style.display = 'block';
+        this.updateSoilProgress(10);
+    },
+    
+    updateSoilProgress: function(percent) {
+        const progressBar = document.getElementById('soilProgressBar');
+        const percentText = document.getElementById('soilProgressPercent');
+        
+        progressBar.style.width = percent + '%';
+        percentText.textContent = percent + '%';
+        
+        if (percent >= 100) {
+            setTimeout(() => {
+                document.getElementById('soilDetectionProgress').style.display = 'none';
+            }, 500);
+        }
+    },
+    
+    displaySoilAnalysis: function(soilData) {
+        this.soilData = soilData;
+        
+        // Show soil card
+        document.getElementById('soilAnalysisCard').style.display = 'block';
+        
+        // Update soil type with color coding
+        const soilTypeElement = document.getElementById('soilTypeValue');
+        soilTypeElement.textContent = soilData.name;
+        soilTypeElement.className = 'property-value soil-type-indicator soil-type-' + soilData.color;
+        
+        // Update other properties
+        document.getElementById('soilPH').textContent = soilData.ph;
+        document.getElementById('soilTexture').textContent = soilData.texture;
+        document.getElementById('soilDrainage').textContent = soilData.drainage;
+        document.getElementById('soilNutrients').textContent = soilData.nutrients;
+        document.getElementById('soilWaterRetention').textContent = soilData.waterRetention;
+        
+        // Update improvement tips
+        const improvementTips = document.getElementById('improvementTips');
+        improvementTips.textContent = soilData.improvement;
+        document.getElementById('soilImprovementTips').style.display = 'block';
+        
+        // Update recommended crops
+        const cropsContainer = document.getElementById('recommendedCrops');
+        cropsContainer.innerHTML = '';
+        soilData.crops.forEach(crop => {
+            const badge = document.createElement('span');
+            badge.className = 'crop-badge';
+            badge.textContent = crop;
+            badge.title = `Grows well in ${soilData.name}`;
+            cropsContainer.appendChild(badge);
+        });
+        document.getElementById('soilCropsSection').style.display = 'block';
+        
+        // Update soil source info
+        const soilSourceElement = document.getElementById('soilSource');
+        if (soilData.source === 'state_mapping') {
+            soilSourceElement.innerHTML = `<i class="fas fa-map-marker-alt text-info"></i> Source: State-based Estimation`;
+            soilSourceElement.className = 'soil-source';
+        } else {
+            soilSourceElement.innerHTML = `<i class="fas fa-globe-asia text-success"></i> Source: Coordinate-based Estimation`;
+            soilSourceElement.className = 'soil-source dataset';
+        }
+        
+        // Scroll to soil analysis
+        document.getElementById('soilAnalysisCard').scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'nearest' 
+        });
+    },
+    
+    getGPSLocation: function() {
+        console.log("GPS Location detection started...");
+        
+        const status = document.getElementById('gpsStatus');
+        const coordinates = document.getElementById('coordinates');
+        
+        if (!status || !coordinates) {
+            console.error("Required DOM elements not found:", { status: !!status, coordinates: !!coordinates });
+            alert("Error: Required page elements not found. Please refresh the page.");
+            return;
+        }
+        
+        status.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Getting precise location...';
+        coordinates.innerHTML = '<div class="text-center"><i class="fas fa-spinner fa-spin fa-2x text-warning mb-3"></i><p class="mb-1"><strong>Acquiring high-accuracy GPS signal...</strong></p><p class="text-muted">This may take a few seconds for best results</p></div>';
+        
+        if (!navigator.geolocation) {
+            console.error("Geolocation not supported by browser");
+            status.innerHTML = '<span class="text-danger"><i class="fas fa-exclamation-triangle"></i> GPS not supported by your browser</span>';
+            coordinates.innerHTML = '<div class="text-center"><i class="fas fa-exclamation-circle fa-2x text-danger mb-3"></i><p class="mb-1"><strong>Geolocation Not Supported</strong></p><p class="text-muted">Your browser does not support GPS location detection</p></div>';
+            return;
+        }
+        
+        console.log("Geolocation API available, requesting position...");
+        
+        // Enhanced GPS options for maximum accuracy
+        const gpsOptions = {
+            enableHighAccuracy: true,
+            timeout: 30000, // 30 seconds timeout
+            maximumAge: 0 // Don't use cached location
+        };
+        
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                console.log("GPS position received:", position);
+                
+                const lat = position.coords.latitude;
+                const lng = position.coords.longitude;
+                const accuracy = position.coords.accuracy;
+                const altitude = position.coords.altitude;
+                const heading = position.coords.heading;
+                const speed = position.coords.speed;
+                
+                console.log('GPS Position Details:', {
+                    latitude: lat,
+                    longitude: lng,
+                    accuracy: accuracy,
+                    altitude: altitude,
+                    heading: heading,
+                    speed: speed,
+                    timestamp: new Date(position.timestamp)
+                });
+                
+                // Update status with accuracy info
+                let accuracyText = '';
+                if (accuracy <= 5) {
+                    accuracyText = '<span class="text-success"><i class="fas fa-bullseye"></i> Excellent accuracy!</span>';
+                } else if (accuracy <= 10) {
+                    accuracyText = '<span class="text-success"><i class="fas fa-check-circle"></i> Very good accuracy!</span>';
+                } else if (accuracy <= 20) {
+                    accuracyText = '<span class="text-warning"><i class="fas fa-check-circle"></i> Good accuracy!</span>';
+                } else {
+                    accuracyText = '<span class="text-warning"><i class="fas fa-exclamation-triangle"></i> Moderate accuracy</span>';
+                }
+                
+                status.innerHTML = accuracyText;
+                
+                // Enhanced coordinates display with more precision
+                coordinates.innerHTML = `
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="text-center">
+                                <i class="fas fa-map-marker-alt fa-lg text-primary mb-2"></i>
+                                <p class="mb-0"><strong>Latitude</strong></p>
+                                <p class="text-muted">${lat.toFixed(8)}°</p>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="text-center">
+                                <i class="fas fa-map-marker-alt fa-lg text-primary mb-2"></i>
+                                <p class="mb-0"><strong>Longitude</strong></p>
+                                <p class="text-muted">${lng.toFixed(8)}°</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center mt-2">
+                        <small class="text-success"><i class="fas fa-satellite"></i> GPS Accuracy: ±${Math.round(accuracy)} meters</small>
+                        <br><small class="text-muted"><i class="fas fa-clock"></i> ${new Date().toLocaleTimeString()}</small>
+                        ${altitude ? `<br><small class="text-info"><i class="fas fa-mountain"></i> Altitude: ${Math.round(altitude)}m</small>` : ''}
+                    </div>
+                `;
+                
+                // Update accuracy dot with better visualization
+                const accuracyDot = document.getElementById('accuracyDot');
+                if (accuracyDot) {
+                    const accuracyPercent = Math.min(100, Math.max(0, (100 - accuracy/2)));
+                    accuracyDot.style.left = `${accuracyPercent}%`;
+                    
+                    // Color code the accuracy dot
+                    if (accuracy <= 10) {
+                        accuracyDot.className = 'accuracy-dot bg-success';
+                    } else if (accuracy <= 20) {
+                        accuracyDot.className = 'accuracy-dot bg-warning';
+                    } else {
+                        accuracyDot.className = 'accuracy-dot bg-danger';
+                    }
+                }
+                
+                // Show map with enhanced precision
+                try {
+                    this.showMap(lat, lng);
+                } catch (mapError) {
+                    console.error("Map display error:", mapError);
+                }
+                
+                // Get precise address from coordinates with multiple attempts
+                try {
+                    this.getAddressFromCoordinates(lat, lng);
+                } catch (addressError) {
+                    console.error("Address lookup error:", addressError);
+                    // If address lookup fails, still do coordinate-based soil detection
+                    try {
+                        this.detectSoilType(lat, lng);
+                    } catch (soilError) {
+                        console.error("Soil detection error:", soilError);
+                    }
+                }
+                
+                // Store current location with enhanced data
+                this.currentLocation = {
+                    latitude: lat,
+                    longitude: lng,
+                    accuracy: accuracy,
+                    altitude: altitude,
+                    heading: heading,
+                    speed: speed,
+                    timestamp: position.timestamp,
+                    type: 'gps',
+                    coordinates: `${lat.toFixed(8)}, ${lng.toFixed(8)}`
+                };
+                
+                console.log("Current location stored:", this.currentLocation);
+                
+                // Enable GPS buttons immediately after location detection
+                const saveBtn = document.getElementById('saveLocationBtn');
+                const soilBtn = document.getElementById('gpsSoilAnalysisBtn');
+                
+                if (saveBtn) {
+                    saveBtn.disabled = false;
+                    console.log("Save button enabled");
+                } else {
+                    console.error("Save button not found");
+                }
+                
+                if (soilBtn) {
+                    soilBtn.disabled = false;
+                    console.log("Soil analysis button enabled");
+                } else {
+                    console.error("Soil analysis button not found");
+                }
+            },
+            (error) => {
+                console.error("Geolocation error:", error);
+                
+                let errorMessage = 'Unable to retrieve precise location';
+                let suggestion = '';
+                
+                switch(error.code) {
+                    case error.PERMISSION_DENIED:
+                        errorMessage = 'Location permission denied';
+                        suggestion = 'Please allow location access and try again. Check your browser settings.';
+                        break;
+                    case error.POSITION_UNAVAILABLE:
+                        errorMessage = 'Location information unavailable';
+                        suggestion = 'Please check your GPS/internet connection and try again.';
+                        break;
+                    case error.TIMEOUT:
+                        errorMessage = 'Location request timed out';
+                        suggestion = 'Please try again or move to an open area with better GPS signal.';
+                        break;
+                    default:
+                        suggestion = 'Please try again or use manual location entry.';
+                }
+                
+                status.innerHTML = `<span class="text-danger"><i class="fas fa-exclamation-triangle"></i> ${errorMessage}</span>`;
+                coordinates.innerHTML = `
+                    <div class="text-center">
+                        <i class="fas fa-exclamation-circle fa-2x text-danger mb-3"></i>
+                        <p class="mb-1"><strong>${errorMessage}</strong></p>
+                        <p class="text-muted">${suggestion}</p>
+                        <button class="btn btn-outline-primary btn-sm mt-2" onclick="locationManager.getGPSLocation()">
+                            <i class="fas fa-redo"></i> Try Again
+                        </button>
+                    </div>
+                `;
+            },
+            gpsOptions
+        );
+    },
+    
+    getAddressFromCoordinates: function(lat, lng) {
+        // Using OpenStreetMap Nominatim for reverse geocoding with enhanced area name detection
+        const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&zoom=18&addressdetails=1&extratags=1&namedetails=1&accept-language=en`;
+        
+        fetch(url, {
+            headers: {
+                'User-Agent': 'AnnadataAI-Location-App/1.0',
+                'Accept-Language': 'en,hi'
+            }
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Geocoding response:', data);
+                if (data && data.address) {
+                    this.displayLocationDetails(data.address, lat, lng, data);
+                } else {
+                    // Fallback to basic location display
+                    this.displayBasicLocationDetails(lat, lng);
+                }
+            })
+            .catch(error => {
+                console.error('Reverse geocoding failed:', error);
+                // Show basic location info anyway
+                this.displayBasicLocationDetails(lat, lng);
+            });
+    },
+    
+    tryMultipleGeocodingServices: function(lat, lng) {
+        // Service 1: High-detail Nominatim with specific parameters for local areas
+        const nominatimHighDetail = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&zoom=19&addressdetails=1&extratags=1&namedetails=1&accept-language=en`;
+        
+        fetch(nominatimHighDetail, {
+            headers: {
+                'User-Agent': 'AnnadataAI-Location-App/1.0',
+                'Accept-Language': 'en,hi'
+            }
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log('High-detail geocoding response:', data);
+                if (data && data.address && this.hasGoodAreaName(data.address)) {
+                    this.displayLocationDetails(data.address, lat, lng, data);
+                } else {
+                    // Try alternative service
+                    this.tryAlternativeGeocoding(lat, lng);
+                }
+            })
+            .catch(error => {
+                console.error('High-detail geocoding failed:', error);
+                this.tryAlternativeGeocoding(lat, lng);
+            });
+    },
+    
+    hasGoodAreaName: function(address) {
+        // Check if we have a good area name (not just administrative divisions)
+        return address.suburb || address.neighbourhood || address.locality || 
+               address.residential || address.commercial || address.hamlet ||
+               (address.road && !address.road.includes('Highway') && !address.road.includes('NH'));
+    },
+    
+    tryAlternativeGeocoding: function(lat, lng) {
+        // Try with different zoom levels and parameters
+        const services = [
+            `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&zoom=18&addressdetails=1&extratags=1`,
+            `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&zoom=17&addressdetails=1&extratags=1`,
+            `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&zoom=16&addressdetails=1&extratags=1`
+        ];
+        
+        this.tryGeocodingServices(services, lat, lng, 0);
+    },
+    
+    tryGeocodingServices: function(services, lat, lng, index) {
+        if (index >= services.length) {
+            // All services failed, use enhanced fallback
+            this.displayEnhancedFallbackLocation(lat, lng);
+            return;
+        }
+        
+        fetch(services[index])
+            .then(response => response.json())
+            .then(data => {
+                console.log(`Geocoding service ${index + 1} response:`, data);
+                if (data && data.address) {
+                    this.displayLocationDetails(data.address, lat, lng, data);
+                } else {
+                    // Try next service
+                    this.tryGeocodingServices(services, lat, lng, index + 1);
+                }
+            })
+            .catch(error => {
+                console.error(`Geocoding service ${index + 1} failed:`, error);
+                // Try next service
+                this.tryGeocodingServices(services, lat, lng, index + 1);
+            });
+    },
+    
+    displayEnhancedFallbackLocation: function(lat, lng) {
+        // Enhanced fallback with better area name generation
+        const areaName = this.generatePreciseAreaName(lat, lng);
+        const address = {
+            city: this.getCityFromCoordinates(lat, lng),
+            state: this.getStateFromCoordinates(lat, lng),
+            country: 'India'
+        };
+        
+        // Create a mock address object with our generated area name
+        address.suburb = areaName;
+        
+        this.displayLocationDetails(address, lat, lng, { display_name: `${areaName}, ${address.city}, ${address.state}, India` });
+    },
+    
+    displayLocationDetails: function(address, lat, lng, fullData) {
+        const locationNameBox = document.getElementById('locationNameBox');
+        const locationDetails = document.getElementById('locationDetails');
+        
+        let detailsHTML = '';
+        let areaName = '';
+        let cityName = '';
+        let pincode = '';
+        
+        console.log('Address components received:', address);
+        
+        // Extract area name with priority for more specific locations
+        if (address.suburb) {
+            areaName = address.suburb;
+        } else if (address.neighbourhood) {
+            areaName = address.neighbourhood;
+        } else if (address.locality) {
+            areaName = address.locality;
+        } else if (address.residential) {
+            areaName = address.residential;
+        } else if (address.commercial) {
+            areaName = address.commercial;
+        } else if (address.hamlet) {
+            areaName = address.hamlet;
+        } else if (address.road && !address.road.includes('Highway') && !address.road.includes('NH')) {
+            areaName = address.road;
+        }
+        
+        // Extract city name
+        if (address.city) {
+            cityName = address.city;
+        } else if (address.town) {
+            cityName = address.town;
+        } else if (address.village) {
+            cityName = address.village;
+        } else if (address.county) {
+            cityName = address.county;
+        }
+        
+        // Extract pincode
+        if (address.postcode) {
+            pincode = address.postcode;
+        }
+        
+        // ALWAYS SHOW AREA NAME - This is compulsory
+        if (areaName) {
+            detailsHTML += `<p><i class="fas fa-map-marker-alt text-success"></i> <strong>Area Name:</strong> ${areaName}</p>`;
+        } else {
+            // Generate area name from coordinates if not available
+            const generatedArea = this.generateAreaName(lat, lng);
+            detailsHTML += `<p><i class="fas fa-map-marker-alt text-warning"></i> <strong>Area Name:</strong> ${generatedArea} (Estimated)</p>`;
+            areaName = generatedArea;
+        }
+        
+        // Show city name if available and different from area
+        if (cityName && cityName !== areaName) {
+            if (address.village) {
+                detailsHTML += `<p><i class="fas fa-home text-primary"></i> <strong>Village:</strong> ${cityName}</p>`;
+            } else if (address.town) {
+                detailsHTML += `<p><i class="fas fa-building text-primary"></i> <strong>Town:</strong> ${cityName}</p>`;
+            } else if (address.city) {
+                detailsHTML += `<p><i class="fas fa-city text-primary"></i> <strong>City:</strong> ${cityName}</p>`;
+            }
+        }
+        
+        // Show district
+        if (address.state_district || address.district) {
+            const district = address.state_district || address.district;
+            if (district !== cityName) {
+                detailsHTML += `<p><i class="fas fa-map-pin text-info"></i> <strong>District:</strong> ${district}</p>`;
+            }
+        }
+        
+        // Show state
+        if (address.state) {
+            detailsHTML += `<p><i class="fas fa-map-marked-alt text-info"></i> <strong>State:</strong> ${address.state}</p>`;
+        }
+        
+        // Show pincode prominently
+        if (pincode) {
+            detailsHTML += `<p><i class="fas fa-mail-bulk text-success"></i> <strong>Pincode:</strong> ${pincode}</p>`;
+        } else {
+            detailsHTML += `<p><i class="fas fa-mail-bulk text-muted"></i> <strong>Pincode:</strong> Not available</p>`;
+        }
+        
+        // Show country
+        if (address.country) {
+            detailsHTML += `<p><i class="fas fa-globe-asia text-secondary"></i> <strong>Country:</strong> ${address.country}</p>`;
+        }
+        
+        // Add precise coordinates
+        detailsHTML += `<p><i class="fas fa-crosshairs text-dark"></i> <strong>Coordinates:</strong> ${lat.toFixed(8)}°, ${lng.toFixed(8)}°</p>`;
+        
+        // Store address info with enhanced display name
+        if (this.currentLocation) {
+            this.currentLocation.address = address;
+            this.currentLocation.areaName = areaName;
+            this.currentLocation.cityName = cityName;
+            this.currentLocation.pincode = pincode;
+            
+            // Create a comprehensive display name with AREA NAME FIRST
+            this.currentLocation.displayName = areaName || cityName || 'Unknown Location';
+            this.currentLocation.state = address.state || 'Unknown State';
+            this.currentLocation.district = address.state_district || address.district || 'Unknown District';
+            this.currentLocation.village = address.village || address.town || address.city || '';
+        }
+        
+        locationDetails.innerHTML = detailsHTML;
+        locationNameBox.style.display = 'block';
+        
+        console.log('Location details displayed:', {
+            areaName: areaName,
+            cityName: cityName,
+            pincode: pincode,
+            state: address.state,
+            district: address.state_district || address.district
+        });
+        
+        // Now that we have the address, perform state-based soil detection for consistency
+        if (address.state) {
+            console.log('Performing state-based soil detection for:', address.state);
+            try {
+                // Use state-based detection for consistency with manual entry
+                let soilData = this.detectSoilFromState(address.state);
+                soilData.source = 'state_mapping';
+                
+                // Update progress and display
+                this.showSoilDetectionProgress();
+                setTimeout(() => {
+                    this.updateSoilProgress(100);
+                    this.displaySoilAnalysis(soilData);
+                }, 1000);
+            } catch (soilError) {
+                console.error("State-based soil detection error:", soilError);
+                // Fallback to coordinate-based detection
+                this.detectSoilType(lat, lng);
+            }
+        } else {
+            // Fallback to coordinate-based detection if no state available
+            console.log('No state available, using coordinate-based soil detection');
+            this.detectSoilType(lat, lng);
+        }
+    },
+    
+    extractAreaFromDisplayName: function(displayName, lat, lng) {
+        // Extract area name from full display name
+        const parts = displayName.split(',');
+        
+        // Look for area-like names in the first few parts
+        for (let i = 0; i < Math.min(3, parts.length); i++) {
+            const part = parts[i].trim();
+            
+            // Skip numbers and very short names
+            if (part.length > 3 && !/^\d+$/.test(part)) {
+                // Check if it looks like an area name (not administrative)
+                if (!part.toLowerCase().includes('district') && 
+                    !part.toLowerCase().includes('state') && 
+                    !part.toLowerCase().includes('country')) {
+                    return part;
+                }
+            }
+        }
+        
+        // If no good area found, generate one
+        return this.generateAreaName(lat, lng);
+    },
+    
+    generateAreaName: function(lat, lng) {
+        // Generate area name based on coordinates and known landmarks
+        const knownAreas = {
+            // Hyderabad specific areas with precise coordinates
+            'gachibowli': { lat: 17.4401, lng: 78.3489, name: 'Gachibowli' },
+            'hitec_city': { lat: 17.4454, lng: 78.3813, name: 'HITEC City' },
+            'kondapur': { lat: 17.4639, lng: 78.3636, name: 'Kondapur' },
+            'madhapur': { lat: 17.4483, lng: 78.3915, name: 'Madhapur' },
+            'jubilee_hills': { lat: 17.4250, lng: 78.4266, name: 'Jubilee Hills' },
+            'banjara_hills': { lat: 17.4130, lng: 78.4436, name: 'Banjara Hills' },
+            'ameerpet': { lat: 17.4372, lng: 78.4458, name: 'Ameerpet' },
+            'kukatpally': { lat: 17.4849, lng: 78.4139, name: 'Kukatpally' },
+            'miyapur': { lat: 17.4967, lng: 78.3573, name: 'Miyapur' },
+            'secunderabad': { lat: 17.4399, lng: 78.4983, name: 'Secunderabad' },
+            'begumpet': { lat: 17.4435, lng: 78.4677, name: 'Begumpet' },
+            'somajiguda': { lat: 17.4239, lng: 78.4738, name: 'Somajiguda' },
+            'sr_nagar': { lat: 17.4380, lng: 78.4482, name: 'SR Nagar' },
+            'panjagutta': { lat: 17.4326, lng: 78.4482, name: 'Panjagutta' },
+            'lakdi_ka_pul': { lat: 17.4011, lng: 78.4683, name: 'Lakdi Ka Pul' },
+            'abids': { lat: 17.3753, lng: 78.4744, name: 'Abids' },
+            'nampally': { lat: 17.3850, lng: 78.4867, name: 'Nampally' },
+            'koti': { lat: 17.3707, lng: 78.4890, name: 'Koti' },
+            'malakpet': { lat: 17.3707, lng: 78.5090, name: 'Malakpet' },
+            'dilsukhnagar': { lat: 17.3681, lng: 78.5242, name: 'Dilsukhnagar' },
+            'lb_nagar': { lat: 17.3420, lng: 78.5520, name: 'LB Nagar' },
+            'uppal': { lat: 17.4062, lng: 78.5562, name: 'Uppal' },
+            'kompally': { lat: 17.5458, lng: 78.4897, name: 'Kompally' },
+            'bachupally': { lat: 17.5108, lng: 78.3489, name: 'Bachupally' },
+            'nizampet': { lat: 17.5108, lng: 78.3889, name: 'Nizampet' },
+            'pragathi_nagar': { lat: 17.4958, lng: 78.4139, name: 'Pragathi Nagar' },
+            'jntu': { lat: 17.4958, lng: 78.3889, name: 'JNTU Area' },
+            'chandanagar': { lat: 17.4958, lng: 78.3589, name: 'Chandanagar' },
+            'lingampally': { lat: 17.4708, lng: 78.3289, name: 'Lingampally' },
+            'patancheru': { lat: 17.5358, lng: 78.2639, name: 'Patancheru' },
+            'shamshabad': { lat: 17.2458, lng: 78.4039, name: 'Shamshabad' },
+            'rajendranagar': { lat: 17.3208, lng: 78.3739, name: 'Rajendranagar' },
+            'mehdipatnam': { lat: 17.3958, lng: 78.4339, name: 'Mehdipatnam' },
+            'tolichowki': { lat: 17.3958, lng: 78.4139, name: 'Tolichowki' },
+            'golconda': { lat: 17.3833, lng: 78.4011, name: 'Golconda' },
+            'shaikpet': { lat: 17.3958, lng: 78.3939, name: 'Shaikpet' },
+            'manikonda': { lat: 17.4008, lng: 78.3639, name: 'Manikonda' },
+            'nanakramguda': { lat: 17.4208, lng: 78.3439, name: 'Nanakramguda' },
+            'financial_district': { lat: 17.4308, lng: 78.3339, name: 'Financial District' },
+            'kokapet': { lat: 17.4408, lng: 78.3239, name: 'Kokapet' },
+            'puppalaguda': { lat: 17.4108, lng: 78.3439, name: 'Puppalaguda' },
+            'narsingi': { lat: 17.4008, lng: 78.3339, name: 'Narsingi' },
+            
+            // Pune areas
+            'hinjewadi': { lat: 18.5921, lng: 73.7386, name: 'Hinjewadi' },
+            'wagholi': { lat: 18.5761, lng: 73.9835, name: 'Wagholi' },
+            'kharadi': { lat: 18.5521, lng: 73.9470, name: 'Kharadi' },
+            'baner': { lat: 18.5595, lng: 73.7866, name: 'Baner' },
+            'aundh': { lat: 18.5611, lng: 73.8075, name: 'Aundh' },
+            
+            // Bangalore areas
+            'whitefield': { lat: 12.9698, lng: 77.7499, name: 'Whitefield' },
+            'electronic_city': { lat: 12.8456, lng: 77.6602, name: 'Electronic City' },
+            'marathahalli': { lat: 12.9593, lng: 77.6974, name: 'Marathahalli' },
+            'koramangala': { lat: 12.9279, lng: 77.6271, name: 'Koramangala' }
+        };
+        
+        // Find nearest known area
+        let nearestArea = null;
+        let minDistance = Infinity;
+        
+        for (const [key, area] of Object.entries(knownAreas)) {
+            const distance = Math.sqrt(
+                Math.pow(lat - area.lat, 2) + Math.pow(lng - area.lng, 2)
+            );
+            
+            if (distance < minDistance) {
+                minDistance = distance;
+                nearestArea = area;
+            }
+        }
+        
+        // Convert distance to approximate km
+        const distanceKm = minDistance * 111;
+        
+        if (nearestArea && distanceKm < 2) {
+            return nearestArea.name;
+        } else if (nearestArea && distanceKm < 5) {
+            return `Near ${nearestArea.name}`;
+        } else {
+            // Generate more specific area name based on coordinate patterns
+            return this.generatePreciseAreaName(lat, lng);
+        }
+    },
+    
+    generatePreciseAreaName: function(lat, lng) {
+        // Generate precise area names similar to Google Maps colonies/sectors
+        const latInt = Math.floor(lat * 1000) % 1000;
+        const lngInt = Math.floor(lng * 1000) % 1000;
+        
+        // Generate area names that sound like real colonies
+        const areaTypes = ['Colony', 'Nagar', 'Layout', 'Extension', 'Phase', 'Sector'];
+        const areaNames = ['Krishna', 'Sai', 'Venkata', 'Lakshmi', 'Rama', 'Shiva', 'Ganga', 'Surya', 'Chandra', 'Indira', 'Gandhi', 'Nehru', 'Ambedkar'];
+        
+        const areaType = areaTypes[latInt % areaTypes.length];
+        const areaName = areaNames[lngInt % areaNames.length];
+        const sectorNumber = (latInt + lngInt) % 50 + 1;
+        
+        // Create realistic area names
+        if (areaType === 'Sector' || areaType === 'Phase') {
+            return `${areaName} ${areaType} ${sectorNumber}`;
+        } else {
+            return `${areaName} ${areaType}`;
+        }
+    },
+    
+    getCityFromCoordinates: function(lat, lng) {
+        // Determine city based on coordinates
+        if (lat >= 17.2 && lat <= 17.6 && lng >= 78.2 && lng <= 78.6) {
+            return 'Hyderabad';
+        } else if (lat >= 18.4 && lat <= 18.7 && lng >= 73.7 && lng <= 74.0) {
+            return 'Pune';
+        } else if (lat >= 12.8 && lat <= 13.1 && lng >= 77.5 && lng <= 77.8) {
+            return 'Bangalore';
+        } else if (lat >= 28.4 && lat <= 28.8 && lng >= 77.0 && lng <= 77.4) {
+            return 'Delhi';
+        } else if (lat >= 19.0 && lat <= 19.3 && lng >= 72.7 && lng <= 73.1) {
+            return 'Mumbai';
+        } else if (lat >= 13.0 && lat <= 13.2 && lng >= 80.1 && lng <= 80.3) {
+            return 'Chennai';
+        } else if (lat >= 22.4 && lat <= 22.7 && lng >= 88.2 && lng <= 88.5) {
+            return 'Kolkata';
+        } else {
+            return 'Unknown City';
+        }
+    },
+    
+    getStateFromCoordinates: function(lat, lng) {
+        // Determine state based on coordinates
+        if (lat >= 17.2 && lat <= 17.6 && lng >= 78.2 && lng <= 78.6) {
+            return 'Telangana';
+        } else if (lat >= 18.4 && lat <= 18.7 && lng >= 73.7 && lng <= 74.0) {
+            return 'Maharashtra';
+        } else if (lat >= 12.8 && lat <= 13.1 && lng >= 77.5 && lng <= 77.8) {
+            return 'Karnataka';
+        } else if (lat >= 28.4 && lat <= 28.8 && lng >= 77.0 && lng <= 77.4) {
+            return 'Delhi';
+        } else if (lat >= 19.0 && lat <= 19.3 && lng >= 72.7 && lng <= 73.1) {
+            return 'Maharashtra';
+        } else if (lat >= 13.0 && lat <= 13.2 && lng >= 80.1 && lng <= 80.3) {
+            return 'Tamil Nadu';
+        } else if (lat >= 22.4 && lat <= 22.7 && lng >= 88.2 && lng <= 88.5) {
+            return 'West Bengal';
+        } else {
+            return 'Unknown State';
+        }
+    },
+    
+    displayBasicLocationDetails: function(lat, lng) {
+        const locationNameBox = document.getElementById('locationNameBox');
+        const locationDetails = document.getElementById('locationDetails');
+        
+        locationDetails.innerHTML = `
+            <p><i class="fas fa-map-marker-alt"></i> <strong>GPS Location</strong></p>
+            <p><i class="fas fa-latitude"></i> Latitude: ${lat.toFixed(6)}°</p>
+            <p><i class="fas fa-longitude"></i> Longitude: ${lng.toFixed(6)}°</p>
+        `;
+        
+        // Store basic info
+        if (this.currentLocation) {
+            this.currentLocation.displayName = 'GPS Location';
+            this.currentLocation.state = 'GPS Coordinates';
+            this.currentLocation.district = 'Precise Location';
+        }
+        
+        locationNameBox.style.display = 'block';
+        
+        // Since we don't have state info, use coordinate-based soil detection
+        console.log('No address available, using coordinate-based soil detection');
+        try {
+            this.detectSoilType(lat, lng);
+        } catch (soilError) {
+            console.error("Soil detection error:", soilError);
+        }
+    },
+    
+    saveGPSLocation: function() {
+        if (!this.currentLocation) {
+            alert('Please detect GPS location first');
+            return;
+        }
+        
+        // Create location data object
+        const locationData = {
+            ...this.currentLocation,
+            timestamp: new Date().toISOString(),
+            source: 'gps'
+        };
+        
+        // Add soil data if available
+        if (this.soilData) {
+            locationData.soilType = this.soilData.name;
+            locationData.soilProperties = {
+                ph: this.soilData.ph,
+                texture: this.soilData.texture,
+                drainage: this.soilData.drainage,
+                nutrients: this.soilData.nutrients,
+                waterRetention: this.soilData.waterRetention
+            };
+            locationData.recommendedCrops = this.soilData.crops;
+            locationData.soilSource = this.soilData.source || 'unknown';
+        }
+        
+        this.saveLocationToStorage(locationData);
+    },
+    
+    performGPSSoilAnalysis: function() {
+        if (!this.currentLocation) {
+            alert('Please detect GPS location first');
+            return;
+        }
+        
+        // Get state name from current location or coordinates
+        let stateName = 'Unknown State';
+        let districtName = 'GPS Location';
+        let village = '';
+        
+        if (this.currentLocation.address && this.currentLocation.address.state) {
+            stateName = this.currentLocation.address.state;
+        } else {
+            // Determine state from coordinates
+            stateName = this.getStateFromCoordinates(this.currentLocation.latitude, this.currentLocation.longitude);
+        }
+        
+        if (this.currentLocation.address && (this.currentLocation.address.state_district || this.currentLocation.address.district)) {
+            districtName = this.currentLocation.address.state_district || this.currentLocation.address.district;
+        }
+        
+        if (this.currentLocation.address && (this.currentLocation.address.village || this.currentLocation.address.town || this.currentLocation.address.city)) {
+            village = this.currentLocation.address.village || this.currentLocation.address.town || this.currentLocation.address.city;
+        }
+        
+        // Use the already detected soil data if available, otherwise detect it
+        if (this.soilData) {
+            // Use the existing soil data that was already detected for GPS
+            this.showGPSSoilAnalysisResults(stateName, districtName, village, this.currentLocation.pincode || '', this.soilData);
+        } else {
+            // Detect soil type using state-based method for consistency with manual entry
+            let soilData;
+            if (stateName && stateName !== 'Unknown State') {
+                soilData = this.detectSoilFromState(stateName);
+                soilData.source = 'state_mapping';
+            } else {
+                // Fallback to coordinate-based detection if state is unknown
+                soilData = this.determineSoilFromCoordinates(this.currentLocation.latitude, this.currentLocation.longitude);
+                soilData.source = 'coordinate_based';
+            }
+            this.showGPSSoilAnalysisResults(stateName, districtName, village, this.currentLocation.pincode || '', soilData);
+        }
+    },
+    
+    showGPSSoilAnalysisResults: function(state, district, village, pincode, existingSoilData) {
+        // Convert existing soil data to comprehensive format
+        const soilData = this.convertExistingSoilDataToComprehensive(existingSoilData, state, district);
+        
+        // Create modal with the converted data
+        const modalHTML = `
+            <div class="modal fade" id="soilAnalysisModal" tabindex="-1" aria-labelledby="soilAnalysisModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header bg-warning text-dark">
+                            <h5 class="modal-title" id="soilAnalysisModalLabel">
+                                <i class="fas fa-mountain"></i> Soil Analysis Report
+                            </h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h6><i class="fas fa-map-marker-alt text-primary"></i> Location Details</h6>
+                                    <p><strong>State:</strong> ${state}</p>
+                                    <p><strong>District:</strong> ${district}</p>
+                                    ${village ? `<p><strong>Village:</strong> ${village}</p>` : ''}
+                                    ${pincode ? `<p><strong>Pincode:</strong> ${pincode}</p>` : ''}
+                                </div>
+                                <div class="col-md-6">
+                                    <h6><i class="fas fa-calendar text-info"></i> Analysis Date</h6>
+                                    <p>${new Date().toLocaleDateString('en-GB')}</p>
+                                    <p><small class="text-muted">Based on GPS coordinates</small></p>
+                                </div>
+                            </div>
+                            
+                            <hr>
+                            
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="card border-${soilData.soilType.color}">
+                                        <div class="card-body text-center">
+                                            <h5 class="card-title text-${soilData.soilType.color}">
+                                                <i class="fas fa-mountain"></i> Soil Type
+                                            </h5>
+                                            <h3 class="text-${soilData.soilType.color}">${soilData.soilType.name}</h3>
+                                            <p class="mb-0">${soilData.soilType.description}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="card border-info">
+                                        <div class="card-body text-center">
+                                            <h5 class="card-title text-info">
+                                                <i class="fas fa-balance-scale"></i> pH Level
+                                            </h5>
+                                            <h3 class="text-info">${soilData.ph.level}</h3>
+                                            <p class="mb-0">${soilData.ph.value}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-4">
+                                <h6><i class="fas fa-flask text-success"></i> Soil Properties</h6>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <p><strong>Texture:</strong> ${soilData.properties.texture}</p>
+                                        <p><strong>Drainage:</strong> ${soilData.properties.drainage}</p>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <p><strong>Water Retention:</strong> ${soilData.properties.waterRetention}</p>
+                                        <p><strong>Organic Matter:</strong> ${soilData.properties.organicMatter}</p>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <p><strong>Nutrient Level:</strong> ${soilData.properties.nutrients}</p>
+                                        <p><strong>Fertility:</strong> ${soilData.properties.fertility}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-4">
+                                <h6><i class="fas fa-exclamation-triangle text-warning"></i> Soil Characteristics</h6>
+                                <div class="alert alert-info">
+                                    ${soilData.characteristics}
+                                </div>
+                            </div>
+                            
+                            <div class="mt-4">
+                                <h6><i class="fas fa-lightbulb text-primary"></i> Soil Management Tips</h6>
+                                <ul class="list-unstyled">
+                                    ${soilData.managementTips.map(tip => `<li><i class="fas fa-check-circle text-success"></i> ${tip}</li>`).join('')}
+                                </ul>
+                            </div>
+                            
+                            <div class="mt-4">
+                                <h6><i class="fas fa-seedling text-success"></i> Suitable Crops</h6>
+                                <div class="d-flex flex-wrap gap-2">
+                                    ${soilData.suitableCrops.map(crop => `<span class="badge bg-success">${crop}</span>`).join('')}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-warning" onclick="locationManager.downloadSoilReport()">
+                                <i class="fas fa-download"></i> Download Report
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        // Remove existing modal if any
+        const existingModal = document.getElementById('soilAnalysisModal');
+        if (existingModal) {
+            existingModal.remove();
+        }
+        
+        // Add modal to body
+        document.body.insertAdjacentHTML('beforeend', modalHTML);
+        
+        // Show modal
+        const modal = new bootstrap.Modal(document.getElementById('soilAnalysisModal'));
+        modal.show();
+        
+        // Store soil data for download
+        this.currentSoilData = soilData;
+    },
+    
+    convertExistingSoilDataToComprehensive: function(existingSoilData, state, district) {
+        // Convert the existing soilDatabase format to comprehensive analysis format
+        const soilTypeColorMap = {
+            'red': 'danger',
+            'black': 'dark', 
+            'alluvial': 'primary',
+            'laterite': 'warning',
+            'sandy': 'secondary',
+            'clay': 'success',
+            'loam': 'info'
+        };
+        
+        // Extract pH level and value from the existing format
+        let phLevel = 'Neutral';
+        let phValue = '7.0';
+        
+        if (existingSoilData.ph) {
+            if (existingSoilData.ph.includes('Acidic')) {
+                phLevel = 'Acidic';
+                // Extract numeric value from string like "5.5 - 6.5 (Acidic)"
+                const match = existingSoilData.ph.match(/(\d+\.?\d*)\s*-\s*(\d+\.?\d*)/);
+                if (match) {
+                    phValue = ((parseFloat(match[1]) + parseFloat(match[2])) / 2).toFixed(1);
+                }
+            } else if (existingSoilData.ph.includes('Alkaline')) {
+                phLevel = 'Alkaline';
+                const match = existingSoilData.ph.match(/(\d+\.?\d*)\s*-\s*(\d+\.?\d*)/);
+                if (match) {
+                    phValue = ((parseFloat(match[1]) + parseFloat(match[2])) / 2).toFixed(1);
+                }
+            } else if (existingSoilData.ph.includes('Neutral')) {
+                phLevel = 'Neutral';
+                phValue = '7.0';
+            }
+        }
+        
+        // Generate comprehensive soil characteristics based on existing data
+        let characteristics = '';
+        switch (existingSoilData.name) {
+            case 'Red Soil':
+                characteristics = 'Red soil is formed due to weathering of crystalline rocks under tropical and sub-tropical climate. Rich in iron oxide which gives the characteristic red color. Generally well-drained but requires organic matter and lime for better fertility.';
+                break;
+            case 'Black Soil':
+                characteristics = 'Black soil, also known as regur soil, is formed from volcanic rocks (basalt). It has excellent water retention capacity and is highly fertile. The soil swells when wet and shrinks when dry, creating natural cracks.';
+                break;
+            case 'Alluvial Soil':
+                characteristics = 'Alluvial soil is deposited by rivers and is the most fertile soil type in India. It covers about 40% of the total land area and supports intensive agriculture in river valleys and deltas.';
+                break;
+            case 'Laterite Soil':
+                characteristics = 'Laterite soil is formed in tropical regions with high rainfall and temperature. It is highly leached and acidic due to heavy monsoon rains, requiring significant amendments for successful agriculture.';
+                break;
+            case 'Sandy Soil':
+                characteristics = 'Sandy soil has large particles with good drainage but poor water and nutrient retention. It warms up quickly in spring but requires frequent irrigation and fertilization.';
+                break;
+            case 'Clay Soil':
+                characteristics = 'Clay soil has very fine particles that stick together, creating poor drainage but excellent nutrient retention. It becomes hard when dry and sticky when wet.';
+                break;
+            case 'Loam Soil':
+                characteristics = 'Loam soil is considered ideal for agriculture as it contains balanced proportions of sand, silt, and clay. It has good drainage, water retention, and nutrient availability.';
+                break;
+            default:
+                characteristics = 'This soil type has mixed characteristics depending on local geological and climatic conditions.';
+        }
+        
+        return {
+            soilType: {
+                name: existingSoilData.name,
+                color: soilTypeColorMap[existingSoilData.color] || 'info',
+                description: existingSoilData.name.replace(' Soil', '') + ' soil type'
+            },
+            ph: {
+                level: phLevel,
+                value: phValue
+            },
+            properties: {
+                texture: existingSoilData.texture,
+                drainage: existingSoilData.drainage,
+                waterRetention: existingSoilData.waterRetention,
+                organicMatter: this.getOrganicMatterLevel(existingSoilData.name),
+                nutrients: existingSoilData.nutrients,
+                fertility: this.getFertilityLevel(existingSoilData.name)
+            },
+            characteristics: characteristics,
+            managementTips: this.getManagementTips(existingSoilData.improvement),
+            suitableCrops: existingSoilData.crops,
+            analysisDate: new Date().toISOString(),
+            location: { state, district }
+        };
+    },
+    
+    saveManualLocation: function() {
+        const areaName = document.getElementById('areaNameInput').value;
+        const city = document.getElementById('cityInput').value;
+        const district = document.getElementById('districtInput').value;
+        const stateSelect = document.getElementById('stateSelect');
+        const pincode = document.getElementById('pincodeInput').value;
+        const country = document.getElementById('countryInput').value;
+        
+        const state = stateSelect.value;
+        const stateName = stateSelect.options[stateSelect.selectedIndex].text;
+        
+        if (!areaName || !city || !district || !state || !pincode) {
+            alert('Please fill in all required fields');
+            return;
+        }
+        
+        // For manual location, we'll use approximate coordinates based on state
+        const coordinates = this.getApproximateCoordinates(stateName);
+        
+        // Show map
+        this.showMap(coordinates.lat, coordinates.lng);
+        
+        // Display manual location details
+        this.displayManualLocationDetails(stateName, district, city, areaName, pincode, country, coordinates);
+        
+        // Store current location
+        this.currentLocation = {
+            areaName: areaName,
+            city: city,
+            district: district,
+            state: stateName,
+            pincode: pincode,
+            country: country,
+            latitude: coordinates.lat,
+            longitude: coordinates.lng,
+            coordinates: `${coordinates.lat.toFixed(4)}, ${coordinates.lng.toFixed(4)}`,
+            type: 'manual',
+            displayName: areaName || city || district || stateName
+        };
+        
+        // Detect soil type with state info
+        this.detectSoilType(coordinates.lat, coordinates.lng, stateName, true);
+    },
+    
+    displayManualLocationDetails: function(state, district, city, areaName, pincode, country, coordinates) {
+        const locationNameBox = document.getElementById('locationNameBox');
+        const locationDetails = document.getElementById('locationDetails');
+        
+        let detailsHTML = '';
+        
+        if (areaName) {
+            detailsHTML += `<p><i class="fas fa-map-marker-alt text-success"></i> <strong>Area Name:</strong> ${areaName}</p>`;
+        }
+        
+        if (city) {
+            detailsHTML += `<p><i class="fas fa-city text-primary"></i> <strong>City:</strong> ${city}</p>`;
+        }
+        
+        if (district) {
+            detailsHTML += `<p><i class="fas fa-map-pin text-info"></i> <strong>District:</strong> ${district}</p>`;
+        }
+        
+        if (state) {
+            detailsHTML += `<p><i class="fas fa-map-marked-alt text-info"></i> <strong>State:</strong> ${state}</p>`;
+        }
+        
+        if (pincode) {
+            detailsHTML += `<p><i class="fas fa-mail-bulk text-success"></i> <strong>Pincode:</strong> ${pincode}</p>`;
+        }
+        
+        if (country) {
+            detailsHTML += `<p><i class="fas fa-globe-asia text-secondary"></i> <strong>Country:</strong> ${country}</p>`;
+        }
+        
+        locationDetails.innerHTML = detailsHTML;
+        locationNameBox.style.display = 'block';
+        
+        // Update coordinates display
+        const coordinatesDiv = document.getElementById('coordinates');
+        coordinatesDiv.innerHTML = `
+            <div class="row">
+                <div class="col-6">
+                    <div class="text-center">
+                        <i class="fas fa-map-marker-alt fa-lg text-primary mb-2"></i>
+                        <p class="mb-0"><strong>Approx Latitude</strong></p>
+                        <p class="text-muted">${coordinates.lat.toFixed(4)}°</p>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="text-center">
+                        <i class="fas fa-map-marker-alt fa-lg text-primary mb-2"></i>
+                        <p class="mb-0"><strong>Approx Longitude</strong></p>
+                        <p class="text-muted">${coordinates.lng.toFixed(4)}°</p>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-2">
+                <small class="text-muted">Approximate location based on ${state}</small>
+            </div>
+        `;
+    },
+    
+    getApproximateCoordinates: function(state) {
+        // Approximate coordinates for Indian states
+        const stateCoordinates = {
+            'Maharashtra': { lat: 19.7515, lng: 75.7139 },
+            'Uttar Pradesh': { lat: 26.8467, lng: 80.9462 },
+            'Karnataka': { lat: 15.3173, lng: 75.7139 },
+            'Gujarat': { lat: 22.2587, lng: 71.1924 },
+            'Tamil Nadu': { lat: 11.1271, lng: 78.6569 },
+            'Madhya Pradesh': { lat: 22.9734, lng: 78.6569 },
+            'Rajasthan': { lat: 27.0238, lng: 74.2179 },
+            'Punjab': { lat: 31.1471, lng: 75.3412 },
+            'Haryana': { lat: 29.0588, lng: 76.0856 },
+            'Bihar': { lat: 25.0961, lng: 85.3131 },
+            'West Bengal': { lat: 22.9868, lng: 87.8550 },
+            'Andhra Pradesh': { lat: 15.9129, lng: 79.7400 },
+            'Telangana': { lat: 18.1124, lng: 79.0193 },
+            'Kerala': { lat: 10.8505, lng: 76.2711 },
+            'Odisha': { lat: 20.9517, lng: 85.0985 },
+            'Goa': { lat: 15.2993, lng: 74.1240 },
+            'Assam': { lat: 26.2006, lng: 92.9376 },
+            'Jharkhand': { lat: 23.6102, lng: 85.2799 },
+            'Chhattisgarh': { lat: 21.2787, lng: 81.8661 },
+            'Uttarakhand': { lat: 30.0668, lng: 79.0193 },
+            'Himachal Pradesh': { lat: 31.1048, lng: 77.1734 }
+        };
+        
+        return stateCoordinates[state] || { lat: 20.5937, lng: 78.9629 }; // Default to India center
+    },
+    
+    saveLocationToStorage: function(locationData) {
+        // Get existing locations
+        let savedLocations = JSON.parse(localStorage.getItem('annadatai_locations') || '[]');
+        
+        // Add new location
+        savedLocations.unshift(locationData);
+        
+        // Keep only last 10 locations
+        if (savedLocations.length > 10) {
+            savedLocations = savedLocations.slice(0, 10);
+        }
+        
+        // Save to localStorage
+        localStorage.setItem('annadatai_locations', JSON.stringify(savedLocations));
+        
+        // Save to session for current use
+        sessionStorage.setItem('current_location', JSON.stringify(locationData));
+        
+        // Show success message
+        alert(`✓ Location saved successfully!\n\n📍 ${locationData.displayName}\n🗺️ ${locationData.district}, ${locationData.state}\n🌱 Soil: ${locationData.soilType}\n🌾 Crops: ${locationData.recommendedCrops.slice(0, 3).join(', ')}...`);
+        
+        // Refresh saved locations list
+        this.refreshSavedLocations();
+    },
+    
+    loadSavedLocations: function() {
+        this.refreshSavedLocations();
+    },
+    
+    refreshSavedLocations: function() {
+        const savedLocations = JSON.parse(localStorage.getItem('annadatai_locations') || '[]');
+        const container = document.getElementById('savedLocationsList');
+        
+        if (savedLocations.length === 0) {
+            container.innerHTML = `
+                <div class="empty-state">
+                    <i class="fas fa-map-marked-alt"></i>
+                    <h4>No Locations Saved Yet</h4>
+                    <p class="mb-4">Save your first location using GPS or manual entry above.</p>
+                    <p class="text-muted">Saved locations will appear here. You can select them on the Crops page for recommendations.</p>
+                </div>
+            `;
+            return;
+        }
+        
+        let html = '';
+        savedLocations.forEach((loc, index) => {
+            const isCurrent = index === 0;
+            const locationName = loc.displayName || loc.village || loc.district || 'My Farm Location';
+            const state = loc.state || 'State';
+            const district = loc.district || 'District';
+            
+            // Format date
+            const date = new Date(loc.timestamp);
+            const formattedDate = date.toLocaleDateString('en-GB', {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric'
+            });
+            
+            // Soil source badge
+            let soilSourceBadge = '';
+            if (loc.soilSource === 'state_mapping') {
+                soilSourceBadge = '<span class="badge bg-info dataset-badge">State Data</span>';
+            } else {
+                soilSourceBadge = '<span class="badge bg-success dataset-badge">GPS Data</span>';
+            }
+            
+            html += `
+                <div class="saved-location-item ${isCurrent ? 'current' : ''}">
+                    <div class="row align-items-center">
+                        <div class="col-md-8">
+                            <h5 class="mb-1">
+                                <i class="fas fa-map-marker-alt ${isCurrent ? 'text-success' : 'text-secondary'}"></i>
+                                ${locationName}
+                                ${isCurrent ? '<span class="badge bg-success location-badge ms-2">Current</span>' : ''}
+                            </h5>
+                            <p class="text-muted mb-1">
+                                <i class="fas fa-map"></i> ${district}, ${state}
+                                ${loc.village ? `<br><i class="fas fa-home"></i> ${loc.village}` : ''}
+                            </p>
+                            <p class="mb-0">
+                                <span class="badge ${this.getSoilBadgeClass(loc.soilType)}">${loc.soilType || 'Soil: Unknown'}</span>
+                                ${soilSourceBadge}
+                                <span class="badge bg-info">${loc.source === 'gps' ? 'GPS' : 'Manual'}</span>
+                                ${loc.coordinates ? `<span class="badge bg-secondary">${loc.coordinates}</span>` : ''}
+                            </p>
+                        </div>
+                        <div class="col-md-4 text-end">
+                            <div class="location-actions">
+                                <button class="btn btn-sm btn-outline-success" onclick="locationManager.useLocation(${index})">
+                                    <i class="fas fa-check"></i> Use
+                                </button>
+                                <button class="btn btn-sm btn-outline-danger" onclick="locationManager.deleteLocation(${index})">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                            <small class="text-muted">
+                                <i class="far fa-clock"></i> ${formattedDate}
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+        
+        container.innerHTML = html;
+    },
+    
+    getSoilBadgeClass: function(soilType) {
+        const soilClasses = {
+            'Red Soil': 'bg-danger',
+            'Black Soil': 'bg-dark',
+            'Alluvial Soil': 'bg-primary',
+            'Laterite Soil': 'bg-warning text-dark',
+            'Sandy Soil': 'bg-secondary',
+            'Clay Soil': 'bg-success',
+            'Loam Soil': 'bg-info'
+        };
+        return soilClasses[soilType] || 'bg-info';
+    },
+    
+    useLocation: function(index) {
+        const savedLocations = JSON.parse(localStorage.getItem('annadatai_locations') || '[]');
+        if (savedLocations[index]) {
+            // Move to top
+            const location = savedLocations.splice(index, 1)[0];
+            savedLocations.unshift(location);
+            localStorage.setItem('annadatai_locations', JSON.stringify(savedLocations));
+            sessionStorage.setItem('current_location', JSON.stringify(location));
+            
+            alert(`✓ Now using location:\n📍 ${location.displayName || location.village || location.district}\n🗺️ ${location.district}, ${location.state}\n🌱 Soil: ${location.soilType}`);
+            
+            this.refreshSavedLocations();
+        }
+    },
+    
+    deleteLocation: function(index) {
+        if (confirm('Are you sure you want to delete this location?')) {
+            const savedLocations = JSON.parse(localStorage.getItem('annadatai_locations') || '[]');
+            const location = savedLocations[index];
+            savedLocations.splice(index, 1);
+            localStorage.setItem('annadatai_locations', JSON.stringify(savedLocations));
+            
+            alert(`✓ Deleted location: ${location.displayName || 'Location'}`);
+            this.refreshSavedLocations();
+        }
+    },
+    
+    setupStateDistrictDropdowns: function() {
+        // This would typically come from a backend API
+        // For now, we'll create a simple state-district mapping
+        const stateDistrictMap = {
+            'Maharashtra': ['Mumbai', 'Pune', 'Nagpur', 'Nashik', 'Aurangabad', 'Solapur', 'Thane', 'Pimpri-Chinchwad', 'Kalyan-Dombivli', 'Vasai-Virar'],
+            'Uttar Pradesh': ['Lucknow', 'Kanpur', 'Varanasi', 'Agra', 'Prayagraj', 'Ghaziabad', 'Meerut', 'Saharanpur', 'Aligarh', 'Moradabad'],
+            'Karnataka': ['Bangalore', 'Mysore', 'Hubli', 'Mangalore', 'Belgaum', 'Gulbarga', 'Davanagere', 'Bellary', 'Bijapur', 'Shimoga'],
+            'Gujarat': ['Ahmedabad', 'Surat', 'Vadodara', 'Rajkot', 'Bhavnagar', 'Jamnagar', 'Gandhinagar', 'Nadiad', 'Anand', 'Bharuch'],
+            'Tamil Nadu': ['Chennai', 'Coimbatore', 'Madurai', 'Tiruchirappalli', 'Salem', 'Tirunelveli', 'Tiruppur', 'Erode', 'Vellore', 'Thoothukkudi'],
+            'Madhya Pradesh': ['Bhopal', 'Indore', 'Jabalpur', 'Gwalior', 'Ujjain', 'Sagar', 'Dewas', 'Satna', 'Ratlam', 'Rewa'],
+            'Rajasthan': ['Jaipur', 'Jodhpur', 'Udaipur', 'Kota', 'Bikaner', 'Ajmer', 'Bhilwara', 'Alwar', 'Bharatpur', 'Sikar'],
+            'Punjab': ['Ludhiana', 'Amritsar', 'Jalandhar', 'Patiala', 'Bathinda', 'Hoshiarpur', 'Mohali', 'Batala', 'Pathankot', 'Moga'],
+            'Haryana': ['Faridabad', 'Gurugram', 'Panipat', 'Ambala', 'Yamunanagar', 'Rohtak', 'Hisar', 'Karnal', 'Sonipat', 'Panchkula'],
+            'Bihar': ['Patna', 'Gaya', 'Bhagalpur', 'Muzaffarpur', 'Purnia', 'Darbhanga', 'Bihar Sharif', 'Arrah', 'Begusarai', 'Katihar'],
+            'West Bengal': ['Kolkata', 'Howrah', 'Durgapur', 'Asansol', 'Siliguri', 'Malda', 'Bardhaman', 'Bahrampur', 'Habra', 'Kharagpur'],
+            'Andhra Pradesh': ['Visakhapatnam', 'Vijayawada', 'Guntur', 'Nellore', 'Kurnool', 'Rajahmundry', 'Tirupati', 'Kakinada', 'Kadapa', 'Anantapur'],
+            'Telangana': ['Hyderabad', 'Sangareddy', 'Patancheru', 'Warangal', 'Nizamabad', 'Karimnagar', 'Khammam', 'Ramagundam', 'Mahbubnagar', 'Nalgonda', 'Adilabad', 'Siddipet'],
+            'Kerala': ['Thiruvananthapuram', 'Kochi', 'Kozhikode', 'Thrissur', 'Kollam', 'Alappuzha', 'Palakkad', 'Kannur', 'Kottayam', 'Malappuram'],
+            'Odisha': ['Bhubaneswar', 'Cuttack', 'Rourkela', 'Brahmapur', 'Sambalpur', 'Puri', 'Baleshwar', 'Baripada', 'Balangir', 'Jharsuguda'],
+            'Goa': ['North Goa', 'South Goa']
+        };
+        
+        const stateSelect = document.getElementById('stateSelect');
+        const districtSelect = document.getElementById('districtSelect');
+        
+        stateSelect.addEventListener('change', function() {
+            const selectedState = this.options[this.selectedIndex].text;
+            const districts = stateDistrictMap[selectedState] || [];
+            
+            districtSelect.innerHTML = '<option value="">Select District</option>';
+            districts.forEach(district => {
+                const option = document.createElement('option');
+                option.value = district.toLowerCase().replace(/\s+/g, '_');
+                option.textContent = district;
+                districtSelect.appendChild(option);
+            });
+        });
+    },
+    
+    performSoilAnalysis: function() {
+        const areaName = document.getElementById('areaNameInput').value;
+        const city = document.getElementById('cityInput').value;
+        const district = document.getElementById('districtInput').value;
+        const stateSelect = document.getElementById('stateSelect');
+        const pincode = document.getElementById('pincodeInput').value;
+        const country = document.getElementById('countryInput').value;
+        
+        const state = stateSelect.value;
+        const stateName = stateSelect.options[stateSelect.selectedIndex].text;
+        
+        if (!areaName || !city || !district || !state || !pincode) {
+            alert('Please fill in all required fields for soil analysis');
+            return;
+        }
+        
+        // Use the same soil detection logic as the existing system
+        let soilData = this.detectSoilFromState(stateName);
+        soilData.source = 'state_mapping';
+        
+        // Show comprehensive soil analysis modal using existing soil data
+        this.showManualSoilAnalysisResults(stateName, district, areaName, pincode, soilData);
+    },
+    
+    showManualSoilAnalysisResults: function(state, district, village, pincode, existingSoilData) {
+        // Convert existing soil data to comprehensive format
+        const soilData = this.convertExistingSoilDataToComprehensive(existingSoilData, state, district);
+        
+        // Create modal with the converted data (same as GPS version)
+        const modalHTML = `
+            <div class="modal fade" id="soilAnalysisModal" tabindex="-1" aria-labelledby="soilAnalysisModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header bg-warning text-dark">
+                            <h5 class="modal-title" id="soilAnalysisModalLabel">
+                                <i class="fas fa-mountain"></i> Soil Analysis Report
+                            </h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h6><i class="fas fa-map-marker-alt text-primary"></i> Location Details</h6>
+                                    <p><strong>State:</strong> ${state}</p>
+                                    <p><strong>District:</strong> ${district}</p>
+                                    ${village ? `<p><strong>Village:</strong> ${village}</p>` : ''}
+                                    ${pincode ? `<p><strong>Pincode:</strong> ${pincode}</p>` : ''}
+                                </div>
+                                <div class="col-md-6">
+                                    <h6><i class="fas fa-calendar text-info"></i> Analysis Date</h6>
+                                    <p>${new Date().toLocaleDateString('en-GB')}</p>
+                                    <p><small class="text-muted">Based on regional soil data</small></p>
+                                </div>
+                            </div>
+                            
+                            <hr>
+                            
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="card border-${soilData.soilType.color}">
+                                        <div class="card-body text-center">
+                                            <h5 class="card-title text-${soilData.soilType.color}">
+                                                <i class="fas fa-mountain"></i> Soil Type
+                                            </h5>
+                                            <h3 class="text-${soilData.soilType.color}">${soilData.soilType.name}</h3>
+                                            <p class="mb-0">${soilData.soilType.description}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="card border-info">
+                                        <div class="card-body text-center">
+                                            <h5 class="card-title text-info">
+                                                <i class="fas fa-balance-scale"></i> pH Level
+                                            </h5>
+                                            <h3 class="text-info">${soilData.ph.level}</h3>
+                                            <p class="mb-0">${soilData.ph.value}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-4">
+                                <h6><i class="fas fa-flask text-success"></i> Soil Properties</h6>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <p><strong>Texture:</strong> ${soilData.properties.texture}</p>
+                                        <p><strong>Drainage:</strong> ${soilData.properties.drainage}</p>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <p><strong>Water Retention:</strong> ${soilData.properties.waterRetention}</p>
+                                        <p><strong>Organic Matter:</strong> ${soilData.properties.organicMatter}</p>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <p><strong>Nutrient Level:</strong> ${soilData.properties.nutrients}</p>
+                                        <p><strong>Fertility:</strong> ${soilData.properties.fertility}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-4">
+                                <h6><i class="fas fa-exclamation-triangle text-warning"></i> Soil Characteristics</h6>
+                                <div class="alert alert-info">
+                                    ${soilData.characteristics}
+                                </div>
+                            </div>
+                            
+                            <div class="mt-4">
+                                <h6><i class="fas fa-lightbulb text-primary"></i> Soil Management Tips</h6>
+                                <ul class="list-unstyled">
+                                    ${soilData.managementTips.map(tip => `<li><i class="fas fa-check-circle text-success"></i> ${tip}</li>`).join('')}
+                                </ul>
+                            </div>
+                            
+                            <div class="mt-4">
+                                <h6><i class="fas fa-seedling text-success"></i> Suitable Crops</h6>
+                                <div class="d-flex flex-wrap gap-2">
+                                    ${soilData.suitableCrops.map(crop => `<span class="badge bg-success">${crop}</span>`).join('')}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-warning" onclick="locationManager.downloadSoilReport()">
+                                <i class="fas fa-download"></i> Download Report
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        // Remove existing modal if any
+        const existingModal = document.getElementById('soilAnalysisModal');
+        if (existingModal) {
+            existingModal.remove();
+        }
+        
+        // Add modal to body
+        document.body.insertAdjacentHTML('beforeend', modalHTML);
+        
+        // Show modal
+        const modal = new bootstrap.Modal(document.getElementById('soilAnalysisModal'));
+        modal.show();
+        
+        // Store soil data for download
+        this.currentSoilData = soilData;
+    },
+    
+    showSoilAnalysisResults: function(state, district, village, pincode) {
+        // Generate soil analysis based on location
+        const soilData = this.generateSoilAnalysisData(state, district);
+        
+        // Create modal or display results
+        const modalHTML = `
+            <div class="modal fade" id="soilAnalysisModal" tabindex="-1" aria-labelledby="soilAnalysisModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header bg-warning text-dark">
+                            <h5 class="modal-title" id="soilAnalysisModalLabel">
+                                <i class="fas fa-mountain"></i> Soil Analysis Report
+                            </h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h6><i class="fas fa-map-marker-alt text-primary"></i> Location Details</h6>
+                                    <p><strong>State:</strong> ${state}</p>
+                                    <p><strong>District:</strong> ${district}</p>
+                                    ${village ? `<p><strong>Village:</strong> ${village}</p>` : ''}
+                                    ${pincode ? `<p><strong>Pincode:</strong> ${pincode}</p>` : ''}
+                                </div>
+                                <div class="col-md-6">
+                                    <h6><i class="fas fa-calendar text-info"></i> Analysis Date</h6>
+                                    <p>${new Date().toLocaleDateString('en-GB')}</p>
+                                    <p><small class="text-muted">Based on regional soil data</small></p>
+                                </div>
+                            </div>
+                            
+                            <hr>
+                            
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="card border-${soilData.soilType.color}">
+                                        <div class="card-body text-center">
+                                            <h5 class="card-title text-${soilData.soilType.color}">
+                                                <i class="fas fa-mountain"></i> Soil Type
+                                            </h5>
+                                            <h3 class="text-${soilData.soilType.color}">${soilData.soilType.name}</h3>
+                                            <p class="mb-0">${soilData.soilType.description}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="card border-info">
+                                        <div class="card-body text-center">
+                                            <h5 class="card-title text-info">
+                                                <i class="fas fa-balance-scale"></i> pH Level
+                                            </h5>
+                                            <h3 class="text-info">${soilData.ph.level}</h3>
+                                            <p class="mb-0">${soilData.ph.value}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-4">
+                                <h6><i class="fas fa-flask text-success"></i> Soil Properties</h6>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <p><strong>Texture:</strong> ${soilData.properties.texture}</p>
+                                        <p><strong>Drainage:</strong> ${soilData.properties.drainage}</p>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <p><strong>Water Retention:</strong> ${soilData.properties.waterRetention}</p>
+                                        <p><strong>Organic Matter:</strong> ${soilData.properties.organicMatter}</p>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <p><strong>Nutrient Level:</strong> ${soilData.properties.nutrients}</p>
+                                        <p><strong>Fertility:</strong> ${soilData.properties.fertility}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-4">
+                                <h6><i class="fas fa-exclamation-triangle text-warning"></i> Soil Characteristics</h6>
+                                <div class="alert alert-info">
+                                    ${soilData.characteristics}
+                                </div>
+                            </div>
+                            
+                            <div class="mt-4">
+                                <h6><i class="fas fa-lightbulb text-primary"></i> Soil Management Tips</h6>
+                                <ul class="list-unstyled">
+                                    ${soilData.managementTips.map(tip => `<li><i class="fas fa-check-circle text-success"></i> ${tip}</li>`).join('')}
+                                </ul>
+                            </div>
+                            
+                            <div class="mt-4">
+                                <h6><i class="fas fa-seedling text-success"></i> Suitable Crops</h6>
+                                <div class="d-flex flex-wrap gap-2">
+                                    ${soilData.suitableCrops.map(crop => `<span class="badge bg-success">${crop}</span>`).join('')}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-warning" onclick="locationManager.downloadSoilReport()">
+                                <i class="fas fa-download"></i> Download Report
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        // Remove existing modal if any
+        const existingModal = document.getElementById('soilAnalysisModal');
+        if (existingModal) {
+            existingModal.remove();
+        }
+        
+        // Add modal to body
+        document.body.insertAdjacentHTML('beforeend', modalHTML);
+        
+        // Show modal
+        const modal = new bootstrap.Modal(document.getElementById('soilAnalysisModal'));
+        modal.show();
+        
+        // Store soil data for download
+        this.currentSoilData = soilData;
+    },
+    
+    generateSoilAnalysisData: function(state, district) {
+        // Use the same soil detection logic as the existing system
+        let soilData = null;
+        
+        // First try state-based detection (for manual locations)
+        if (state && state !== 'Unknown State') {
+            soilData = this.detectSoilFromState(state);
+        }
+        
+        // If no soil data from state, use coordinate-based detection
+        if (!soilData && this.currentLocation) {
+            soilData = this.determineSoilFromCoordinates(this.currentLocation.latitude, this.currentLocation.longitude);
+        }
+        
+        // Fallback to alluvial soil if nothing found
+        if (!soilData) {
+            soilData = this.soilDatabase.alluvial;
+        }
+        
+        // Convert the existing soil data format to the comprehensive analysis format
+        const soilTypeColorMap = {
+            'red': 'danger',
+            'black': 'dark', 
+            'alluvial': 'primary',
+            'laterite': 'warning',
+            'sandy': 'secondary',
+            'clay': 'success',
+            'loam': 'info'
+        };
+        
+        // Extract pH level and value from the existing format
+        let phLevel = 'Neutral';
+        let phValue = '7.0';
+        
+        if (soilData.ph) {
+            if (soilData.ph.includes('Acidic')) {
+                phLevel = 'Acidic';
+                // Extract numeric value from string like "5.5 - 6.5 (Acidic)"
+                const match = soilData.ph.match(/(\d+\.?\d*)\s*-\s*(\d+\.?\d*)/);
+                if (match) {
+                    phValue = ((parseFloat(match[1]) + parseFloat(match[2])) / 2).toFixed(1);
+                }
+            } else if (soilData.ph.includes('Alkaline')) {
+                phLevel = 'Alkaline';
+                const match = soilData.ph.match(/(\d+\.?\d*)\s*-\s*(\d+\.?\d*)/);
+                if (match) {
+                    phValue = ((parseFloat(match[1]) + parseFloat(match[2])) / 2).toFixed(1);
+                }
+            } else if (soilData.ph.includes('Neutral')) {
+                phLevel = 'Neutral';
+                phValue = '7.0';
+            }
+        }
+        
+        // Generate comprehensive soil characteristics based on existing data
+        let characteristics = '';
+        switch (soilData.name) {
+            case 'Red Soil':
+                characteristics = 'Red soil is formed due to weathering of crystalline rocks under tropical and sub-tropical climate. Rich in iron oxide which gives the characteristic red color. Generally well-drained but requires organic matter and lime for better fertility.';
+                break;
+            case 'Black Soil':
+                characteristics = 'Black soil, also known as regur soil, is formed from volcanic rocks (basalt). It has excellent water retention capacity and is highly fertile. The soil swells when wet and shrinks when dry, creating natural cracks.';
+                break;
+            case 'Alluvial Soil':
+                characteristics = 'Alluvial soil is deposited by rivers and is the most fertile soil type in India. It covers about 40% of the total land area and supports intensive agriculture in river valleys and deltas.';
+                break;
+            case 'Laterite Soil':
+                characteristics = 'Laterite soil is formed in tropical regions with high rainfall and temperature. It is highly leached and acidic due to heavy monsoon rains, requiring significant amendments for successful agriculture.';
+                break;
+            case 'Sandy Soil':
+                characteristics = 'Sandy soil has large particles with good drainage but poor water and nutrient retention. It warms up quickly in spring but requires frequent irrigation and fertilization.';
+                break;
+            case 'Clay Soil':
+                characteristics = 'Clay soil has very fine particles that stick together, creating poor drainage but excellent nutrient retention. It becomes hard when dry and sticky when wet.';
+                break;
+            case 'Loam Soil':
+                characteristics = 'Loam soil is considered ideal for agriculture as it contains balanced proportions of sand, silt, and clay. It has good drainage, water retention, and nutrient availability.';
+                break;
+            default:
+                characteristics = 'This soil type has mixed characteristics depending on local geological and climatic conditions.';
+        }
+        
+        return {
+            soilType: {
+                name: soilData.name,
+                color: soilTypeColorMap[soilData.color] || 'info',
+                description: soilData.name.replace(' Soil', '') + ' soil type'
+            },
+            ph: {
+                level: phLevel,
+                value: phValue
+            },
+            properties: {
+                texture: soilData.texture,
+                drainage: soilData.drainage,
+                waterRetention: soilData.waterRetention,
+                organicMatter: this.getOrganicMatterLevel(soilData.name),
+                nutrients: soilData.nutrients,
+                fertility: this.getFertilityLevel(soilData.name)
+            },
+            characteristics: characteristics,
+            managementTips: this.getManagementTips(soilData.improvement),
+            suitableCrops: soilData.crops,
+            analysisDate: new Date().toISOString(),
+            location: { state, district }
+        };
+    },
+    
+    getOrganicMatterLevel: function(soilName) {
+        const organicMatterMap = {
+            'Red Soil': 'Low to Medium',
+            'Black Soil': 'Medium to High', 
+            'Alluvial Soil': 'Medium to High',
+            'Laterite Soil': 'Very Low',
+            'Sandy Soil': 'Very Low',
+            'Clay Soil': 'Medium',
+            'Loam Soil': 'High'
+        };
+        return organicMatterMap[soilName] || 'Medium';
+    },
+    
+    getFertilityLevel: function(soilName) {
+        const fertilityMap = {
+            'Red Soil': 'Medium',
+            'Black Soil': 'High',
+            'Alluvial Soil': 'Very High', 
+            'Laterite Soil': 'Low',
+            'Sandy Soil': 'Low',
+            'Clay Soil': 'Medium to High',
+            'Loam Soil': 'High'
+        };
+        return fertilityMap[soilName] || 'Medium';
+    },
+    
+    getManagementTips: function(improvementText) {
+        // Convert the improvement text into an array of management tips
+        if (!improvementText) return ['Regular soil testing recommended', 'Maintain organic matter levels'];
+        
+        // Split by common separators and clean up
+        const tips = improvementText.split(/[,;]/).map(tip => tip.trim()).filter(tip => tip.length > 0);
+        
+        // Ensure we have at least a few tips
+        if (tips.length < 3) {
+            tips.push('Regular soil testing every 6 months');
+            tips.push('Maintain proper crop rotation');
+        }
+        
+        return tips;
+    },
+    
+    downloadSoilReport: function() {
+        if (!this.currentSoilData) {
+            alert('No soil analysis data available');
+            return;
+        }
+        
+        const reportContent = `
+SOIL ANALYSIS REPORT
+===================
+
+Location: ${this.currentSoilData.location.district}, ${this.currentSoilData.location.state}
+Analysis Date: ${new Date(this.currentSoilData.analysisDate).toLocaleDateString()}
+
+SOIL TYPE ANALYSIS
+------------------
+Soil Type: ${this.currentSoilData.soilType.name}
+Description: ${this.currentSoilData.soilType.description}
+pH Level: ${this.currentSoilData.ph.level} (${this.currentSoilData.ph.value})
+
+SOIL PROPERTIES
+---------------
+Texture: ${this.currentSoilData.properties.texture}
+Drainage: ${this.currentSoilData.properties.drainage}
+Water Retention: ${this.currentSoilData.properties.waterRetention}
+Organic Matter: ${this.currentSoilData.properties.organicMatter}
+Nutrient Level: ${this.currentSoilData.properties.nutrients}
+Fertility: ${this.currentSoilData.properties.fertility}
+
+SOIL CHARACTERISTICS
+--------------------
+${this.currentSoilData.characteristics}
+
+MANAGEMENT RECOMMENDATIONS
+--------------------------
+${this.currentSoilData.managementTips.map((tip, i) => `${i + 1}. ${tip}`).join('\n')}
+
+SUITABLE CROPS
+--------------
+${this.currentSoilData.suitableCrops.join(', ')}
+
+Generated by AnnadataAI - Smart Farming Assistant
+        `;
+        
+        const blob = new Blob([reportContent], { type: 'text/plain' });
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `soil_analysis_report_${new Date().toISOString().split('T')[0]}.txt`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(url);
+        
+        alert('Soil analysis report downloaded successfully!');
+    }
+};
+
+// Initialize when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    locationManager.init();
+});
+    </script>
+    
+    <!-- Include translations script -->
+    <script src="/static/translations.js"></script>
+</body>
+</html>

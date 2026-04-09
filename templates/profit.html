@@ -1,0 +1,1485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AnnadataAI - AI-Powered Profit Prediction</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ===== RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #00b894;
+            --primary-dark: #00a085;
+            --secondary: #0984e3;
+            --dark: #2d3436;
+            --light: #f9f9f9;
+            --gray: #636e72;
+            --light-gray: #dfe6e9;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: var(--light);
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ===== TYPOGRAPHY ===== */
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            color: var(--dark);
+        }
+
+        h3 {
+            font-size: 1.8rem;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            color: var(--gray);
+            font-size: 1.1rem;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title span {
+            color: var(--primary);
+        }
+
+        /* ===== BUTTONS ===== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 184, 148, 0.3);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* ===== NAVBAR ===== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+            padding: 20px 0;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        .logo i {
+            color: var(--primary);
+            font-size: 1.8rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .settings-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 42px;
+            height: 42px;
+            background: #2d3436;
+            color: white;
+            border-radius: 50%;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            cursor: pointer;
+            margin-right: 15px;
+        }
+
+        .settings-icon:hover {
+            background: #1e272e;
+            transform: rotate(20deg);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark);
+            cursor: pointer;
+        }
+
+        /* ===== LANGUAGE SELECTOR ===== */
+        .language-selector {
+            position: relative;
+            margin-left: 20px;
+        }
+
+        .language-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 15px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .language-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .language-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            min-width: 200px;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: var(--transition);
+            margin-top: 10px;
+        }
+
+        .language-menu.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .language-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            cursor: pointer;
+            transition: var(--transition);
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .language-option:last-child {
+            border-bottom: none;
+        }
+
+        .language-option:hover {
+            background: var(--light);
+            color: var(--primary);
+        }
+
+        /* ===== PROFIT PREDICTION PAGE STYLES ===== */
+        .profit-prediction {
+            padding: 140px 0 80px;
+            background: linear-gradient(135deg, rgba(0, 184, 148, 0.05) 0%, rgba(152, 251, 152, 0.1) 100%);
+            min-height: 100vh;
+        }
+
+        .prediction-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        @media (max-width: 992px) {
+            .prediction-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .prediction-form {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: var(--dark);
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid var(--light-gray);
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: var(--transition);
+            font-family: inherit;
+            background: white;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(0, 184, 148, 0.1);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .prediction-results {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+
+        .prediction-results.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .result-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--light-gray);
+        }
+
+        .profit-indicator {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .profit-positive {
+            color: var(--primary);
+        }
+
+        .profit-negative {
+            color: #e74c3c;
+        }
+
+        .result-metric {
+            margin-bottom: 20px;
+            padding: 20px;
+            background: var(--light);
+            border-radius: 10px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .metric-label {
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .metric-value {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .metric-subtext {
+            font-size: 0.9rem;
+            color: var(--gray);
+            margin-top: 5px;
+        }
+
+        .weather-impact {
+            background: linear-gradient(135deg, rgba(9, 132, 227, 0.1) 0%, rgba(9, 132, 227, 0.05) 100%);
+            border-left-color: var(--secondary);
+        }
+
+        .market-impact {
+            background: linear-gradient(135deg, rgba(243, 156, 18, 0.1) 0%, rgba(243, 156, 18, 0.05) 100%);
+            border-left-color: #f39c12;
+        }
+
+        .analysis-section {
+            background: white;
+            padding: 60px 0;
+            border-radius: 20px;
+            margin-top: 40px;
+        }
+
+        .analysis-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .analysis-card {
+            background: var(--light);
+            padding: 30px;
+            border-radius: 15px;
+            transition: var(--transition);
+            border: 1px solid transparent;
+        }
+
+        .analysis-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+            border-color: var(--primary);
+        }
+
+        .analysis-card h3 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            color: var(--dark);
+            font-size: 1.3rem;
+        }
+
+        .risk-level {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+
+        .risk-low {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .risk-medium {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .risk-high {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .crop-timeline {
+            margin-top: 30px;
+            padding: 30px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            border-radius: 15px;
+        }
+
+        .timeline-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .timeline-steps {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            margin-top: 30px;
+        }
+
+        .timeline-steps::before {
+            content: '';
+            position: absolute;
+            top: 25px;
+            left: 10%;
+            width: 80%;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .timeline-step {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            flex: 1;
+        }
+
+        .timeline-icon {
+            width: 50px;
+            height: 50px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+
+        .timeline-date {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 10px;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 40px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            margin: 30px 0;
+        }
+
+        .loading.active {
+            display: block;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid var(--light-gray);
+            border-top: 5px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .crop-database {
+            margin-top: 50px;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+        }
+
+        .database-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .crop-item {
+            padding: 20px;
+            background: var(--light);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+
+        .crop-item:hover {
+            border-color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .crop-item.active {
+            border-color: var(--primary);
+            background: rgba(0, 184, 148, 0.1);
+        }
+
+        .crop-name {
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 5px;
+            font-size: 1.1rem;
+        }
+
+        .crop-duration {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        .crop-profitability {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+
+        .profit-high {
+            background: rgba(0, 184, 148, 0.2);
+            color: var(--primary-dark);
+        }
+
+        .profit-medium {
+            background: rgba(243, 156, 18, 0.2);
+            color: #d68910;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 80px 0 30px;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+
+        .footer-logo {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .footer-links h3 {
+            color: white;
+            margin-bottom: 25px;
+            font-size: 1.3rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 992px) {
+            h1 {
+                font-size: 2.8rem;
+            }
+            
+            h2 {
+                font-size: 2.2rem;
+            }
+            
+            h3 {
+                font-size: 1.5rem;
+            }
+            
+            .prediction-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .analysis-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .database-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .profit-prediction {
+                padding: 120px 0 60px;
+            }
+            
+            .prediction-form,
+            .prediction-results {
+                padding: 30px 20px;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-actions {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .timeline-steps {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            .timeline-steps::before {
+                top: 0;
+                left: 50%;
+                width: 3px;
+                height: 80%;
+                transform: translateX(-50%);
+            }
+            
+            .database-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            h3 {
+                font-size: 1.3rem;
+            }
+            
+            .profit-indicator {
+                font-size: 2.2rem;
+            }
+            
+            .metric-value {
+                font-size: 1.2rem;
+            }
+        }
+
+        .mb-4 {
+            margin-bottom: 1.5rem !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-seedling"></i>
+                <span>AnnadataAI</span>
+            </a>
+            
+            <div class="nav-links">
+                <a href="index.html">🏠 Home</a>
+                <a href="location.html">📍 Location</a>
+                <a href="crops.html">🌱 Crops</a>
+                <a href="water.html">💧 Water</a>
+                <a href="diseases.html">⚠️ Diseases</a>
+                <a href="calendar.html">📅 Calendar</a>
+                <a href="/profit_prediction" style="color: var(--primary);">📈 Profit Prediction</a>
+            </div>
+            
+            <div class="language-selector">
+                <button class="language-btn" onclick="toggleLanguageMenu()">
+                    <i class="fas fa-globe"></i>
+                    <span id="current-language">EN</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="language-menu" id="languageMenu">
+                    <div class="language-option" onclick="changeLanguage('en')">
+                        <span class="flag">🇺🇸</span>
+                        <span>English</span>
+                    </div>
+                    <div class="language-option" onclick="changeLanguage('hi')">
+                        <span class="flag">🇮🇳</span>
+                        <span>हिंदी</span>
+                    </div>
+                    <div class="language-option" onclick="changeLanguage('te')">
+                        <span class="flag">🇮🇳</span>
+                        <span>తెలుగు</span>
+                    </div>
+                </div>
+            </div>
+            
+            <a href="/settings" class="settings-icon" title="Settings">
+                <i class="fas fa-cog"></i>
+            </a>
+            
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Profit Prediction Section -->
+    <section class="profit-prediction">
+        <div class="container">
+            <div class="section-title">
+                <h2>AI <span>Profit Prediction</span> Engine</h2>
+                <p>Analyze crop timeframes, weather patterns, and market conditions for accurate profit forecasting</p>
+            </div>
+            
+            <div class="prediction-container">
+                <!-- Input Form -->
+                <div class="prediction-form">
+                    <h3>Enter Crop Details</h3>
+                    <p class="mb-4">Provide information about your crop and get AI-powered profit predictions</p>
+                    
+                    <div class="form-group">
+                        <label for="cropName"><i class="fas fa-seedling"></i> Crop Name</label>
+                        <select class="form-control" id="cropName" required>
+                            <option value="">Select a crop...</option>
+                            <option value="wheat">Wheat</option>
+                            <option value="corn" selected>Corn</option>
+                            <option value="rice">Rice</option>
+                            <option value="soybean">Soybean</option>
+                            <option value="cotton">Cotton</option>
+                            <option value="sugarcane">Sugarcane</option>
+                            <option value="potato">Potato</option>
+                            <option value="tomato">Tomato</option>
+                            <option value="strawberry">Strawberry</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="plantingMonth"><i class="fas fa-calendar-alt"></i> Planting Month</label>
+                            <select class="form-control" id="plantingMonth" required>
+                                <option value="">Select month...</option>
+                                <option value="1" selected>January</option>
+                                <option value="2">February</option>
+                                <option value="3">March</option>
+                                <option value="4">April</option>
+                                <option value="5">May</option>
+                                <option value="6">June</option>
+                                <option value="7">July</option>
+                                <option value="8">August</option>
+                                <option value="9">September</option>
+                                <option value="10">October</option>
+                                <option value="11">November</option>
+                                <option value="12">December</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="region"><i class="fas fa-map-marker-alt"></i> Region</label>
+                            <select class="form-control" id="region" required>
+                                <option value="">Select region...</option>
+                                <option value="north">North India</option>
+                                <option value="south" selected>South India</option>
+                                <option value="east">East India</option>
+                                <option value="west">West India</option>
+                                <option value="central">Central India</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="area"><i class="fas fa-ruler-combined"></i> Cultivation Area (acres)</label>
+                        <input type="number" class="form-control" id="area" min="1" max="1000" value="10" required>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button class="btn btn-primary" onclick="analyzeProfit()">
+                            <i class="fas fa-chart-line"></i> Analyze Profit
+                        </button>
+                        <button class="btn btn-secondary" onclick="resetForm()">
+                            <i class="fas fa-redo"></i> Reset
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Results Display -->
+                <div class="prediction-results" id="predictionResults">
+                    <div class="result-header">
+                        <div class="profit-indicator profit-positive" id="profitIndicator">+₹28,400</div>
+                        <h3 id="cropResultTitle">Corn Profit Prediction</h3>
+                        <p id="predictionSummary">Based on January planting and South India region conditions</p>
+                    </div>
+                    
+                    <div class="result-metric">
+                        <div class="metric-label">
+                            <i class="fas fa-calendar-check"></i> Growing Duration
+                        </div>
+                        <div class="metric-value" id="growingDuration">90-120 days</div>
+                        <div class="metric-subtext" id="harvestTimeline">Harvest expected in April-May</div>
+                    </div>
+                    
+                    <div class="result-metric weather-impact">
+                        <div class="metric-label">
+                            <i class="fas fa-cloud-sun"></i> Weather Impact
+                        </div>
+                        <div class="metric-value" id="weatherImpact">Medium Risk</div>
+                        <div class="metric-subtext">April heat critical for grain filling</div>
+                    </div>
+                    
+                    <div class="result-metric market-impact">
+                        <div class="metric-label">
+                            <i class="fas fa-chart-bar"></i> Market Outlook
+                        </div>
+                        <div class="metric-value" id="marketOutlook">Stable</div>
+                        <div class="metric-subtext">Normal demand with +5% seasonal price premium</div>
+                    </div>
+                    
+                    <div class="result-metric">
+                        <div class="metric-label">
+                            <i class="fas fa-rupee-sign"></i> Estimated Profit/Loss
+                        </div>
+                        <div class="metric-value" id="estimatedProfit">₹28,400 per acre</div>
+                        <div class="metric-subtext">ROI: 28% | Break-even: ₹25,000/acre</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Loading Animation -->
+            <div class="loading" id="loadingAnimation">
+                <div class="spinner"></div>
+                <h3>Analyzing Profit Factors...</h3>
+                <p>Checking weather patterns, market trends, and crop calendars</p>
+            </div>
+            
+            <!-- Crop Timeline Visualization -->
+            <div class="crop-timeline" id="cropTimeline">
+                <div class="timeline-header">
+                    <h3>Crop Growth Timeline</h3>
+                    <p>Key stages from planting to harvest</p>
+                </div>
+                <div class="timeline-steps">
+                    <div class="timeline-step">
+                        <div class="timeline-icon">
+                            <i class="fas fa-seedling"></i>
+                        </div>
+                        <div class="timeline-label">Planting</div>
+                        <div class="timeline-date" id="plantingDate">Jan 15</div>
+                    </div>
+                    <div class="timeline-step">
+                        <div class="timeline-icon">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <div class="timeline-label">Vegetative</div>
+                        <div class="timeline-date" id="vegetativeDate">Feb 20</div>
+                    </div>
+                    <div class="timeline-step">
+                        <div class="timeline-icon">
+                            <i class="fas fa-flower"></i>
+                        </div>
+                        <div class="timeline-label">Reproductive</div>
+                        <div class="timeline-date" id="reproductiveDate">Mar 15</div>
+                    </div>
+                    <div class="timeline-step">
+                        <div class="timeline-icon">
+                            <i class="fas fa-tractor"></i>
+                        </div>
+                        <div class="timeline-label">Harvest</div>
+                        <div class="timeline-date" id="harvestDate">Apr 20</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Detailed Analysis -->
+            <div class="analysis-section">
+                <div class="section-title">
+                    <h3>Detailed <span>Risk Analysis</span></h3>
+                    <p>Factors influencing your profit prediction</p>
+                </div>
+                
+                <div class="analysis-grid">
+                    <div class="analysis-card">
+                        <h3>
+                            <i class="fas fa-temperature-high"></i> Weather Risks
+                            <span class="risk-level risk-medium" id="weatherRisk">Medium</span>
+                        </h3>
+                        <p><strong>Critical Period:</strong> April heat impacts grain filling most</p>
+                        <p><strong>Temperature:</strong> Optimal range: 25-30°C during reproductive stage</p>
+                        <p><strong>Rainfall:</strong> 400-500mm required, irrigation needed in summer</p>
+                    </div>
+                    
+                    <div class="analysis-card">
+                        <h3>
+                            <i class="fas fa-chart-line"></i> Market Risks
+                            <span class="risk-level risk-low" id="marketRisk">Low</span>
+                        </h3>
+                        <p><strong>Seasonal Demand:</strong> Stable prices with moderate demand</p>
+                        <p><strong>Competition:</strong> Low regional supply during this period</p>
+                        <p><strong>Export Potential:</strong> Good opportunities to international markets</p>
+                    </div>
+                    
+                    <div class="analysis-card">
+                        <h3>
+                            <i class="fas fa-cogs"></i> Production Risks
+                            <span class="risk-level risk-medium" id="productionRisk">Medium</span>
+                        </h3>
+                        <p><strong>Pest/Disease:</strong> Monitor for stem borers and leaf blight</p>
+                        <p><strong>Input Costs:</strong> Fertilizer prices stable, irrigation costs higher</p>
+                        <p><strong>Labor:</strong> Good availability during this season</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Crop Database -->
+            <div class="crop-database">
+                <h3>Recommended Crops for Your Region</h3>
+                <p>Based on your selected month and region, here are optimal crops:</p>
+                
+                <div class="database-grid">
+                    <div class="crop-item" onclick="selectCrop('corn')">
+                        <div class="crop-name">Corn (Maize)</div>
+                        <div class="crop-duration">90-120 days</div>
+                        <div class="crop-profitability profit-high">High Profit</div>
+                        <p class="metric-subtext">Best: Jan-Feb | Yield: 25-30 quintals/acre</p>
+                    </div>
+                    
+                    <div class="crop-item" onclick="selectCrop('rice')">
+                        <div class="crop-name">Rice</div>
+                        <div class="crop-duration">120-150 days</div>
+                        <div class="crop-profitability profit-medium">Medium Profit</div>
+                        <p class="metric-subtext">Best: Jun-Jul | Yield: 20-25 quintals/acre</p>
+                    </div>
+                    
+                    <div class="crop-item" onclick="selectCrop('tomato')">
+                        <div class="crop-name">Tomato</div>
+                        <div class="crop-duration">90-100 days</div>
+                        <div class="crop-profitability profit-high">High Profit</div>
+                        <p class="metric-subtext">Best: Oct-Nov | Yield: 15-20 tons/acre</p>
+                    </div>
+                    
+                    <div class="crop-item" onclick="selectCrop('cotton')">
+                        <div class="crop-name">Cotton</div>
+                        <div class="crop-duration">150-180 days</div>
+                        <div class="crop-profitability profit-medium">Medium Profit</div>
+                        <p class="metric-subtext">Best: May-Jun | Yield: 10-15 quintals/acre</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">
+                        <i class="fas fa-seedling"></i> AnnadataAI
+                    </div>
+                    <p>Empowering farmers with artificial intelligence for sustainable and profitable agriculture.</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Product</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="profit_prediction.html">Profit Prediction</a></li>
+                        <li><a href="crops.html">Crop Advisory</a></li>
+                        <li><a href="#">Market Insights</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Farmer Training</a></li>
+                        <li><a href="#">API Documentation</a></li>
+                        <li><a href="#">Contact Support</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Data Security</a></li>
+                        <li><a href="#">Compliance</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2024 AnnadataAI Assistant. All rights reserved. | Hackathon Project</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Crop database with realistic data
+        const cropDatabase = {
+            'wheat': {
+                name: 'Wheat',
+                duration: '110-130 days',
+                optimalMonths: [10, 11, 12],
+                regions: ['north', 'central'],
+                profitPerAcre: 35000,
+                weatherRisk: 'High',
+                marketRisk: 'Low',
+                productionRisk: 'Medium',
+                criticalMonth: 2,
+                weatherImpact: 'Winter rainfall critical'
+            },
+            'corn': {
+                name: 'Corn (Maize)',
+                duration: '90-120 days',
+                optimalMonths: [1, 4, 5, 6],
+                regions: ['north', 'central', 'south'],
+                profitPerAcre: 45600,
+                weatherRisk: 'Medium',
+                marketRisk: 'Low',
+                productionRisk: 'Medium',
+                criticalMonth: 4,
+                weatherImpact: 'April heat critical for grain filling'
+            },
+            'rice': {
+                name: 'Rice',
+                duration: '120-150 days',
+                optimalMonths: [6, 7, 8],
+                regions: ['east', 'south'],
+                profitPerAcre: 52000,
+                weatherRisk: 'High',
+                marketRisk: 'Medium',
+                productionRisk: 'High',
+                criticalMonth: 8,
+                weatherImpact: 'Adequate water supply essential'
+            },
+            'soybean': {
+                name: 'Soybean',
+                duration: '100-110 days',
+                optimalMonths: [6, 7],
+                regions: ['central', 'west'],
+                profitPerAcre: 38000,
+                weatherRisk: 'Medium',
+                marketRisk: 'Medium',
+                productionRisk: 'Low',
+                criticalMonth: 8,
+                weatherImpact: 'Moderate rainfall needed'
+            },
+            'cotton': {
+                name: 'Cotton',
+                duration: '150-180 days',
+                optimalMonths: [5, 6],
+                regions: ['north', 'west'],
+                profitPerAcre: 65000,
+                weatherRisk: 'Low',
+                marketRisk: 'High',
+                productionRisk: 'Medium',
+                criticalMonth: 9,
+                weatherImpact: 'Dry weather during picking'
+            },
+            'tomato': {
+                name: 'Tomato',
+                duration: '90-100 days',
+                optimalMonths: [10, 11, 1, 2],
+                regions: ['south', 'west', 'north'],
+                profitPerAcre: 75000,
+                weatherRisk: 'Medium',
+                marketRisk: 'High',
+                productionRisk: 'High',
+                criticalMonth: 11,
+                weatherImpact: 'Temperature sensitive during flowering'
+            },
+            'strawberry': {
+                name: 'Strawberry',
+                duration: '60-90 days',
+                optimalMonths: [10, 11],
+                regions: ['south', 'west'],
+                profitPerAcre: 120000,
+                weatherRisk: 'High',
+                marketRisk: 'Medium',
+                productionRisk: 'High',
+                criticalMonth: 11,
+                weatherImpact: 'Temperature critical 30-60 days before harvest'
+            }
+        };
+
+        // Market trends by month
+        const marketTrends = {
+            1: { outlook: 'Stable', premium: 0.05 },
+            2: { outlook: 'Growing', premium: 0.10 },
+            3: { outlook: 'Peak', premium: 0.15 },
+            4: { outlook: 'Declining', premium: 0.08 },
+            5: { outlook: 'Stable', premium: 0.05 },
+            6: { outlook: 'Growing', premium: 0.12 },
+            7: { outlook: 'Peak', premium: 0.18 },
+            8: { outlook: 'High', premium: 0.15 },
+            9: { outlook: 'Stable', premium: 0.07 },
+            10: { outlook: 'Growing', premium: 0.12 },
+            11: { outlook: 'Peak', premium: 0.20 },
+            12: { outlook: 'High', premium: 0.16 }
+        };
+
+        // Weather patterns by region and month
+        const weatherPatterns = {
+            'north': {
+                1: { risk: 'Low', condition: 'Cool, dry' },
+                2: { risk: 'Low', condition: 'Moderate' },
+                3: { risk: 'Low', condition: 'Warming' },
+                4: { risk: 'Medium', condition: 'Hot, dry' },
+                5: { risk: 'High', condition: 'Very hot' },
+                6: { risk: 'Medium', condition: 'Monsoon starts' },
+                7: { risk: 'Medium', condition: 'Heavy rain' },
+                8: { risk: 'Low', condition: 'Rainy' },
+                9: { risk: 'Low', condition: 'Reducing rain' },
+                10: { risk: 'Low', condition: 'Pleasant' },
+                11: { risk: 'Low', condition: 'Cool' },
+                12: { risk: 'Low', condition: 'Cold' }
+            },
+            'south': {
+                1: { risk: 'Low', condition: 'Moderate' },
+                2: { risk: 'Low', condition: 'Warming' },
+                3: { risk: 'Medium', condition: 'Hot' },
+                4: { risk: 'High', condition: 'Very hot' },
+                5: { risk: 'High', condition: 'Pre-monsoon' },
+                6: { risk: 'Medium', condition: 'Monsoon' },
+                7: { risk: 'Medium', condition: 'Heavy rain' },
+                8: { risk: 'Medium', condition: 'Rainy' },
+                9: { risk: 'Low', condition: 'Reducing rain' },
+                10: { risk: 'Low', condition: 'Post-monsoon' },
+                11: { risk: 'Low', condition: 'Moderate' },
+                12: { risk: 'Low', condition: 'Cool' }
+            }
+        };
+
+        function analyzeProfit() {
+            const cropSelect = document.getElementById('cropName');
+            const monthSelect = document.getElementById('plantingMonth');
+            const regionSelect = document.getElementById('region');
+            const areaInput = document.getElementById('area');
+            
+            if (!cropSelect.value || !monthSelect.value || !regionSelect.value) {
+                alert('Please fill in all required fields');
+                return;
+            }
+            
+            // Show loading animation
+            document.getElementById('loadingAnimation').classList.add('active');
+            document.getElementById('predictionResults').classList.remove('active');
+            document.getElementById('cropTimeline').style.opacity = '0.5';
+            
+            // Simulate AI analysis delay
+            setTimeout(() => {
+                displayResults(
+                    cropSelect.value,
+                    parseInt(monthSelect.value),
+                    regionSelect.value,
+                    parseFloat(areaInput.value)
+                );
+            }, 1500);
+        }
+
+        function displayResults(cropType, plantingMonth, region, area) {
+            const crop = cropDatabase[cropType];
+            const market = marketTrends[plantingMonth];
+            const weather = weatherPatterns[region]?.[plantingMonth] || { risk: 'Medium', condition: 'Variable' };
+            
+            // Calculate harvest month
+            const durationDays = crop.duration.split('-')[0];
+            const harvestMonth = (plantingMonth + Math.floor(parseInt(durationDays) / 30)) % 12 || 12;
+            
+            // Calculate profit with adjustments
+            let baseProfit = crop.profitPerAcre;
+            let marketAdjustment = 1 + (market?.premium || 0);
+            let weatherAdjustment = weather.risk === 'High' ? 0.8 : weather.risk === 'Medium' ? 0.9 : 1.1;
+            
+            // Region suitability adjustment
+            const regionSuitability = crop.regions.includes(region) ? 1.2 : 0.8;
+            
+            // Month suitability adjustment
+            const monthSuitability = crop.optimalMonths.includes(plantingMonth) ? 1.3 : 0.7;
+            
+            const adjustedProfit = Math.round(baseProfit * marketAdjustment * weatherAdjustment * 
+                                            regionSuitability * monthSuitability);
+            
+            // Update results display
+            document.getElementById('cropResultTitle').textContent = `${crop.name} Profit Prediction`;
+            document.getElementById('predictionSummary').textContent = 
+                `Based on ${getMonthName(plantingMonth)} planting and ${getRegionName(region)} region conditions`;
+            
+            document.getElementById('growingDuration').textContent = crop.duration;
+            document.getElementById('harvestTimeline').textContent = 
+                `Harvest expected in ${getMonthName(harvestMonth)}`;
+            
+            document.getElementById('weatherImpact').textContent = `${weather.risk} Risk`;
+            document.getElementById('weatherImpact').nextElementSibling.textContent = crop.weatherImpact;
+            
+            document.getElementById('marketOutlook').textContent = market?.outlook || 'Stable';
+            const totalProfit = adjustedProfit * area;
+            document.getElementById('estimatedProfit').textContent = `₹${totalProfit.toLocaleString()} total (₹${adjustedProfit.toLocaleString()}/acre)`;
+            
+            // Update profit indicator
+            const profitIndicator = document.getElementById('profitIndicator');
+            profitIndicator.textContent = adjustedProfit >= 0 ? `+₹${adjustedProfit.toLocaleString()}` : `-₹${Math.abs(adjustedProfit).toLocaleString()}`;
+            profitIndicator.className = `profit-indicator ${adjustedProfit >= 0 ? 'profit-positive' : 'profit-negative'}`;
+            
+            // Update risk levels
+            updateRiskLevel('weatherRisk', crop.weatherRisk);
+            updateRiskLevel('marketRisk', crop.marketRisk);
+            updateRiskLevel('productionRisk', crop.productionRisk);
+            
+            // Update timeline
+            updateTimeline(plantingMonth, parseInt(durationDays));
+            
+            // Hide loading, show results
+            document.getElementById('loadingAnimation').classList.remove('active');
+            document.getElementById('predictionResults').classList.add('active');
+            document.getElementById('cropTimeline').style.opacity = '1';
+        }
+
+        function updateRiskLevel(elementId, riskLevel) {
+            const element = document.getElementById(elementId);
+            element.textContent = riskLevel;
+            element.className = `risk-level risk-${riskLevel.toLowerCase()}`;
+        }
+
+        function updateTimeline(plantingMonth, durationDays) {
+            const plantingDate = new Date(2024, plantingMonth - 1, 15);
+            const vegetativeDate = new Date(plantingDate);
+            vegetativeDate.setDate(vegetativeDate.getDate() + Math.floor(durationDays * 0.3));
+            
+            const reproductiveDate = new Date(plantingDate);
+            reproductiveDate.setDate(reproductiveDate.getDate() + Math.floor(durationDays * 0.6));
+            
+            const harvestDate = new Date(plantingDate);
+            harvestDate.setDate(harvestDate.getDate() + durationDays);
+            
+            document.getElementById('plantingDate').textContent = formatDate(plantingDate);
+            document.getElementById('vegetativeDate').textContent = formatDate(vegetativeDate);
+            document.getElementById('reproductiveDate').textContent = formatDate(reproductiveDate);
+            document.getElementById('harvestDate').textContent = formatDate(harvestDate);
+        }
+
+        function formatDate(date) {
+            return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+        }
+
+        function getMonthName(monthNumber) {
+            const months = ['January', 'February', 'March', 'April', 'May', 'June',
+                          'July', 'August', 'September', 'October', 'November', 'December'];
+            return months[monthNumber - 1];
+        }
+
+        function getRegionName(region) {
+            const regions = {
+                'north': 'North India',
+                'south': 'South India',
+                'east': 'East India',
+                'west': 'West India',
+                'central': 'Central India'
+            };
+            return regions[region] || region;
+        }
+
+        function selectCrop(cropType) {
+            document.getElementById('cropName').value = cropType;
+            
+            // Highlight selected crop in database
+            document.querySelectorAll('.crop-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            event.currentTarget.classList.add('active');
+        }
+
+        function resetForm() {
+            document.getElementById('cropName').value = 'corn';
+            document.getElementById('plantingMonth').value = '1';
+            document.getElementById('region').value = 'south';
+            document.getElementById('area').value = '10';
+            document.getElementById('predictionResults').classList.remove('active');
+            
+            // Reset crop selection highlights
+            document.querySelectorAll('.crop-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            document.querySelector('.crop-item').classList.add('active');
+        }
+
+        // Initialize with default values
+        window.onload = function() {
+            // Set default values as shown in your image
+            document.getElementById('cropName').value = 'corn';
+            document.getElementById('plantingMonth').value = '1';
+            document.getElementById('region').value = 'south';
+            document.getElementById('area').value = '10';
+            
+            // Highlight default crop
+            document.querySelectorAll('.crop-item')[0].classList.add('active');
+            
+            // Mobile menu functionality
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const navLinks = document.querySelector('.nav-links');
+            
+            mobileMenuBtn.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+            
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                });
+            });
+            
+            // Language selector functionality
+            function toggleLanguageMenu() {
+                document.getElementById('languageMenu').classList.toggle('active');
+            }
+
+            window.toggleLanguageMenu = toggleLanguageMenu;
+
+            function changeLanguage(lang) {
+                document.getElementById('current-language').textContent = lang.toUpperCase();
+                document.getElementById('languageMenu').classList.remove('active');
+            }
+
+            window.changeLanguage = changeLanguage;
+
+            // Close language menu when clicking outside
+            document.addEventListener('click', (event) => {
+                const languageMenu = document.getElementById('languageMenu');
+                const languageBtn = document.querySelector('.language-btn');
+                
+                if (!languageMenu.contains(event.target) && !languageBtn.contains(event.target)) {
+                    languageMenu.classList.remove('active');
+                }
+            });
+        }
+    </script>
+</body>
+</html>

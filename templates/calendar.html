@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📅 Farming Calendar - AnnadataAI</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #00b894;
+            --primary-dark: #00a085;
+            --secondary: #0984e3;
+            --dark: #2d3436;
+            --light: #f9f9f9;
+            --gray: #636e72;
+            --light-gray: #dfe6e9;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: linear-gradient(135deg, rgba(255, 193, 7, 0.05) 0%, rgba(255, 235, 59, 0.05) 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+            padding: 20px 0;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        .logo i {
+            color: var(--primary);
+            font-size: 1.8rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* ===== LANGUAGE SELECTOR ===== */
+        .language-selector {
+            position: relative;
+            margin-left: 20px;
+        }
+
+        .language-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 15px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .language-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .language-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            min-width: 200px;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: var(--transition);
+            margin-top: 10px;
+        }
+
+        .language-menu.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .language-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            cursor: pointer;
+            transition: var(--transition);
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .language-option:last-child {
+            border-bottom: none;
+        }
+
+        .language-option:hover {
+            background: var(--light);
+            color: var(--primary);
+        }
+
+        .language-option .flag {
+            font-size: 1.2rem;
+        }
+
+        .language-option span:last-child {
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+        }
+
+        .settings-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 42px;
+            height: 42px;
+            background: #2d3436;
+            color: white;
+            border-radius: 50%;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            cursor: pointer;
+            margin-right: 15px;
+        }
+
+        .settings-icon:hover {
+            background: #1e272e;
+            transform: rotate(20deg);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark);
+            cursor: pointer;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 150px 0 80px;
+        }
+
+        /* Page Header */
+        .page-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+
+        .page-header .icon {
+            font-size: 4rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .page-header p {
+            color: var(--gray);
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Calendar Controls */
+        .calendar-controls {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            margin-bottom: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .month-selector {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .month-selector button {
+            background: var(--light);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .month-selector button:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .month-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--dark);
+            min-width: 150px;
+            text-align: center;
+        }
+
+        .season-selector {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .season-btn {
+            padding: 10px 20px;
+            border: 2px solid var(--light-gray);
+            background: white;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .season-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .season-btn:hover:not(.active) {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        /* Calendar Grid */
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .month-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .month-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .month-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .month-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .month-season {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .month-body {
+            padding: 25px;
+        }
+
+        .activities-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .activity-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+
+        .activity-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(0, 184, 148, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            flex-shrink: 0;
+        }
+
+        .activity-content h4 {
+            color: var(--dark);
+            margin-bottom: 5px;
+            font-size: 1.1rem;
+        }
+
+        .activity-content p {
+            color: var(--gray);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* Task Summary */
+        .task-summary {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            margin-top: 40px;
+        }
+
+        .task-summary h2 {
+            color: var(--dark);
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .task-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: var(--light);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: var(--gray);
+            font-size: 1rem;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 184, 148, 0.3);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 50px 0 20px;
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-links h3 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .main-content {
+                padding: 120px 0 40px;
+            }
+            
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .calendar-controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .month-selector {
+                justify-content: center;
+            }
+            
+            .season-selector {
+                justify-content: center;
+            }
+            
+            .calendar-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .task-stats {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            
+            .month-selector {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .season-selector {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="/" class="logo">
+                <i class="fas fa-seedling"></i>
+                <span>AnnadataAI</span>
+            </a>
+            
+            <div class="nav-links">
+                <a href="/">🏠 Home</a>
+                <a href="/location">📍 Location</a>
+                <a href="/crops">🌱 Crops</a>
+                <a href="/water">💧 Water</a>
+                <a href="/diseases">⚠️ Diseases</a>
+                <a href="/calendar" style="color: var(--primary);">📅 Calendar</a>
+            </div>
+            
+            <!-- Language Selector -->
+            <div class="language-selector">
+                <button class="language-btn" onclick="toggleLanguageMenu()">
+                    <i class="fas fa-globe"></i>
+                    <span id="current-language">EN</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="language-menu" id="languageMenu">
+                    <div class="language-option" onclick="changeLanguage('en')">
+                        <span class="flag">🇺🇸</span>
+                        <span>English</span>
+                    </div>
+                    <div class="language-option" onclick="changeLanguage('hi')">
+                        <span class="flag">🇮🇳</span>
+                        <span>हिंदी</span>
+                    </div>
+                    <div class="language-option" onclick="changeLanguage('te')">
+                        <span class="flag">🇮🇳</span>
+                        <span>తెలుగు</span>
+                    </div>
+                    <div class="language-option" onclick="changeLanguage('ta')">
+                        <span class="flag">🇮🇳</span>
+                        <span>தமிழ்</span>
+                    </div>
+                    <div class="language-option" onclick="changeLanguage('bn')">
+                        <span class="flag">🇧🇩</span>
+                        <span>বাংলা</span>
+                    </div>
+                    <div class="language-option" onclick="changeLanguage('mr')">
+                        <span class="flag">🇮🇳</span>
+                        <span>मराठी</span>
+                    </div>
+                    <div class="language-option" onclick="changeLanguage('gu')">
+                        <span class="flag">🇮🇳</span>
+                        <span>ગુજરાતી</span>
+                    </div>
+                    <div class="language-option" onclick="changeLanguage('kn')">
+                        <span class="flag">🇮🇳</span>
+                        <span>ಕನ್ನಡ</span>
+                    </div>
+                    <div class="language-option" onclick="changeLanguage('ml')">
+                        <span class="flag">🇮🇳</span>
+                        <span>മലയാളം</span>
+                    </div>
+                    <div class="language-option" onclick="changeLanguage('pa')">
+                        <span class="flag">🇮🇳</span>
+                        <span>ਪੰਜਾਬੀ</span>
+                    </div>
+                </div>
+            </div>
+            
+            <a href="/settings" class="settings-icon" title="Settings">
+                <i class="fas fa-cog"></i>
+            </a>
+            
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="container">
+            <!-- Page Header -->
+            <div class="page-header">
+                <div class="icon">📅</div>
+                <h1 data-translate="calendar_title">Smart Farming Calendar</h1>
+                <p data-translate="calendar_subtitle">Plan your farming activities month-by-month with AI-powered recommendations tailored to your location and crops.</p>
+            </div>
+
+            <!-- Calendar Controls -->
+            <div class="calendar-controls">
+                <div class="month-selector">
+                    <button onclick="changeMonth(-1)">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <div class="month-name" id="currentMonth">January</div>
+                    <button onclick="changeMonth(1)">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+                
+                <div class="season-selector">
+                    <button class="season-btn active" onclick="filterBySeason('all')">All Seasons</button>
+                    <button class="season-btn" onclick="filterBySeason('kharif')">Kharif</button>
+                    <button class="season-btn" onclick="filterBySeason('rabi')">Rabi</button>
+                    <button class="season-btn" onclick="filterBySeason('zaid')">Zaid</button>
+                </div>
+                
+                <button class="btn btn-primary" onclick="exportCalendar()">
+                    <i class="fas fa-download"></i> Export Calendar
+                </button>
+            </div>
+
+            <!-- Calendar Grid -->
+            <div class="calendar-grid" id="calendarGrid">
+                <!-- Months will be populated by JavaScript -->
+            </div>
+
+            <!-- Task Summary -->
+            <div class="task-summary">
+                <h2><i class="fas fa-tasks"></i> This Month's Task Summary</h2>
+                
+                <div class="task-stats">
+                    <div class="stat-card">
+                        <div class="stat-number" id="pendingTasks">8</div>
+                        <div class="stat-label">Pending Tasks</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-number" id="completedTasks">12</div>
+                        <div class="stat-label">Completed Tasks</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-number" id="upcomingTasks">5</div>
+                        <div class="stat-label">Upcoming Tasks</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-number" id="priorityTasks">3</div>
+                        <div class="stat-label">High Priority</div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 30px;">
+                    <h3 style="color: var(--dark); margin-bottom: 20px; font-size: 1.3rem;">
+                        <i class="fas fa-check-circle" style="color: var(--primary);"></i> Today's Priority Tasks
+                    </h3>
+                    
+                    <div style="background: rgba(0, 184, 148, 0.1); padding: 20px; border-radius: 15px;">
+                        <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
+                            <div style="width: 12px; height: 12px; background: var(--primary); border-radius: 50%;"></div>
+                            <div>
+                                <strong>Prepare soil for maize sowing</strong>
+                                <p style="color: var(--gray); font-size: 0.9rem; margin-top: 5px;">Due: Today | Priority: High</p>
+                            </div>
+                        </div>
+                        
+                        <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
+                            <div style="width: 12px; height: 12px; background: var(--secondary); border-radius: 50%;"></div>
+                            <div>
+                                <strong>Apply organic fertilizer to vegetable garden</strong>
+                                <p style="color: var(--gray); font-size: 0.9rem; margin-top: 5px;">Due: Tomorrow | Priority: Medium</p>
+                            </div>
+                        </div>
+                        
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <div style="width: 12px; height: 12px; background: #ff9800; border-radius: 50%;"></div>
+                            <div>
+                                <strong>Check irrigation system for leaks</strong>
+                                <p style="color: var(--gray); font-size: 0.9rem; margin-top: 5px;">Due: This week | Priority: Low</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- UPDATED: Button now correctly links to /profit route -->
+                <div style="margin-top: 30px; display: flex; gap: 15px; flex-wrap: wrap;">
+                    <button class="btn btn-primary" onclick="markAllComplete()">
+                        <i class="fas fa-check-double"></i> Mark All as Complete
+                    </button>
+                    
+                    <button class="btn btn-secondary" onclick="addCustomTask()">
+                        <i class="fas fa-plus"></i> Add Custom Task
+                    </button>
+                    
+                    <!-- UPDATED LINK: Now uses Flask route /profit -->
+                    <a href="/profit" class="btn btn-secondary">
+                        <i class="fas fa-chart-line"></i> Profit Prediction
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo" style="color: white; font-size: 1.5rem; margin-bottom: 15px;">
+                        <i class="fas fa-seedling"></i> AnnadataAI
+                    </div>
+                    <p style="color: rgba(255, 255, 255, 0.7);">AI-powered farming assistant for sustainable agriculture.</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/location">Location Setup</a></li>
+                        <li><a href="/crops">Crop Recommendations</a></li>
+                        <li><a href="/water">Water Calculator</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="/calendar">Farming Calendar</a></li>
+                        <li><a href="#">Seasonal Guide</a></li>
+                        <li><a href="/profit">Profit Prediction</a></li>
+                        <li><a href="#">Harvest Planning</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Connect</h3>
+                    <ul>
+                        <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                        <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
+                        <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                        <li><a href="#"><i class="fab fa-youtube"></i> YouTube</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2024 AnnadataAI Assistant. All rights reserved. | Hackathon Project</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        });
+        
+        // Calendar Data
+        const monthsData = [
+            {
+                name: 'January',
+                season: 'Rabi',
+                activities: [
+                    { icon: '🌾', title: 'Harvest Rabi Crops', description: 'Harvest wheat, mustard, and vegetables. Dry and store properly.' },
+                    { icon: '🌱', title: 'Prepare for Summer Crops', description: 'Plough fields and prepare beds for summer vegetable cultivation.' },
+                    { icon: '💧', title: 'Irrigation Management', description: 'Provide light irrigation to winter crops as needed.' },
+                    { icon: '⚠️', title: 'Pest Control', description: 'Monitor for aphids and caterpillars on vegetables.' }
+                ]
+            },
+            {
+                name: 'February',
+                season: 'Rabi/Zaid',
+                activities: [
+                    { icon: '🌾', title: 'Complete Rabi Harvest', description: 'Finish harvesting remaining rabi crops before temperatures rise.' },
+                    { icon: '🌱', title: 'Sow Summer Crops', description: 'Start sowing maize, cotton, and summer vegetables.' },
+                    { icon: '🌧️', title: 'Water Conservation', description: 'Prepare for water scarcity by checking irrigation systems.' },
+                    { icon: '💰', title: 'Market Preparation', description: 'Clean, grade, and pack harvested produce for market.' }
+                ]
+            },
+            {
+                name: 'March',
+                season: 'Zaid',
+                activities: [
+                    { icon: '🌱', title: 'Sow Zaid Crops', description: 'Sow moong, melons, cucumber, and other short-duration crops.' },
+                    { icon: '💧', title: 'Irrigation Critical', description: 'Increase irrigation frequency as temperatures rise.' },
+                    { icon: '🌿', title: 'Weed Control', description: 'Regular weeding and mulching to conserve soil moisture.' },
+                    { icon: '🐛', title: 'Pest Monitoring', description: 'Watch for whiteflies and mites on summer crops.' }
+                ]
+            },
+            {
+                name: 'April',
+                season: 'Zaid',
+                activities: [
+                    { icon: '🌾', title: 'Harvest Early Zaid', description: 'Harvest early-sown summer crops like vegetables and pulses.' },
+                    { icon: '🌱', title: 'Prepare for Kharif', description: 'Start preparing land for upcoming Kharif season.' },
+                    { icon: '🔥', title: 'Heat Management', description: 'Protect crops from heat stress with shade and mulching.' },
+                    { icon: '💧', title: 'Water Scheduling', description: 'Water early morning or late evening to reduce evaporation.' }
+                ]
+            },
+            {
+                name: 'May',
+                season: 'Kharif Preparation',
+                activities: [
+                    { icon: '🌱', title: 'Nursery Preparation', description: 'Prepare nurseries for rice, vegetables, and other Kharif crops.' },
+                    { icon: '🌾', title: 'Harvest Remaining Crops', description: 'Complete harvesting of all summer crops.' },
+                    { icon: '🌧️', title: 'Wait for Monsoon', description: 'Monitor weather forecasts for monsoon arrival.' },
+                    { icon: '🛠️', title: 'Equipment Check', description: 'Repair and maintain farming equipment for Kharif season.' }
+                ]
+            },
+            {
+                name: 'June',
+                season: 'Kharif',
+                activities: [
+                    { icon: '🌧️', title: 'Monsoon Begins', description: 'Start sowing with first monsoon showers.' },
+                    { icon: '🌱', title: 'Sow Kharif Crops', description: 'Sow rice, maize, cotton, soybeans, and pulses.' },
+                    { icon: '💧', title: 'Rainwater Harvesting', description: 'Collect and store rainwater for future use.' },
+                    { icon: '⚠️', title: 'Disease Watch', description: 'Monitor for fungal diseases in humid conditions.' }
+                ]
+            },
+            {
+                name: 'July',
+                season: 'Kharif',
+                activities: [
+                    { icon: '🌱', title: 'Continue Sowing', description: 'Complete sowing of all Kharif crops.' },
+                    { icon: '🌿', title: 'Weed Management', description: 'First weeding of Kharif crops. Use organic weed control.' },
+                    { icon: '💧', title: 'Drainage Management', description: 'Ensure proper drainage to prevent waterlogging.' },
+                    { icon: '🌾', title: 'Fertilizer Application', description: 'Apply first dose of fertilizers to growing crops.' }
+                ]
+            },
+            {
+                name: 'August',
+                season: 'Kharif',
+                activities: [
+                    { icon: '🌾', title: 'Crop Maintenance', description: 'Second weeding and earthing up of crops.' },
+                    { icon: '💧', title: 'Irrigation as Needed', description: 'Supplement irrigation if monsoon breaks occur.' },
+                    { icon: '🐛', title: 'Pest Control', description: 'Monitor and control pests like stem borers and leaf rollers.' },
+                    { icon: '🌱', title: 'Sow Late Kharif', description: 'Sow late varieties of pulses and vegetables.' }
+                ]
+            },
+            {
+                name: 'September',
+                season: 'Kharif/Rabi',
+                activities: [
+                    { icon: '🌾', title: 'Harvest Early Kharif', description: 'Start harvesting early-maturing Kharif crops.' },
+                    { icon: '🌱', title: 'Prepare for Rabi', description: 'Begin land preparation for Rabi season crops.' },
+                    { icon: '💧', title: 'Water Management', description: 'Conserve soil moisture for upcoming dry period.' },
+                    { icon: '💰', title: 'Market Planning', description: 'Plan marketing strategy for Kharif harvest.' }
+                ]
+            },
+            {
+                name: 'October',
+                season: 'Rabi',
+                activities: [
+                    { icon: '🌾', title: 'Complete Kharif Harvest', description: 'Finish harvesting all Kharif crops.' },
+                    { icon: '🌱', title: 'Sow Rabi Crops', description: 'Start sowing wheat, barley, mustard, and vegetables.' },
+                    { icon: '💧', title: 'Irrigation Critical', description: 'Provide pre-sowing irrigation for Rabi crops.' },
+                    { icon: '🌿', title: 'Soil Preparation', description: 'Fine tilth preparation for small-seeded crops.' }
+                ]
+            },
+            {
+                name: 'November',
+                season: 'Rabi',
+                activities: [
+                    { icon: '🌱', title: 'Complete Rabi Sowing', description: 'Finish sowing all Rabi crops before winter.' },
+                    { icon: '💧', title: 'First Irrigation', description: 'Apply first irrigation to newly sown crops.' },
+                    { icon: '🌿', title: 'Weed Control', description: 'First weeding of Rabi crops.' },
+                    { icon: '🌡️', title: 'Frost Protection', description: 'Prepare for frost protection measures.' }
+                ]
+            },
+            {
+                name: 'December',
+                season: 'Rabi',
+                activities: [
+                    { icon: '🌾', title: 'Crop Care', description: 'Second weeding and fertilizer application to Rabi crops.' },
+                    { icon: '💧', title: 'Irrigation Scheduling', description: 'Reduce irrigation frequency as temperatures drop.' },
+                    { icon: '❄️', title: 'Frost Management', description: 'Protect crops from frost with covers or sprinklers.' },
+                    { icon: '💰', title: 'Year-End Planning', description: 'Review year and plan for next season.' }
+                ]
+            }
+        ];
+        
+        let currentMonthIndex = new Date().getMonth(); // 0-11
+        
+        // Render Calendar
+        function renderCalendar() {
+            const container = document.getElementById('calendarGrid');
+            const currentMonth = document.getElementById('currentMonth');
+            
+            // Update current month display
+            currentMonth.textContent = monthsData[currentMonthIndex].name;
+            
+            // Clear container
+            container.innerHTML = '';
+            
+            // Show current month and next 2 months
+            for (let i = 0; i < 3; i++) {
+                const monthIndex = (currentMonthIndex + i) % 12;
+                const month = monthsData[monthIndex];
+                
+                const monthCard = document.createElement('div');
+                monthCard.className = 'month-card';
+                monthCard.innerHTML = `
+                    <div class="month-header">
+                        <div class="month-title">${month.name}</div>
+                        <div class="month-season">${month.season} Season</div>
+                    </div>
+                    <div class="month-body">
+                        <ul class="activities-list">
+                            ${month.activities.map(activity => `
+                                <li class="activity-item">
+                                    <div class="activity-icon">
+                                        ${activity.icon}
+                                    </div>
+                                    <div class="activity-content">
+                                        <h4>${activity.title}</h4>
+                                        <p>${activity.description}</p>
+                                    </div>
+                                </li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                `;
+                container.appendChild(monthCard);
+            }
+            
+            // Update task summary
+            updateTaskSummary();
+        }
+        
+        // Change Month
+        function changeMonth(direction) {
+            currentMonthIndex = (currentMonthIndex + direction + 12) % 12;
+            renderCalendar();
+        }
+        
+        // Filter by Season
+        function filterBySeason(season) {
+            // Update active button
+            document.querySelectorAll('.season-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // In a real app, this would filter the calendar
+            // For demo, we'll just show an alert
+            if (season !== 'all') {
+                alert(`Showing activities for ${season} season`);
+            }
+            
+            renderCalendar();
+        }
+        
+        // Update Task Summary
+        function updateTaskSummary() {
+            // Random task counts for demo
+            document.getElementById('pendingTasks').textContent = Math.floor(Math.random() * 5) + 6;
+            document.getElementById('completedTasks').textContent = Math.floor(Math.random() * 5) + 10;
+            document.getElementById('upcomingTasks').textContent = Math.floor(Math.random() * 5) + 3;
+            document.getElementById('priorityTasks').textContent = Math.floor(Math.random() * 3) + 2;
+        }
+        
+        // Export Calendar
+        function exportCalendar() {
+            alert('✅ Calendar exported successfully! You can print it or save as PDF.');
+        }
+        
+        // Mark All Complete
+        function markAllComplete() {
+            if (confirm('Mark all tasks for this month as complete?')) {
+                document.getElementById('pendingTasks').textContent = '0';
+                document.getElementById('completedTasks').textContent = '20';
+                alert('All tasks marked as complete! Great job! 🎉');
+            }
+        }
+        
+        // Add Custom Task
+        function addCustomTask() {
+            const task = prompt('Enter your custom farming task:');
+            if (task) {
+                alert(`Task added: "${task}"\nIt will appear in your personal task list.`);
+            }
+        }
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            renderCalendar();
+            
+            // Update copyright year
+            document.querySelector('.copyright p').innerHTML = 
+                `© ${new Date().getFullYear()} AnnadataAI Assistant. All rights reserved. | Hackathon Project`;
+        });
+    </script>
+
+    <!-- Include translations script -->
+    <script src="/static/translations.js"></script>
+</body>
+</html>

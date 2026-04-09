@@ -1,0 +1,1853 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💧 Water Management - AnnadataAI</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #00b894;
+            --primary-dark: #00a085;
+            --secondary: #0984e3;
+            --dark: #2d3436;
+            --light: #f9f9f9;
+            --gray: #636e72;
+            --light-gray: #dfe6e9;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: linear-gradient(135deg, rgba(173, 216, 230, 0.1) 0%, rgba(176, 224, 230, 0.05) 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+            padding: 20px 0;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        .logo i {
+            color: var(--primary);
+            font-size: 1.8rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* ===== LANGUAGE SELECTOR ===== */
+        .language-selector {
+            position: relative;
+            margin-left: 20px;
+        }
+
+        .language-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 15px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .language-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .language-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            min-width: 200px;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: var(--transition);
+            margin-top: 10px;
+        }
+
+        .language-menu.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .language-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            cursor: pointer;
+            transition: var(--transition);
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .language-option:last-child {
+            border-bottom: none;
+        }
+
+        .language-option:hover {
+            background: var(--light);
+            color: var(--primary);
+        }
+
+        .language-option .flag {
+            font-size: 1.2rem;
+        }
+
+        .language-option span:last-child {
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark);
+            cursor: pointer;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 150px 0 80px;
+        }
+
+        /* Page Header */
+        .page-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+
+        .page-header .icon {
+            font-size: 4rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .page-header p {
+            color: var(--gray);
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Calculator Section */
+        .calculator-section {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: var(--shadow);
+            margin-bottom: 40px;
+        }
+
+        .calculator-section h2 {
+            color: var(--primary-dark);
+            margin-bottom: 30px;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .calculator-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .input-group input,
+        .input-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid var(--light-gray);
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .input-group input:focus,
+        .input-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(0, 184, 148, 0.1);
+        }
+
+        .input-group .unit {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-left: 5px;
+        }
+
+        /* Results */
+        .results-section {
+            background: linear-gradient(135deg, rgba(0, 184, 148, 0.1) 0%, rgba(9, 132, 227, 0.05) 100%);
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 40px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(0, 184, 148, 0.2);
+        }
+
+        .result-item:last-child {
+            border-bottom: none;
+        }
+
+        .result-label {
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .result-value {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+
+        /* Water Tips */
+        .tips-section {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: var(--shadow);
+            margin-top: 40px;
+        }
+
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .tip-card {
+            background: var(--light);
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 4px solid var(--secondary);
+        }
+
+        .tip-card h4 {
+            color: var(--secondary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 184, 148, 0.3);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--gray);
+            border: 2px solid var(--light-gray);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 50px 0 20px;
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-links h3 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .main-content {
+                padding: 120px 0 40px;
+            }
+            
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .calculator-section,
+            .tips-section {
+                padding: 25px;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            
+            .calculator-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .tips-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Location Suggestions */
+        .location-suggestions {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border: 1px solid var(--light-gray);
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            max-height: 200px;
+            overflow-y: auto;
+            z-index: 1000;
+            display: none;
+        }
+
+        .location-suggestion {
+            padding: 12px 15px;
+            cursor: pointer;
+            border-bottom: 1px solid var(--light-gray);
+            transition: var(--transition);
+        }
+
+        .location-suggestion:last-child {
+            border-bottom: none;
+        }
+
+        .location-suggestion:hover {
+            background: var(--light);
+            color: var(--primary);
+        }
+
+        .location-suggestion .suggestion-name {
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .location-suggestion .suggestion-details {
+            font-size: 0.9rem;
+            color: var(--gray);
+            margin-top: 2px;
+        }
+
+        /* Water Status Indicators */
+        .water-status-good {
+            color: #00b894 !important;
+        }
+
+        .water-status-moderate {
+            color: #fdcb6e !important;
+        }
+
+        .water-status-poor {
+            color: #e17055 !important;
+        }
+
+        .water-status-critical {
+            color: #d63031 !important;
+        }
+
+        /* Enhanced Results Section */
+        .location-water-card {
+            background: linear-gradient(135deg, rgba(0, 184, 148, 0.05) 0%, rgba(9, 132, 227, 0.02) 100%);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+            border-left: 4px solid var(--primary);
+        }
+
+        .water-recommendation {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .water-recommendation h4 {
+            color: var(--primary-dark);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .seasonal-water-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .season-card {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .season-card h5 {
+            color: var(--primary-dark);
+            margin-bottom: 8px;
+        }
+
+        .season-card .season-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="/" class="logo">
+                <i class="fas fa-seedling"></i>
+                <span>AnnadataAI</span>
+            </a>
+            
+            <div class="nav-links">
+                <a href="/" data-translate="nav_home">🏠 Home</a>
+                <a href="/location" data-translate="nav_location">📍 Location</a>
+                <a href="/crops" data-translate="nav_crops">🌱 Crops</a>
+                <a href="/water" data-translate="nav_water" style="color: var(--primary);">💧 Water</a>
+                <a href="/diseases" data-translate="nav_diseases">⚠️ Diseases</a>
+                <a href="/calendar" data-translate="nav_calendar">📅 Calendar</a>
+            </div>
+            
+            <!-- Language Selector -->
+            <div class="language-selector">
+                <button class="language-btn" onclick="toggleLanguageMenu()">
+                    <i class="fas fa-globe"></i>
+                    <span id="current-language">EN</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="language-menu" id="languageMenu">
+                    <div class="language-option" onclick="changeLanguage('en')">
+                        <span class="flag">🇺🇸</span>
+                        <span>English</span>
+                    </div>
+                    <div class="language-option" onclick="changeLanguage('hi')">
+                        <span class="flag">🇮🇳</span>
+                        <span>हिंदी</span>
+                    </div>
+                    <div class="language-option" onclick="changeLanguage('te')">
+                        <span class="flag">🇮🇳</span>
+                        <span>తెలుగు</span>
+                    </div>
+                    <div class="language-option" onclick="changeLanguage('ta')">
+                        <span class="flag">🇮🇳</span>
+                        <span>தமிழ்</span>
+                    </div>
+                    <div class="language-option" onclick="changeLanguage('bn')">
+                        <span class="flag">🇧🇩</span>
+                        <span>বাংলা</span>
+                    </div>
+                    <div class="language-option" onclick="changeLanguage('mr')">
+                        <span class="flag">🇮🇳</span>
+                        <span>मराठी</span>
+                    </div>
+                    <div class="language-option" onclick="changeLanguage('gu')">
+                        <span class="flag">🇮🇳</span>
+                        <span>ગુજરાતી</span>
+                    </div>
+                    <div class="language-option" onclick="changeLanguage('kn')">
+                        <span class="flag">🇮🇳</span>
+                        <span>ಕನ್ನಡ</span>
+                    </div>
+                    <div class="language-option" onclick="changeLanguage('ml')">
+                        <span class="flag">🇮🇳</span>
+                        <span>മലയാളം</span>
+                    </div>
+                    <div class="language-option" onclick="changeLanguage('pa')">
+                        <span class="flag">🇮🇳</span>
+                        <span>ਪੰਜਾਬੀ</span>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="container">
+            <!-- Page Header -->
+            <div class="page-header">
+                <div class="icon">💧</div>
+                <h1 data-translate="water_title">Smart Water Management</h1>
+                <p data-translate="water_subtitle">Calculate precise water requirements, plan irrigation schedules, and optimize water usage for your crops with location-based insights.</p>
+            </div>
+
+            <!-- Location-Based Water Analysis -->
+            <div class="calculator-section">
+                <h2><i class="fas fa-map-marker-alt"></i> <span data-translate="location_water_analysis">Location-Based Water Analysis</span></h2>
+                
+                <div class="calculator-grid">
+                    <div class="input-group">
+                        <label for="locationMethod">Location Method</label>
+                        <select id="locationMethod" onchange="toggleLocationMethod()">
+                            <option value="auto">Auto-detect GPS Location</option>
+                            <option value="manual">Enter Location Manually</option>
+                        </select>
+                    </div>
+                    
+                    <div class="input-group" id="manualLocationGroup" style="display: none;">
+                        <label for="manualLocation">Enter Location</label>
+                        <input type="text" id="manualLocation" placeholder="Enter village, district, state" onkeyup="searchLocations(this.value)">
+                        <div id="locationSuggestions" class="location-suggestions"></div>
+                    </div>
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="btn btn-primary" onclick="analyzeLocationWater()">
+                        <i class="fas fa-search"></i> Analyze Water Availability
+                    </button>
+                </div>
+                
+                <!-- Location Water Results -->
+                <div class="results-section" id="locationWaterResults" style="display: none;">
+                    <h3 style="color: var(--primary-dark); margin-bottom: 20px;">
+                        <i class="fas fa-tint"></i> Location Water Analysis
+                    </h3>
+                    
+                    <div class="result-item">
+                        <span class="result-label">Current Location</span>
+                        <span class="result-value" id="currentLocationDisplay">-</span>
+                    </div>
+                    
+                    <div class="result-item">
+                        <span class="result-label">Water Availability Status</span>
+                        <span class="result-value" id="waterAvailabilityStatus">-</span>
+                    </div>
+                    
+                    <div class="result-item">
+                        <span class="result-label">Groundwater Level</span>
+                        <span class="result-value" id="groundwaterLevel">-</span>
+                    </div>
+                    
+                    <div class="result-item">
+                        <span class="result-label">Rainfall Pattern</span>
+                        <span class="result-value" id="rainfallPattern">-</span>
+                    </div>
+                    
+                    <div class="result-item">
+                        <span class="result-label">Water Cost per 1000L</span>
+                        <span class="result-value" id="localWaterCost">-</span>
+                    </div>
+                    
+                    <div class="result-item">
+                        <span class="result-label">Profit/Loss Impact</span>
+                        <span class="result-value" id="profitLossImpact">-</span>
+                    </div>
+                    
+                    <div class="result-item">
+                        <span class="result-label">Water Conservation Priority</span>
+                        <span class="result-value" id="conservationPriority">-</span>
+                    </div>
+                    
+                    <div class="result-item">
+                        <span class="result-label">Recommended Water Sources</span>
+                        <span class="result-value" id="recommendedSources">-</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Calculator Section -->
+            <div class="calculator-section">
+                <h2><i class="fas fa-calculator"></i> <span data-translate="water_calculator">Location-Enhanced Water Calculator</span></h2>
+                
+                <div class="calculator-grid">
+                    <div class="input-group">
+                        <label for="cropType">Crop Type</label>
+                        <select id="cropType">
+                            <option value="maize">Maize</option>
+                            <option value="rice">Rice</option>
+                            <option value="wheat">Wheat</option>
+                            <option value="cotton">Cotton</option>
+                            <option value="sugarcane">Sugarcane</option>
+                            <option value="vegetables">Vegetables</option>
+                            <option value="pulses">Pulses</option>
+                            <option value="millets">Millets</option>
+                            <option value="oilseeds">Oilseeds</option>
+                        </select>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="farmArea">Farm Area <span class="unit">(acres)</span></label>
+                        <input type="number" id="farmArea" placeholder="Enter area" min="0.1" step="0.1" value="5">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="soilType">Soil Type</label>
+                        <select id="soilType">
+                            <option value="sandy">Sandy (Low water retention)</option>
+                            <option value="loamy">Loamy (Medium water retention)</option>
+                            <option value="clay">Clay (High water retention)</option>
+                            <option value="red">Red Soil</option>
+                            <option value="black">Black Soil (Regur)</option>
+                            <option value="alluvial">Alluvial Soil</option>
+                            <option value="laterite">Laterite Soil</option>
+                        </select>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="season">Season</label>
+                        <select id="season">
+                            <option value="summer">Summer (High water need)</option>
+                            <option value="winter">Winter (Low water need)</option>
+                            <option value="monsoon">Monsoon (Natural irrigation)</option>
+                            <option value="kharif">Kharif (June-Oct)</option>
+                            <option value="rabi">Rabi (Nov-Apr)</option>
+                            <option value="zaid">Zaid (Mar-Jun)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="irrigationMethod">Irrigation Method</label>
+                        <select id="irrigationMethod">
+                            <option value="flood">Flood Irrigation (Traditional)</option>
+                            <option value="drip">Drip Irrigation (Water Efficient)</option>
+                            <option value="sprinkler">Sprinkler Irrigation</option>
+                            <option value="furrow">Furrow Irrigation</option>
+                        </select>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="waterSource">Primary Water Source</label>
+                        <select id="waterSource">
+                            <option value="borewell">Borewell/Tubewell</option>
+                            <option value="canal">Canal Water</option>
+                            <option value="river">River/Stream</option>
+                            <option value="rainwater">Rainwater Harvesting</option>
+                            <option value="pond">Farm Pond</option>
+                            <option value="municipal">Municipal Supply</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="btn btn-primary" onclick="calculateWaterWithLocation()">
+                        <i class="fas fa-calculator"></i> Calculate Smart Water Needs
+                    </button>
+                    
+                    <button class="btn btn-secondary" onclick="resetCalculator()">
+                        <i class="fas fa-redo"></i> Reset
+                    </button>
+                    
+                    <button class="btn btn-outline" onclick="saveWaterPlan()">
+                        <i class="fas fa-save"></i> Save Water Plan
+                    </button>
+                </div>
+                
+                <!-- Results Section -->
+                <div class="results-section" id="resultsSection" style="display: none;">
+                    <h3 style="color: var(--primary-dark); margin-bottom: 20px;">
+                        <i class="fas fa-chart-bar"></i> Smart Water Calculation Results
+                    </h3>
+                    
+                    <div class="result-item">
+                        <span class="result-label">Daily Water Requirement</span>
+                        <span class="result-value" id="dailyWater">0 liters</span>
+                    </div>
+                    
+                    <div class="result-item">
+                        <span class="result-label">Weekly Water Requirement</span>
+                        <span class="result-value" id="weeklyWater">0 liters</span>
+                    </div>
+                    
+                    <div class="result-item">
+                        <span class="result-label">Monthly Water Requirement</span>
+                        <span class="result-value" id="monthlyWater">0 liters</span>
+                    </div>
+                    
+                    <div class="result-item">
+                        <span class="result-label">Irrigation Frequency</span>
+                        <span class="result-value" id="irrigationFreq">0 days</span>
+                    </div>
+                    
+                    <div class="result-item">
+                        <span class="result-label">Estimated Water Cost</span>
+                        <span class="result-value" id="waterCost">₹0</span>
+                    </div>
+                    
+                    <div class="result-item">
+                        <span class="result-label">Water Efficiency Rating</span>
+                        <span class="result-value" id="efficiencyRating">-</span>
+                    </div>
+                    
+                    <div class="result-item">
+                        <span class="result-label">Potential Water Savings</span>
+                        <span class="result-value" id="waterSavings">-</span>
+                    </div>
+                    
+                    <div class="result-item">
+                        <span class="result-label">Profit Impact Analysis</span>
+                        <span class="result-value" id="profitImpact">-</span>
+                    </div>
+                    
+                    <!-- Location-specific recommendations -->
+                    <div class="location-water-card" id="locationRecommendations" style="display: none;">
+                        <h4><i class="fas fa-map-marker-alt"></i> Location-Specific Recommendations</h4>
+                        <div id="locationSpecificContent"></div>
+                    </div>
+                    
+                    <!-- Seasonal Water Information -->
+                    <div class="seasonal-water-info" id="seasonalInfo" style="display: none;">
+                        <div class="season-card">
+                            <div class="season-icon">🌧️</div>
+                            <h5>Monsoon</h5>
+                            <p id="monsoonInfo">-</p>
+                        </div>
+                        <div class="season-card">
+                            <div class="season-icon">☀️</div>
+                            <h5>Summer</h5>
+                            <p id="summerInfo">-</p>
+                        </div>
+                        <div class="season-card">
+                            <div class="season-icon">❄️</div>
+                            <h5>Winter</h5>
+                            <p id="winterInfo">-</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tips Section -->
+            <div class="tips-section">
+                <h2 style="color: var(--primary-dark); margin-bottom: 30px;">
+                    <i class="fas fa-lightbulb"></i> Water Conservation Tips
+                </h2>
+                
+                <div class="tips-grid">
+                    <div class="tip-card">
+                        <h4><i class="fas fa-tint"></i> Drip Irrigation</h4>
+                        <p>Use drip irrigation systems to deliver water directly to plant roots, reducing evaporation and saving up to 50% water.</p>
+                    </div>
+                    
+                    <div class="tip-card">
+                        <h4><i class="fas fa-cloud-rain"></i> Rainwater Harvesting</h4>
+                        <p>Collect and store rainwater during monsoon season for use during dry periods. A 1000 sq ft roof can collect ~600 liters per 1cm rain.</p>
+                    </div>
+                    
+                    <div class="tip-card">
+                        <h4><i class="fas fa-clock"></i> Timing Matters</h4>
+                        <p>Water plants early morning or late evening to minimize evaporation. Avoid watering during windy conditions.</p>
+                    </div>
+                    
+                    <div class="tip-card">
+                        <h4><i class="fas fa-seedling"></i> Mulching</h4>
+                        <p>Apply organic mulch around plants to reduce soil moisture evaporation by 25-50% and suppress weeds.</p>
+                    </div>
+                    
+                    <div class="tip-card">
+                        <h4><i class="fas fa-recycle"></i> Water Recycling</h4>
+                        <p>Reuse household grey water (from washing vegetables, etc.) for watering plants after proper treatment.</p>
+                    </div>
+                    
+                    <div class="tip-card">
+                        <h4><i class="fas fa-leaf"></i> Drought-Resistant Crops</h4>
+                        <p>Choose crops that require less water like millets, pulses, and certain vegetables suitable for your region.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Irrigation Schedule -->
+            <div class="calculator-section" style="margin-top: 40px;">
+                <h2><i class="fas fa-calendar-alt"></i> Recommended Irrigation Schedule</h2>
+                
+                <div style="overflow-x: auto; margin-top: 20px;">
+                    <table style="width: 100%; border-collapse: collapse;">
+                        <thead>
+                            <tr style="background: var(--primary); color: white;">
+                                <th style="padding: 15px; text-align: left;">Crop</th>
+                                <th style="padding: 15px; text-align: left;">Summer</th>
+                                <th style="padding: 15px; text-align: left;">Winter</th>
+                                <th style="padding: 15px; text-align: left;">Monsoon</th>
+                                <th style="padding: 15px; text-align: left;">Best Time</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border-bottom: 1px solid var(--light-gray);">
+                                <td style="padding: 15px;">Rice</td>
+                                <td style="padding: 15px;">Daily</td>
+                                <td style="padding: 15px;">Every 2 days</td>
+                                <td style="padding: 15px;">As needed</td>
+                                <td style="padding: 15px;">Morning</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--light-gray);">
+                                <td style="padding: 15px;">Wheat</td>
+                                <td style="padding: 15px;">Every 3 days</td>
+                                <td style="padding: 15px;">Weekly</td>
+                                <td style="padding: 15px;">Every 10 days</td>
+                                <td style="padding: 15px;">Evening</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--light-gray);">
+                                <td style="padding: 15px;">Maize</td>
+                                <td style="padding: 15px;">Every 4 days</td>
+                                <td style="padding: 15px;">Every 7 days</td>
+                                <td style="padding: 15px;">Every 12 days</td>
+                                <td style="padding: 15px;">Morning</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--light-gray);">
+                                <td style="padding: 15px;">Vegetables</td>
+                                <td style="padding: 15px;">Daily</td>
+                                <td style="padding: 15px;">Every 2 days</td>
+                                <td style="padding: 15px;">Every 3 days</td>
+                                <td style="padding: 15px;">Early Morning</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo" style="color: white; font-size: 1.5rem; margin-bottom: 15px;">
+                        <i class="fas fa-seedling"></i> AnnadataAI
+                    </div>
+                    <p style="color: rgba(255, 255, 255, 0.7);">AI-powered farming assistant for sustainable agriculture.</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/location">Location Setup</a></li>
+                        <li><a href="/crops">Crop Recommendations</a></li>
+                        <li><a href="/water">Water Calculator</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="#">Water Conservation Guide</a></li>
+                        <li><a href="#">Irrigation Methods</a></li>
+                        <li><a href="#">Rainwater Harvesting</a></li>
+                        <li><a href="#">Soil Moisture Sensors</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Connect</h3>
+                    <ul>
+                        <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                        <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
+                        <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                        <li><a href="#"><i class="fab fa-youtube"></i> YouTube</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2024 AnnadataAI Assistant. All rights reserved. | Hackathon Project</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Global variables
+        let currentLocation = null;
+        let locationWaterData = null;
+        let searchTimeout = null;
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        });
+
+        // Location Method Toggle
+        function toggleLocationMethod() {
+            const method = document.getElementById('locationMethod').value;
+            const manualGroup = document.getElementById('manualLocationGroup');
+            
+            if (method === 'manual') {
+                manualGroup.style.display = 'block';
+            } else {
+                manualGroup.style.display = 'none';
+                // Clear manual location input
+                document.getElementById('manualLocation').value = '';
+                hideSuggestions();
+            }
+        }
+
+        // Location Search with Debouncing
+        function searchLocations(query) {
+            clearTimeout(searchTimeout);
+            
+            if (query.length < 2) {
+                hideSuggestions();
+                return;
+            }
+            
+            searchTimeout = setTimeout(() => {
+                performLocationSearch(query);
+            }, 300);
+        }
+
+        function performLocationSearch(query) {
+            // Mock location search - in real implementation, this would call the backend
+            const mockLocations = [
+                { name: 'Gachibowli', district: 'Hyderabad', state: 'Telangana', type: 'village' },
+                { name: 'Hinjewadi', district: 'Pune', state: 'Maharashtra', type: 'village' },
+                { name: 'Whitefield', district: 'Bangalore', state: 'Karnataka', type: 'village' },
+                { name: 'Wagholi', district: 'Pune', state: 'Maharashtra', type: 'village' },
+                { name: 'Kharadi', district: 'Pune', state: 'Maharashtra', type: 'village' },
+                { name: 'Electronic City', district: 'Bangalore', state: 'Karnataka', type: 'village' },
+                { name: 'Madhapur', district: 'Hyderabad', state: 'Telangana', type: 'village' },
+                { name: 'Baner', district: 'Pune', state: 'Maharashtra', type: 'village' }
+            ];
+            
+            const filteredLocations = mockLocations.filter(loc => 
+                loc.name.toLowerCase().includes(query.toLowerCase()) ||
+                loc.district.toLowerCase().includes(query.toLowerCase()) ||
+                loc.state.toLowerCase().includes(query.toLowerCase())
+            );
+            
+            showLocationSuggestions(filteredLocations);
+        }
+
+        function showLocationSuggestions(locations) {
+            const suggestionsDiv = document.getElementById('locationSuggestions');
+            
+            if (locations.length === 0) {
+                hideSuggestions();
+                return;
+            }
+            
+            let html = '';
+            locations.forEach(location => {
+                html += `
+                    <div class="location-suggestion" onclick="selectLocation('${location.name}', '${location.district}', '${location.state}')">
+                        <div class="suggestion-name">${location.name}</div>
+                        <div class="suggestion-details">${location.district}, ${location.state}</div>
+                    </div>
+                `;
+            });
+            
+            suggestionsDiv.innerHTML = html;
+            suggestionsDiv.style.display = 'block';
+        }
+
+        function hideSuggestions() {
+            document.getElementById('locationSuggestions').style.display = 'none';
+        }
+
+        function selectLocation(name, district, state) {
+            document.getElementById('manualLocation').value = `${name}, ${district}, ${state}`;
+            currentLocation = { name, district, state };
+            hideSuggestions();
+        }
+
+        // Location-Based Water Analysis
+        async function analyzeLocationWater() {
+            const method = document.getElementById('locationMethod').value;
+            
+            try {
+                if (method === 'auto') {
+                    // Check if there's already a saved location from the location page
+                    const savedLocations = JSON.parse(localStorage.getItem('annadatai_locations') || '[]');
+                    if (savedLocations.length > 0) {
+                        // Use the most recent saved location
+                        const recentLocation = savedLocations[savedLocations.length - 1];
+                        currentLocation = {
+                            name: recentLocation.village || recentLocation.displayName || 'Current Location',
+                            district: recentLocation.district || 'Unknown District',
+                            state: recentLocation.state || 'Unknown State',
+                            latitude: recentLocation.latitude,
+                            longitude: recentLocation.longitude
+                        };
+                        console.log('Using saved location:', currentLocation);
+                    } else {
+                        // Get GPS location if no saved location
+                        await getGPSLocation();
+                    }
+                } else {
+                    if (!currentLocation) {
+                        alert('Please select a location from the suggestions');
+                        return;
+                    }
+                }
+                
+                // Perform water analysis based on location
+                const waterAnalysis = await performWaterAnalysis(currentLocation);
+                displayLocationWaterResults(waterAnalysis);
+                
+            } catch (error) {
+                console.error('Location water analysis error:', error);
+                alert('Unable to analyze water for this location. Please try again or visit the Location page to set up your location first.');
+            }
+        }
+
+        async function getGPSLocation() {
+            return new Promise((resolve, reject) => {
+                if (!navigator.geolocation) {
+                    reject(new Error('Geolocation not supported. Please use manual location entry or visit the Location page to set up your location.'));
+                    return;
+                }
+                
+                const options = {
+                    enableHighAccuracy: true,
+                    timeout: 15000,
+                    maximumAge: 300000 // 5 minutes
+                };
+                
+                navigator.geolocation.getCurrentPosition(
+                    async (position) => {
+                        const lat = position.coords.latitude;
+                        const lon = position.coords.longitude;
+                        
+                        // Reverse geocode to get location details
+                        currentLocation = await reverseGeocode(lat, lon);
+                        console.log('GPS location detected:', currentLocation);
+                        resolve(currentLocation);
+                    },
+                    (error) => {
+                        console.error('GPS error:', error);
+                        let errorMessage = 'Unable to get GPS location. ';
+                        switch(error.code) {
+                            case error.PERMISSION_DENIED:
+                                errorMessage += 'Please allow location access or use manual entry.';
+                                break;
+                            case error.POSITION_UNAVAILABLE:
+                                errorMessage += 'Location unavailable. Please try manual entry.';
+                                break;
+                            case error.TIMEOUT:
+                                errorMessage += 'Location timeout. Please try again or use manual entry.';
+                                break;
+                            default:
+                                errorMessage += 'Please try manual entry or visit the Location page.';
+                                break;
+                        }
+                        reject(new Error(errorMessage));
+                    },
+                    options
+                );
+            });
+        }
+
+        async function reverseGeocode(lat, lon) {
+            try {
+                // Try to use a simple reverse geocoding service or fallback to coordinate-based location
+                const response = await fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lon}&localityLanguage=en`);
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    return {
+                        name: data.locality || data.city || data.principalSubdivision || 'Current Location',
+                        district: data.city || data.locality || data.principalSubdivision || 'Unknown District',
+                        state: data.principalSubdivision || 'Unknown State',
+                        latitude: lat,
+                        longitude: lon,
+                        source: 'reverse_geocode'
+                    };
+                }
+            } catch (error) {
+                console.log('Reverse geocoding failed, using coordinate-based location:', error);
+            }
+            
+            // Fallback to coordinate-based location detection
+            return getLocationFromCoordinates(lat, lon);
+        }
+
+        function getLocationFromCoordinates(lat, lon) {
+            // Enhanced coordinate-based location detection for India
+            let state = 'Unknown State';
+            let district = 'Unknown District';
+            let name = 'Current Location';
+            
+            // Major Indian regions based on coordinates
+            if (lat >= 8 && lat <= 37 && lon >= 68 && lon <= 97) {
+                // Within India bounds
+                if (lat >= 17.2 && lat <= 17.6 && lon >= 78.2 && lon <= 78.6) {
+                    state = 'Telangana';
+                    district = 'Hyderabad';
+                    name = 'Hyderabad Area';
+                } else if (lat >= 18.4 && lat <= 18.7 && lon >= 73.7 && lon <= 74.2) {
+                    state = 'Maharashtra';
+                    district = 'Pune';
+                    name = 'Pune Area';
+                } else if (lat >= 12.8 && lat <= 13.2 && lon >= 77.4 && lon <= 77.8) {
+                    state = 'Karnataka';
+                    district = 'Bangalore';
+                    name = 'Bangalore Area';
+                } else if (lat >= 19.0 && lat <= 19.3 && lon >= 72.7 && lon <= 73.1) {
+                    state = 'Maharashtra';
+                    district = 'Mumbai';
+                    name = 'Mumbai Area';
+                } else if (lat >= 28.4 && lat <= 28.8 && lon >= 76.8 && lon <= 77.4) {
+                    state = 'Delhi';
+                    district = 'New Delhi';
+                    name = 'Delhi Area';
+                } else if (lat >= 13.0 && lat <= 13.2 && lon >= 80.1 && lon <= 80.4) {
+                    state = 'Tamil Nadu';
+                    district = 'Chennai';
+                    name = 'Chennai Area';
+                } else if (lat >= 22.4 && lat <= 22.7 && lon >= 88.2 && lon <= 88.5) {
+                    state = 'West Bengal';
+                    district = 'Kolkata';
+                    name = 'Kolkata Area';
+                } else {
+                    // General region detection
+                    if (lat >= 15 && lat <= 20 && lon >= 75 && lon <= 85) {
+                        state = 'Maharashtra';
+                        district = 'Central Maharashtra';
+                    } else if (lat >= 20 && lat <= 30 && lon >= 75 && lon <= 85) {
+                        state = 'Uttar Pradesh';
+                        district = 'Central UP';
+                    } else if (lat >= 10 && lat <= 18 && lon >= 75 && lon <= 85) {
+                        state = 'Karnataka';
+                        district = 'Central Karnataka';
+                    }
+                    name = `Location in ${state}`;
+                }
+            }
+            
+            return {
+                name: name,
+                district: district,
+                state: state,
+                latitude: lat,
+                longitude: lon,
+                source: 'coordinate_based'
+            };
+        }
+
+        async function performWaterAnalysis(location) {
+            // Mock water analysis based on location
+            const waterData = getLocationWaterData(location);
+            locationWaterData = waterData;
+            return waterData;
+        }
+
+        function getLocationWaterData(location) {
+            // Location-based water data (mock implementation)
+            const locationWaterDatabase = {
+                'Telangana': {
+                    availability: 'Moderate',
+                    groundwaterLevel: 'Medium (15-25 feet)',
+                    rainfallPattern: '750-900mm annually',
+                    waterCost: 8,
+                    conservationPriority: 'High',
+                    recommendedSources: ['Borewell', 'Rainwater Harvesting', 'Farm Pond'],
+                    profitImpact: 'Medium Risk - Water costs affect 15-20% of crop profitability',
+                    seasonalData: {
+                        monsoon: 'Abundant water, focus on harvesting',
+                        summer: 'Water stress, increase irrigation frequency',
+                        winter: 'Moderate availability, efficient usage needed'
+                    }
+                },
+                'Maharashtra': {
+                    availability: 'Variable',
+                    groundwaterLevel: 'Deep (25-40 feet)',
+                    rainfallPattern: '600-1200mm annually',
+                    waterCost: 12,
+                    conservationPriority: 'Very High',
+                    recommendedSources: ['Drip Irrigation', 'Micro-sprinklers', 'Water Storage'],
+                    profitImpact: 'High Risk - Water costs can affect 25-30% of profitability',
+                    seasonalData: {
+                        monsoon: 'Good availability, maximize storage',
+                        summer: 'Critical shortage, use efficient methods',
+                        winter: 'Limited availability, careful planning needed'
+                    }
+                },
+                'Karnataka': {
+                    availability: 'Good',
+                    groundwaterLevel: 'Shallow (10-20 feet)',
+                    rainfallPattern: '800-1400mm annually',
+                    waterCost: 6,
+                    conservationPriority: 'Medium',
+                    recommendedSources: ['Borewell', 'Canal Water', 'Natural Springs'],
+                    profitImpact: 'Low Risk - Water costs affect 10-15% of profitability',
+                    seasonalData: {
+                        monsoon: 'Excellent availability',
+                        summer: 'Moderate stress, plan irrigation',
+                        winter: 'Good availability, normal usage'
+                    }
+                }
+            };
+            
+            const stateData = locationWaterDatabase[location.state] || locationWaterDatabase['Karnataka'];
+            
+            return {
+                location: `${location.name}, ${location.district}, ${location.state}`,
+                ...stateData
+            };
+        }
+
+        function displayLocationWaterResults(data) {
+            document.getElementById('currentLocationDisplay').textContent = data.location;
+            
+            // Set water availability status with color coding
+            const statusElement = document.getElementById('waterAvailabilityStatus');
+            statusElement.textContent = data.availability;
+            statusElement.className = `result-value water-status-${data.availability.toLowerCase()}`;
+            
+            document.getElementById('groundwaterLevel').textContent = data.groundwaterLevel;
+            document.getElementById('rainfallPattern').textContent = data.rainfallPattern;
+            document.getElementById('localWaterCost').textContent = `₹${data.waterCost} per 1000L`;
+            document.getElementById('profitLossImpact').textContent = data.profitImpact;
+            
+            // Set conservation priority with color coding
+            const priorityElement = document.getElementById('conservationPriority');
+            priorityElement.textContent = data.conservationPriority;
+            priorityElement.className = `result-value water-status-${data.conservationPriority.toLowerCase().replace(' ', '-')}`;
+            
+            document.getElementById('recommendedSources').textContent = data.recommendedSources.join(', ');
+            
+            // Show results
+            document.getElementById('locationWaterResults').style.display = 'block';
+            document.getElementById('locationWaterResults').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Enhanced Water Calculation with Location Integration
+        function calculateWaterWithLocation() {
+            const cropType = document.getElementById('cropType').value;
+            const farmArea = parseFloat(document.getElementById('farmArea').value) || 5;
+            const soilType = document.getElementById('soilType').value;
+            const season = document.getElementById('season').value;
+            const irrigationMethod = document.getElementById('irrigationMethod').value;
+            const waterSource = document.getElementById('waterSource').value;
+            
+            // Try to get location data if not already available
+            if (!currentLocation && !locationWaterData) {
+                // Check for saved locations
+                const savedLocations = JSON.parse(localStorage.getItem('annadatai_locations') || '[]');
+                if (savedLocations.length > 0) {
+                    const recentLocation = savedLocations[savedLocations.length - 1];
+                    currentLocation = {
+                        name: recentLocation.village || recentLocation.displayName || 'Saved Location',
+                        district: recentLocation.district || 'Unknown District',
+                        state: recentLocation.state || 'Unknown State',
+                        latitude: recentLocation.latitude,
+                        longitude: recentLocation.longitude
+                    };
+                    // Get water data for this location
+                    locationWaterData = getLocationWaterData(currentLocation);
+                    console.log('Using saved location for calculation:', currentLocation);
+                }
+            }
+            
+            // Enhanced base water requirements per acre per day (in liters)
+            const baseWater = {
+                maize: 5000,
+                rice: 10000,
+                wheat: 4000,
+                cotton: 6000,
+                sugarcane: 8000,
+                vegetables: 7000,
+                pulses: 3000,
+                millets: 2500,
+                oilseeds: 4500
+            };
+            
+            // Enhanced soil multipliers
+            const soilMultiplier = {
+                sandy: 1.3,
+                loamy: 1.0,
+                clay: 0.8,
+                red: 1.1,
+                black: 0.9,
+                alluvial: 1.0,
+                laterite: 1.2
+            };
+            
+            // Enhanced season multipliers
+            const seasonMultiplier = {
+                summer: 1.4,
+                winter: 0.7,
+                monsoon: 0.5,
+                kharif: 1.2,
+                rabi: 0.8,
+                zaid: 1.3
+            };
+            
+            // Irrigation efficiency multipliers
+            const irrigationEfficiency = {
+                flood: 1.0,      // Traditional, less efficient
+                drip: 0.6,       // Most efficient
+                sprinkler: 0.75, // Moderately efficient
+                furrow: 0.85     // Better than flood
+            };
+            
+            // Water source cost multipliers
+            const sourceCostMultiplier = {
+                borewell: 1.2,
+                canal: 0.8,
+                river: 0.6,
+                rainwater: 0.3,
+                pond: 0.5,
+                municipal: 1.5
+            };
+            
+            // Calculate daily water requirement
+            let dailyWater = baseWater[cropType] * farmArea * soilMultiplier[soilType] * seasonMultiplier[season];
+            
+            // Apply irrigation efficiency
+            dailyWater = dailyWater * irrigationEfficiency[irrigationMethod];
+            
+            // Apply location-based adjustments if available
+            if (locationWaterData) {
+                const locationMultiplier = getLocationWaterMultiplier(locationWaterData.availability);
+                dailyWater = dailyWater * locationMultiplier;
+            }
+            
+            dailyWater = Math.round(dailyWater);
+            const weeklyWater = dailyWater * 7;
+            const monthlyWater = dailyWater * 30;
+            
+            // Enhanced irrigation frequency
+            const baseIrrigationFreq = {
+                maize: 4, rice: 1, wheat: 7, cotton: 5, sugarcane: 3,
+                vegetables: 2, pulses: 8, millets: 6, oilseeds: 5
+            };
+            
+            let irrigationFreq = baseIrrigationFreq[cropType];
+            if (irrigationMethod === 'drip') irrigationFreq = Math.ceil(irrigationFreq * 1.5);
+            
+            // Enhanced water cost calculation
+            let waterCostPer1000 = locationWaterData ? locationWaterData.waterCost : 5;
+            waterCostPer1000 = waterCostPer1000 * sourceCostMultiplier[waterSource];
+            
+            const monthlyCost = Math.round((monthlyWater / 1000) * waterCostPer1000);
+            
+            // Calculate efficiency rating
+            const efficiencyScore = calculateEfficiencyScore(irrigationMethod, soilType, season);
+            
+            // Calculate potential savings
+            const potentialSavings = calculatePotentialSavings(dailyWater, irrigationMethod, farmArea);
+            
+            // Calculate profit impact
+            const profitImpact = calculateProfitImpact(monthlyCost, farmArea, cropType);
+            
+            // Update results
+            document.getElementById('dailyWater').textContent = dailyWater.toLocaleString() + ' liters';
+            document.getElementById('weeklyWater').textContent = weeklyWater.toLocaleString() + ' liters';
+            document.getElementById('monthlyWater').textContent = monthlyWater.toLocaleString() + ' liters';
+            document.getElementById('irrigationFreq').textContent = irrigationFreq + ' days';
+            document.getElementById('waterCost').textContent = '₹' + monthlyCost.toLocaleString();
+            document.getElementById('efficiencyRating').textContent = efficiencyScore.rating + ' (' + efficiencyScore.score + '%)';
+            document.getElementById('waterSavings').textContent = potentialSavings;
+            document.getElementById('profitImpact').textContent = profitImpact;
+            
+            // Show location-specific recommendations if available
+            if (locationWaterData) {
+                showLocationRecommendations();
+                showSeasonalInfo();
+            } else if (currentLocation) {
+                // If we have location but no water data, generate it
+                locationWaterData = getLocationWaterData(currentLocation);
+                showLocationRecommendations();
+                showSeasonalInfo();
+            }
+            
+            // Show results
+            document.getElementById('resultsSection').style.display = 'block';
+            document.getElementById('resultsSection').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function getLocationWaterMultiplier(availability) {
+            const multipliers = {
+                'excellent': 0.9,
+                'good': 1.0,
+                'moderate': 1.1,
+                'poor': 1.3,
+                'critical': 1.5
+            };
+            return multipliers[availability.toLowerCase()] || 1.0;
+        }
+
+        function calculateEfficiencyScore(irrigation, soil, season) {
+            let score = 50; // Base score
+            
+            // Irrigation method bonus
+            const irrigationBonus = {
+                drip: 40, sprinkler: 25, furrow: 15, flood: 0
+            };
+            score += irrigationBonus[irrigation] || 0;
+            
+            // Soil type adjustment
+            const soilBonus = {
+                clay: 10, loamy: 5, sandy: -5, black: 8, alluvial: 5, red: 0, laterite: -3
+            };
+            score += soilBonus[soil] || 0;
+            
+            // Season adjustment
+            const seasonBonus = {
+                monsoon: 15, winter: 10, rabi: 10, summer: -10, kharif: 5, zaid: -5
+            };
+            score += seasonBonus[season] || 0;
+            
+            score = Math.max(0, Math.min(100, score));
+            
+            let rating = 'Poor';
+            if (score >= 80) rating = 'Excellent';
+            else if (score >= 65) rating = 'Good';
+            else if (score >= 50) rating = 'Average';
+            else if (score >= 35) rating = 'Below Average';
+            
+            return { score, rating };
+        }
+
+        function calculatePotentialSavings(dailyWater, irrigation, area) {
+            if (irrigation === 'drip') {
+                const savings = Math.round(dailyWater * 0.4 * 30); // 40% savings with drip
+                const costSavings = Math.round((savings / 1000) * 5 * area);
+                return `${savings.toLocaleString()}L/month (₹${costSavings}/month)`;
+            } else if (irrigation === 'sprinkler') {
+                const savings = Math.round(dailyWater * 0.25 * 30); // 25% savings with sprinkler
+                const costSavings = Math.round((savings / 1000) * 5 * area);
+                return `${savings.toLocaleString()}L/month (₹${costSavings}/month)`;
+            }
+            return 'Switch to drip irrigation for 40% water savings';
+        }
+
+        function calculateProfitImpact(monthlyCost, area, crop) {
+            const cropProfitability = {
+                rice: 15000, wheat: 12000, maize: 10000, cotton: 20000,
+                sugarcane: 50000, vegetables: 25000, pulses: 8000,
+                millets: 6000, oilseeds: 12000
+            };
+            
+            const expectedProfit = (cropProfitability[crop] || 10000) * area;
+            const waterCostPercentage = (monthlyCost * 6 / expectedProfit * 100).toFixed(1); // 6 months crop cycle
+            
+            let impact = 'Low Impact';
+            if (waterCostPercentage > 20) impact = 'High Impact';
+            else if (waterCostPercentage > 10) impact = 'Medium Impact';
+            
+            return `${impact} (${waterCostPercentage}% of expected profit)`;
+        }
+
+        function showLocationRecommendations() {
+            if (!locationWaterData) return;
+            
+            const content = `
+                <div class="water-recommendation">
+                    <h4><i class="fas fa-lightbulb"></i> Water Conservation Tips for ${locationWaterData.location.split(',')[2]}</h4>
+                    <p>Based on your location's ${locationWaterData.availability.toLowerCase()} water availability:</p>
+                    <ul style="margin: 10px 0; padding-left: 20px;">
+                        <li>Recommended sources: ${locationWaterData.recommendedSources.join(', ')}</li>
+                        <li>Conservation priority: ${locationWaterData.conservationPriority}</li>
+                        <li>Groundwater status: ${locationWaterData.groundwaterLevel}</li>
+                    </ul>
+                </div>
+            `;
+            
+            document.getElementById('locationSpecificContent').innerHTML = content;
+            document.getElementById('locationRecommendations').style.display = 'block';
+        }
+
+        function showSeasonalInfo() {
+            if (!locationWaterData || !locationWaterData.seasonalData) return;
+            
+            document.getElementById('monsoonInfo').textContent = locationWaterData.seasonalData.monsoon;
+            document.getElementById('summerInfo').textContent = locationWaterData.seasonalData.summer;
+            document.getElementById('winterInfo').textContent = locationWaterData.seasonalData.winter;
+            
+            document.getElementById('seasonalInfo').style.display = 'grid';
+        }
+
+        // Legacy function for backward compatibility
+        function calculateWater() {
+            calculateWaterWithLocation();
+        }
+        
+        // Reset Calculator
+        function resetCalculator() {
+            document.getElementById('farmArea').value = '5';
+            document.getElementById('soilType').value = 'loamy';
+            document.getElementById('season').value = 'summer';
+            document.getElementById('irrigationMethod').value = 'flood';
+            document.getElementById('waterSource').value = 'borewell';
+            document.getElementById('resultsSection').style.display = 'none';
+            document.getElementById('locationWaterResults').style.display = 'none';
+            document.getElementById('locationRecommendations').style.display = 'none';
+            document.getElementById('seasonalInfo').style.display = 'none';
+        }
+
+        // Save Water Plan
+        function saveWaterPlan() {
+            if (!document.getElementById('resultsSection').style.display || 
+                document.getElementById('resultsSection').style.display === 'none') {
+                alert('Please calculate water requirements first');
+                return;
+            }
+            
+            const waterPlan = {
+                crop: document.getElementById('cropType').value,
+                area: document.getElementById('farmArea').value,
+                soil: document.getElementById('soilType').value,
+                season: document.getElementById('season').value,
+                irrigation: document.getElementById('irrigationMethod').value,
+                waterSource: document.getElementById('waterSource').value,
+                dailyWater: document.getElementById('dailyWater').textContent,
+                monthlyWater: document.getElementById('monthlyWater').textContent,
+                cost: document.getElementById('waterCost').textContent,
+                location: currentLocation,
+                timestamp: new Date().toISOString()
+            };
+            
+            // Save to localStorage (in real app, this would be saved to backend)
+            const savedPlans = JSON.parse(localStorage.getItem('annadatai_water_plans') || '[]');
+            savedPlans.push(waterPlan);
+            localStorage.setItem('annadatai_water_plans', JSON.stringify(savedPlans));
+            
+            alert('Water plan saved successfully!');
+        }
+        
+        // Auto-calculate on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            // Update copyright year
+            document.querySelector('.copyright p').innerHTML = 
+                `© ${new Date().getFullYear()} AnnadataAI Assistant. All rights reserved. | Hackathon Project`;
+            
+            // Initialize with saved location if available
+            initializeWithSavedLocation();
+            
+            // Auto-calculate for demo
+            setTimeout(() => {
+                calculateWaterWithLocation();
+            }, 1000);
+        });
+
+        function initializeWithSavedLocation() {
+            try {
+                const savedLocations = JSON.parse(localStorage.getItem('annadatai_locations') || '[]');
+                if (savedLocations.length > 0) {
+                    const recentLocation = savedLocations[savedLocations.length - 1];
+                    currentLocation = {
+                        name: recentLocation.village || recentLocation.displayName || 'Saved Location',
+                        district: recentLocation.district || 'Unknown District',
+                        state: recentLocation.state || 'Unknown State',
+                        latitude: recentLocation.latitude,
+                        longitude: recentLocation.longitude
+                    };
+                    
+                    // Update the location display
+                    const locationDisplay = document.getElementById('currentLocationDisplay');
+                    if (locationDisplay) {
+                        locationDisplay.textContent = `${currentLocation.name}, ${currentLocation.district}, ${currentLocation.state}`;
+                    }
+                    
+                    // Get water data for this location
+                    locationWaterData = getLocationWaterData(currentLocation);
+                    
+                    console.log('Initialized with saved location:', currentLocation);
+                    
+                    // Show a notification that we're using saved location
+                    showLocationNotification();
+                }
+            } catch (error) {
+                console.error('Error initializing with saved location:', error);
+            }
+        }
+
+        function showLocationNotification() {
+            // Create a temporary notification
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 20px;
+                background: var(--primary);
+                color: white;
+                padding: 15px 20px;
+                border-radius: 10px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+                z-index: 1000;
+                font-size: 0.9rem;
+                max-width: 300px;
+                animation: slideIn 0.3s ease-out;
+            `;
+            
+            notification.innerHTML = `
+                <i class="fas fa-map-marker-alt"></i> 
+                Using your saved location: <strong>${currentLocation.name}</strong>
+                <br><small>Visit Location page to change</small>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Remove notification after 4 seconds
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease-in';
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.parentNode.removeChild(notification);
+                    }
+                }, 300);
+            }, 4000);
+        }
+
+        // Add CSS animations for notification
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+            @keyframes slideOut {
+                from { transform: translateX(0); opacity: 1; }
+                to { transform: translateX(100%); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Hide suggestions when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.input-group')) {
+                hideSuggestions();
+            }
+        });
+    </script>
+    
+    <!-- Include translations script -->
+    <script src="/static/translations.js"></script>
+</body>
+</html>

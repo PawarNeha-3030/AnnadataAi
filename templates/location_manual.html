@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AnnadataAI - Manual Location Entry</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #00b894;
+            --primary-dark: #00a085;
+            --secondary: #0984e3;
+            --dark: #2d3436;
+            --light: #f9f9f9;
+            --gray: #636e72;
+            --light-gray: #dfe6e9;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .container {
+            max-width: 800px;
+        }
+
+        .location-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .card-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .form-control, .form-select {
+            border-radius: 10px;
+            border: 2px solid #e9ecef;
+            padding: 12px 15px;
+            transition: var(--transition);
+        }
+
+        .form-control:focus, .form-select:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 0.2rem rgba(0, 184, 148, 0.25);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            border: none;
+            border-radius: 10px;
+            padding: 12px 30px;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn-warning {
+            background: #f39c12;
+            border: none;
+            border-radius: 10px;
+            padding: 12px 30px;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .btn-warning:hover {
+            background: #e67e22;
+            transform: translateY(-2px);
+        }
+
+        .form-label {
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 8px;
+        }
+
+        .input-group-text {
+            background: var(--light);
+            border: 2px solid #e9ecef;
+            border-right: none;
+        }
+
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        .logo i {
+            color: var(--primary);
+            font-size: 1.8rem;
+        }
+
+        .settings-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 42px;
+            height: 42px;
+            background: #2d3436;
+            color: white;
+            border-radius: 50%;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            cursor: pointer;
+            margin: 0 10px;
+        }
+
+        .settings-icon:hover {
+            background: #1e272e;
+            transform: rotate(20deg);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a href="/" class="logo">
+                <i class="fas fa-seedling"></i>
+                <span>AnnadataAI</span>
+            </a>
+            <div class="navbar-nav ms-auto">
+                <a href="/settings" class="settings-icon" title="Settings">
+                    <i class="fas fa-cog"></i>
+                </a>
+                <a href="/location" class="nav-link">
+                    <i class="fas fa-arrow-left"></i> Back to Location
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container py-5">
+        <div class="location-card">
+            <div class="card-header">
+                <h1 class="mb-3">
+                    <i class="fas fa-map-marker-alt"></i>
+                    Enter Location Manually
+                </h1>
+                <p class="mb-0">Fill in your farm location details for personalized recommendations</p>
+            </div>
+            
+            <div class="card-body p-4">
+                <form id="manualLocationForm">
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <label class="form-label">
+                                <i class="fas fa-map-marker-alt text-success"></i> Area/Village Name
+                            </label>
+                            <input type="text" id="areaNameInput" class="form-control" 
+                                   placeholder="Enter area name (e.g., Patancheru)" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">
+                                <i class="fas fa-city text-primary"></i> City
+                            </label>
+                            <input type="text" id="cityInput" class="form-control" 
+                                   placeholder="Enter city name (e.g., Hyderabad)" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">
+                                <i class="fas fa-map-pin text-info"></i> District
+                            </label>
+                            <input type="text" id="districtInput" class="form-control" 
+                                   placeholder="Enter district name (e.g., Sangareddy)" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">
+                                <i class="fas fa-map-marked-alt text-info"></i> State
+                            </label>
+                            <select id="stateSelect" class="form-select" required>
+                                <option value="">Select State</option>
+                                <option value="MH">Maharashtra</option>
+                                <option value="UP">Uttar Pradesh</option>
+                                <option value="KA">Karnataka</option>
+                                <option value="GJ">Gujarat</option>
+                                <option value="RJ">Rajasthan</option>
+                                <option value="TN">Tamil Nadu</option>
+                                <option value="MP">Madhya Pradesh</option>
+                                <option value="AP">Andhra Pradesh</option>
+                                <option value="WB">West Bengal</option>
+                                <option value="PB">Punjab</option>
+                                <option value="OD">Odisha</option>
+                                <option value="KL">Kerala</option>
+                                <option value="HR">Haryana</option>
+                                <option value="BR">Bihar</option>
+                                <option value="TG">Telangana</option>
+                                <option value="AS">Assam</option>
+                                <option value="JH">Jharkhand</option>
+                                <option value="CH">Chhattisgarh</option>
+                                <option value="UK">Uttarakhand</option>
+                                <option value="HP">Himachal Pradesh</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">
+                                <i class="fas fa-mail-bulk text-success"></i> Pincode
+                            </label>
+                            <input type="text" id="pincodeInput" class="form-control" 
+                                   placeholder="Enter 6-digit pincode (e.g., 502319)" maxlength="6" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">
+                                <i class="fas fa-globe-asia text-secondary"></i> Country
+                            </label>
+                            <input type="text" id="countryInput" class="form-control" 
+                                   value="India" readonly>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-5 text-center">
+                        <button type="submit" class="btn btn-primary btn-lg me-3">
+                            <i class="fas fa-check-circle"></i> Save Location
+                        </button>
+                        <button type="button" class="btn btn-warning btn-lg" onclick="performSoilAnalysis()">
+                            <i class="fas fa-mountain"></i> Soil Analysis
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Tips Section -->
+        <div class="alert alert-info mt-4">
+            <h5><i class="fas fa-lightbulb"></i> Tips for Accurate Location Entry:</h5>
+            <ul class="mb-0">
+                <li>Be specific about village/area name for better soil analysis</li>
+                <li>Pincode helps in precise location mapping</li>
+                <li>Soil type is detected based on your state and district</li>
+                <li>Save location data to get personalized crop recommendations</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Soil type database based on Indian regions (same as main location page)
+        const soilDatabase = {
+            red: {
+                name: "Red Soil",
+                color: "red",
+                ph: "5.5 - 6.5 (Acidic)",
+                texture: "Sandy to Clay Loam",
+                drainage: "Good",
+                nutrients: "Low in Nitrogen, Phosphorus; Rich in Iron",
+                waterRetention: "Medium",
+                improvement: "Add organic compost, lime for pH adjustment, use nitrogen-fixing crops",
+                crops: ["Cotton", "Wheat", "Millets", "Pulses", "Oilseeds", "Tobacco"]
+            },
+            black: {
+                name: "Black Soil",
+                color: "black",
+                ph: "7.5 - 8.5 (Alkaline)",
+                texture: "Clayey",
+                drainage: "Poor",
+                nutrients: "Rich in Iron, Lime, Alumina, Magnesia; Poor in Phosphorus",
+                waterRetention: "High",
+                improvement: "Add gypsum for drainage, organic matter, phosphorus fertilizers",
+                crops: ["Cotton", "Sugarcane", "Wheat", "Tobacco", "Oilseeds", "Citrus"]
+            },
+            alluvial: {
+                name: "Alluvial Soil",
+                color: "alluvial",
+                ph: "6.5 - 7.5 (Neutral)",
+                texture: "Sandy Loam to Silty Loam",
+                drainage: "Good to Moderate",
+                nutrients: "Rich in Potash, Lime; Moderate in Phosphorus",
+                waterRetention: "Medium to High",
+                improvement: "Crop rotation, green manure, balanced fertilization",
+                crops: ["Rice", "Wheat", "Sugarcane", "Jute", "Maize", "Oilseeds", "Vegetables"]
+            },
+            laterite: {
+                name: "Laterite Soil",
+                color: "laterite",
+                ph: "5.0 - 6.0 (Acidic)",
+                texture: "Porous",
+                drainage: "Excessive",
+                nutrients: "Poor in Nitrogen, Phosphorus, Potash; Rich in Iron, Aluminum",
+                waterRetention: "Low",
+                improvement: "Add organic matter, lime, phosphorus fertilizers, terracing for water conservation",
+                crops: ["Tea", "Coffee", "Rubber", "Cashew", "Coconut", "Tapioca"]
+            },
+            sandy: {
+                name: "Sandy Soil",
+                color: "sandy",
+                ph: "6.0 - 7.0 (Slightly Acidic to Neutral)",
+                texture: "Coarse",
+                drainage: "Very Good",
+                nutrients: "Very Low",
+                waterRetention: "Very Low",
+                improvement: "Add clay, organic compost, mulch heavily, use drip irrigation",
+                crops: ["Groundnut", "Watermelon", "Pulses", "Millets", "Cucumber", "Carrot"]
+            },
+            clay: {
+                name: "Clay Soil",
+                color: "clay",
+                ph: "6.0 - 7.0",
+                texture: "Fine",
+                drainage: "Poor",
+                nutrients: "Rich in Nutrients",
+                waterRetention: "High",
+                improvement: "Add sand, organic matter, improve drainage",
+                crops: ["Rice", "Wheat", "Cabbage", "Broccoli"]
+            },
+            loam: {
+                name: "Loam Soil",
+                color: "loam",
+                ph: "6.0 - 7.0",
+                texture: "Medium",
+                drainage: "Good",
+                nutrients: "Balanced",
+                waterRetention: "Good",
+                improvement: "Maintain organic matter, regular composting",
+                crops: ["Most vegetables", "Fruits", "Grains", "Flowers"]
+            }
+        };
+
+        // State to soil type mapping (same as main location page)
+        const stateSoilMap = {
+            // Red Soil States
+            'Maharashtra': 'black',
+            'Karnataka': 'red',
+            'Tamil Nadu': 'red',
+            'Andhra Pradesh': 'red',
+            'Telangana': 'red',
+            'Odisha': 'red',
+            
+            // Black Soil States
+            'Gujarat': 'black',
+            'Madhya Pradesh': 'black',
+            
+            // Alluvial Soil States
+            'Uttar Pradesh': 'alluvial',
+            'Punjab': 'alluvial',
+            'Haryana': 'alluvial',
+            'Bihar': 'alluvial',
+            'West Bengal': 'alluvial',
+            
+            // Laterite Soil States
+            'Kerala': 'laterite',
+            'Goa': 'laterite',
+            
+            // Sandy Soil States
+            'Rajasthan': 'sandy',
+            
+            // Clay Soil States
+            'Assam': 'clay',
+            
+            // Loam Soil States
+            'Himachal Pradesh': 'loam',
+            'Uttarakhand': 'loam'
+        };
+
+        function performSoilAnalysis() {
+            const areaName = document.getElementById('areaNameInput').value;
+            const city = document.getElementById('cityInput').value;
+            const district = document.getElementById('districtInput').value;
+            const stateSelect = document.getElementById('stateSelect');
+            const pincode = document.getElementById('pincodeInput').value;
+            
+            const state = stateSelect.value;
+            const stateName = stateSelect.options[stateSelect.selectedIndex].text;
+            
+            if (!areaName || !city || !district || !state || !pincode) {
+                alert('Please fill in all required fields for soil analysis');
+                return;
+            }
+            
+            // Get soil data based on state
+            const soilType = stateSoilMap[stateName] || 'alluvial';
+            const soilData = soilDatabase[soilType];
+            
+            // Show soil analysis modal
+            showSoilAnalysisModal(stateName, district, areaName, pincode, soilData);
+        }
+
+        function convertSoilDataToComprehensive(existingSoilData, state, district) {
+            // Convert the existing soilDatabase format to comprehensive analysis format
+            const soilTypeColorMap = {
+                'red': 'danger',
+                'black': 'dark', 
+                'alluvial': 'primary',
+                'laterite': 'warning',
+                'sandy': 'secondary',
+                'clay': 'success',
+                'loam': 'info'
+            };
+            
+            // Extract pH level and value from the existing format
+            let phLevel = 'Neutral';
+            let phValue = '7.0';
+            
+            if (existingSoilData.ph) {
+                if (existingSoilData.ph.includes('Acidic')) {
+                    phLevel = 'Acidic';
+                    // Extract numeric value from string like "5.5 - 6.5 (Acidic)"
+                    const match = existingSoilData.ph.match(/(\d+\.?\d*)\s*-\s*(\d+\.?\d*)/);
+                    if (match) {
+                        phValue = ((parseFloat(match[1]) + parseFloat(match[2])) / 2).toFixed(1);
+                    }
+                } else if (existingSoilData.ph.includes('Alkaline')) {
+                    phLevel = 'Alkaline';
+                    const match = existingSoilData.ph.match(/(\d+\.?\d*)\s*-\s*(\d+\.?\d*)/);
+                    if (match) {
+                        phValue = ((parseFloat(match[1]) + parseFloat(match[2])) / 2).toFixed(1);
+                    }
+                } else if (existingSoilData.ph.includes('Neutral')) {
+                    phLevel = 'Neutral';
+                    phValue = '7.0';
+                }
+            }
+            
+            // Generate comprehensive soil characteristics based on existing data
+            let characteristics = '';
+            switch (existingSoilData.name) {
+                case 'Red Soil':
+                    characteristics = 'Red soil is formed due to weathering of crystalline rocks under tropical and sub-tropical climate. Rich in iron oxide which gives the characteristic red color. Generally well-drained but requires organic matter and lime for better fertility.';
+                    break;
+                case 'Black Soil':
+                    characteristics = 'Black soil, also known as regur soil, is formed from volcanic rocks (basalt). It has excellent water retention capacity and is highly fertile. The soil swells when wet and shrinks when dry, creating natural cracks.';
+                    break;
+                case 'Alluvial Soil':
+                    characteristics = 'Alluvial soil is deposited by rivers and is the most fertile soil type in India. It covers about 40% of the total land area and supports intensive agriculture in river valleys and deltas.';
+                    break;
+                case 'Laterite Soil':
+                    characteristics = 'Laterite soil is formed in tropical regions with high rainfall and temperature. It is highly leached and acidic due to heavy monsoon rains, requiring significant amendments for successful agriculture.';
+                    break;
+                case 'Sandy Soil':
+                    characteristics = 'Sandy soil has large particles with good drainage but poor water and nutrient retention. It warms up quickly in spring but requires frequent irrigation and fertilization.';
+                    break;
+                case 'Clay Soil':
+                    characteristics = 'Clay soil has very fine particles that stick together, creating poor drainage but excellent nutrient retention. It becomes hard when dry and sticky when wet.';
+                    break;
+                case 'Loam Soil':
+                    characteristics = 'Loam soil is considered ideal for agriculture as it contains balanced proportions of sand, silt, and clay. It has good drainage, water retention, and nutrient availability.';
+                    break;
+                default:
+                    characteristics = 'This soil type has mixed characteristics depending on local geological and climatic conditions.';
+            }
+            
+            // Generate management tips from improvement text
+            const managementTips = existingSoilData.improvement.split(',').map(tip => tip.trim());
+            
+            return {
+                soilType: {
+                    name: existingSoilData.name,
+                    color: soilTypeColorMap[existingSoilData.color] || 'info',
+                    description: existingSoilData.name.replace(' Soil', '') + ' soil type'
+                },
+                ph: {
+                    level: phLevel,
+                    value: phValue
+                },
+                properties: {
+                    texture: existingSoilData.texture,
+                    drainage: existingSoilData.drainage,
+                    waterRetention: existingSoilData.waterRetention,
+                    organicMatter: getOrganicMatterLevel(existingSoilData.name),
+                    nutrients: existingSoilData.nutrients,
+                    fertility: getFertilityLevel(existingSoilData.name)
+                },
+                characteristics: characteristics,
+                managementTips: managementTips,
+                suitableCrops: existingSoilData.crops,
+                analysisDate: new Date().toISOString(),
+                location: { state, district }
+            };
+        }
+        
+        function getOrganicMatterLevel(soilName) {
+            const organicMatterMap = {
+                'Red Soil': 'Low to Medium',
+                'Black Soil': 'Medium to High', 
+                'Alluvial Soil': 'Medium to High',
+                'Laterite Soil': 'Very Low',
+                'Sandy Soil': 'Very Low',
+                'Clay Soil': 'Medium',
+                'Loam Soil': 'High'
+            };
+            return organicMatterMap[soilName] || 'Medium';
+        }
+        
+        function getFertilityLevel(soilName) {
+            const fertilityMap = {
+                'Red Soil': 'Medium',
+                'Black Soil': 'High',
+                'Alluvial Soil': 'Very High', 
+                'Laterite Soil': 'Low',
+                'Sandy Soil': 'Low',
+                'Clay Soil': 'Medium to High',
+                'Loam Soil': 'High'
+            };
+            return fertilityMap[soilName] || 'Medium';
+        }
+
+        function showSoilAnalysisModal(state, district, village, pincode, soilData) {
+            // Convert to comprehensive format (same as main location page)
+            const comprehensiveSoilData = convertSoilDataToComprehensive(soilData, state, district);
+            
+            const modalHTML = `
+                <div class="modal fade" id="soilAnalysisModal" tabindex="-1" aria-labelledby="soilAnalysisModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header bg-warning text-dark">
+                                <h5 class="modal-title" id="soilAnalysisModalLabel">
+                                    <i class="fas fa-mountain"></i> Comprehensive Soil Analysis Report
+                                </h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row mb-4">
+                                    <div class="col-md-6">
+                                        <h6><i class="fas fa-map-marker-alt text-primary"></i> Location Details</h6>
+                                        <p><strong>State:</strong> ${state}</p>
+                                        <p><strong>District:</strong> ${district}</p>
+                                        <p><strong>Village:</strong> ${village}</p>
+                                        <p><strong>Pincode:</strong> ${pincode}</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h6><i class="fas fa-calendar text-info"></i> Analysis Details</h6>
+                                        <p><strong>Date:</strong> ${new Date().toLocaleDateString('en-GB')}</p>
+                                        <p><strong>Method:</strong> State-based Analysis</p>
+                                        <p><small class="text-muted">Based on regional soil data</small></p>
+                                    </div>
+                                </div>
+                                
+                                <div class="row mb-4">
+                                    <div class="col-md-6">
+                                        <div class="card border-${comprehensiveSoilData.soilType.color}">
+                                            <div class="card-body text-center">
+                                                <h5 class="card-title text-${comprehensiveSoilData.soilType.color}">
+                                                    <i class="fas fa-mountain"></i> Soil Type
+                                                </h5>
+                                                <h3 class="text-${comprehensiveSoilData.soilType.color}">${comprehensiveSoilData.soilType.name}</h3>
+                                                <p class="mb-0">${comprehensiveSoilData.soilType.description}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="card border-info">
+                                            <div class="card-body text-center">
+                                                <h5 class="card-title text-info">
+                                                    <i class="fas fa-balance-scale"></i> pH Level
+                                                </h5>
+                                                <h3 class="text-info">${comprehensiveSoilData.ph.level}</h3>
+                                                <p class="mb-0">pH ${comprehensiveSoilData.ph.value}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <h6><i class="fas fa-flask text-success"></i> Soil Properties</h6>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <p><strong>Texture:</strong> ${comprehensiveSoilData.properties.texture}</p>
+                                            <p><strong>Drainage:</strong> ${comprehensiveSoilData.properties.drainage}</p>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <p><strong>Water Retention:</strong> ${comprehensiveSoilData.properties.waterRetention}</p>
+                                            <p><strong>Organic Matter:</strong> ${comprehensiveSoilData.properties.organicMatter}</p>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <p><strong>Nutrient Level:</strong> ${comprehensiveSoilData.properties.nutrients}</p>
+                                            <p><strong>Fertility:</strong> ${comprehensiveSoilData.properties.fertility}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <h6><i class="fas fa-exclamation-triangle text-warning"></i> Soil Characteristics</h6>
+                                    <div class="alert alert-info">
+                                        ${comprehensiveSoilData.characteristics}
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <h6><i class="fas fa-lightbulb text-primary"></i> Soil Management Tips</h6>
+                                    <ul class="list-unstyled">
+                                        ${comprehensiveSoilData.managementTips.map(tip => `<li><i class="fas fa-check-circle text-success"></i> ${tip}</li>`).join('')}
+                                    </ul>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <h6><i class="fas fa-seedling text-success"></i> Suitable Crops</h6>
+                                    <div class="d-flex flex-wrap gap-2">
+                                        ${comprehensiveSoilData.suitableCrops.map(crop => `<span class="badge bg-success">${crop}</span>`).join('')}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" onclick="window.print()">
+                                    <i class="fas fa-print"></i> Print Report
+                                </button>
+                                <button type="button" class="btn btn-warning" onclick="downloadSoilReport()">
+                                    <i class="fas fa-download"></i> Download Report
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            // Remove existing modal if any
+            const existingModal = document.getElementById('soilAnalysisModal');
+            if (existingModal) {
+                existingModal.remove();
+            }
+            
+            // Add modal to body
+            document.body.insertAdjacentHTML('beforeend', modalHTML);
+            
+            // Show modal
+            const modal = new bootstrap.Modal(document.getElementById('soilAnalysisModal'));
+            modal.show();
+        }
+        
+        function downloadSoilReport() {
+            // Simple download functionality
+            alert('Download functionality will be implemented soon!');
+        }
+
+        // Form submission handler
+        document.getElementById('manualLocationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const areaName = document.getElementById('areaNameInput').value;
+            const city = document.getElementById('cityInput').value;
+            const district = document.getElementById('districtInput').value;
+            const stateSelect = document.getElementById('stateSelect');
+            const pincode = document.getElementById('pincodeInput').value;
+            
+            if (!areaName || !city || !district || !stateSelect.value || !pincode) {
+                alert('Please fill in all required fields');
+                return;
+            }
+            
+            // Save location (you can implement this to save to localStorage or send to server)
+            const locationData = {
+                areaName,
+                city,
+                district,
+                state: stateSelect.options[stateSelect.selectedIndex].text,
+                pincode,
+                country: 'India',
+                type: 'manual',
+                timestamp: new Date().toISOString()
+            };
+            
+            // Save to localStorage
+            let savedLocations = JSON.parse(localStorage.getItem('annadatai_locations') || '[]');
+            savedLocations.push(locationData);
+            localStorage.setItem('annadatai_locations', JSON.stringify(savedLocations));
+            
+            alert('Location saved successfully!');
+            
+            // Redirect back to main location page
+            window.location.href = '/location';
+        });
+    </script>
+</body>
+</html>
