@@ -1,0 +1,6 @@
+*.h5
+__pycache__/
+*.db
+*.pkl
+.vscode/
+uploads/
